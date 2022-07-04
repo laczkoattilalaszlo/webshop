@@ -1,2 +1,2 @@
 # webshop
-This is a webshop pet project.
+This is a Web Shop pet project.
