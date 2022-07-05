@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product-supplier/get-all"})
+@WebServlet(urlPatterns = {"/product-supplier"})
 public class ProductSupplierController extends HttpServlet {
 
     // Field(s)
     ProductSupplierService productSupplierService;
 
-    @Override
+    @Override   // Get product suppliers
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get List<ProductCategoryDto>
         productSupplierService = ServiceProvider.getInstance().setupProductSupplierService();

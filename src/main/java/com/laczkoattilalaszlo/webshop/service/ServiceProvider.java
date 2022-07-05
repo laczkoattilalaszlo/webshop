@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.service;
 
-import com.laczkoattilalaszlo.webshop.configuration.DataBaseManager;
+import com.laczkoattilalaszlo.webshop.data.DataBaseManager;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDao;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDaoDb;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductSupplierDao;

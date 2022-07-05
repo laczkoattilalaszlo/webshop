@@ -1,4 +1,4 @@
-package com.laczkoattilalaszlo.webshop.configuration;
+package com.laczkoattilalaszlo.webshop.data;
 
 import org.postgresql.ds.PGSimpleDataSource;
 

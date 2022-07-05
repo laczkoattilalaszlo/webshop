@@ -1,8 +1,8 @@
 window.addEventListener('load', async () => {
-    const productCategories = await fetchData("/product-category/get-all");
+    const productCategories = await fetchData("/product-category");
     console.log(productCategories);
 
-    const productSuppliers = await fetchData("/product-supplier/get-all");
+    const productSuppliers = await fetchData("/product-supplier");
     console.log(productSuppliers);
 });
 
