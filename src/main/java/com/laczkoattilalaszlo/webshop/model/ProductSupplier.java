@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.model;
 
-public class ProductCategory {
+public class ProductSupplier {
 
     // Field(s)
     protected int id;
@@ -26,7 +26,7 @@ public class ProductCategory {
     // Overridden method(s)
     @Override
     public String toString() {
-        return "ProductCategory{" +
+        return "ProductSupplier{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

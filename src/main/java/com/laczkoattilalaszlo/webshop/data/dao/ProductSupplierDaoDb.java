@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.ProductCategoryDto;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductSupplierDto;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,34 +10,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductCategoryDaoDb implements ProductCategoryDao {
+public class ProductSupplierDaoDb implements ProductSupplierDao {
 
     // Field(s)
     DataSource dataSource;
 
     // Constructor(s)
-    public ProductCategoryDaoDb(DataSource dataSource) {
+    public ProductSupplierDaoDb(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     // Method(s)
     @Override
-    public List<ProductCategoryDto> getProductCategories() {
+    public List<ProductSupplierDto> getProductSuppliers() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT name FROM product_category";
+            String sql = "SELECT name FROM product_supplier";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Put the result in a List<ProductCategoryDto>
-            List<ProductCategoryDto> productCategories = new ArrayList<>();
+            List<ProductSupplierDto> productSuppliers = new ArrayList<>();
             while (resultSet.next()) {
-                ProductCategoryDto productCategoryDto = new ProductCategoryDto();
-                productCategoryDto.setName(resultSet.getString(1));
-                productCategories.add(productCategoryDto);
+                ProductSupplierDto productSupplierDto = new ProductSupplierDto();
+                productSupplierDto.setName(resultSet.getString(1));
+                productSuppliers.add(productSupplierDto);
             }
 
-            return productCategories;
+            return productSuppliers;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
