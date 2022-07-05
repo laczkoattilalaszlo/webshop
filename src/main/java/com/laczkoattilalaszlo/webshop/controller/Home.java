@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,21 +22,28 @@ public class Home extends HttpServlet {
         // Send response
         PrintWriter printWriter = response.getWriter();
         try {
-            printWriter.println("<!DOCTYPE html>" +
-                                "<html lang=\"en\">" +
-                                    "<head>" +
-                                        "<meta charset=\"utf-8\" />" +
-                                        "<title>Web Shop</title>" +
-                                        "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\" />" +
-                                        "<script src=\"/static/javascript/home.js\" defer></script>" +
-                                    "</head>" +
-                                    "<body>" +
-                                        "<div>Index page</div>" +
-                                    "</body>" +
-                                "</html>");
+            String IndexHtmlAsString = convertFileToString("src/main/webapp/templates/index.html");
+            printWriter.println(IndexHtmlAsString);
         } finally {
             printWriter.close();
         }
+    }
+
+    private String convertFileToString (String filePath) {
+        StringBuilder builderResult = new StringBuilder();
+        try {
+            FileReader file = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(file);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                builderResult.append(line);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        String result = builderResult.toString();
+        return result;
     }
 
 }
