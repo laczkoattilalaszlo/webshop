@@ -10,10 +10,10 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
- * Thymeleaf configuration.
+ * Template engine (Thymeleaf) configuration.
  */
 @WebListener
-public class ThymeleafConfiguration implements ServletContextListener {
+public class TemplateEngineConfiguration implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
