@@ -1,11 +1,11 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.ProductSupplierDto;
+import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import java.util.List;
 
 public interface ProductSupplierDao {
 
-    List<ProductSupplierDto> getProductSuppliers();
+    List<ProductSupplier> getProductSuppliers();
 
 }

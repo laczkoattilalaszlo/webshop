@@ -1,17 +1,19 @@
 package com.laczkoattilalaszlo.webshop.model;
 
+import java.util.UUID;
+
 public class ProductSupplier {
 
     // Field(s)
-    protected int id;
+    protected UUID id;
     protected String name;
 
     // Getter(s) and Setter(s)
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

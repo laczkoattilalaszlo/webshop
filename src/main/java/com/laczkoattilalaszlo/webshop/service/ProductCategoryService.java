@@ -1,7 +1,7 @@
 package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDao;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductCategoryDto;
+import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class ProductCategoryService {
         this.productCategoryDAO = productCategoryDao;
     }
 
-    public List<ProductCategoryDto> getProductCategories() {
+    public List<ProductCategory> getProductCategories() {
         return productCategoryDAO.getProductCategories();
     }
 

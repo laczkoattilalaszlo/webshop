@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.ProductSupplierDto;
+import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -22,19 +22,20 @@ public class ProductSupplierDaoDb implements ProductSupplierDao {
 
     // Method(s)
     @Override
-    public List<ProductSupplierDto> getProductSuppliers() {
+    public List<ProductSupplier> getProductSuppliers() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT name FROM product_supplier";
+            String sql = "SELECT * FROM product_supplier";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Put the result in a List<ProductCategoryDto>
-            List<ProductSupplierDto> productSuppliers = new ArrayList<>();
+            // Put the result in a List
+            List<ProductSupplier> productSuppliers = new ArrayList<>();
             while (resultSet.next()) {
-                ProductSupplierDto productSupplierDto = new ProductSupplierDto();
-                productSupplierDto.setName(resultSet.getString(1));
-                productSuppliers.add(productSupplierDto);
+                ProductSupplier productSupplier = new ProductSupplier();
+                productSupplier.setId(resultSet.getObject("id", java.util.UUID.class));
+                productSupplier.setName(resultSet.getString(2));
+                productSuppliers.add(productSupplier);
             }
 
             return productSuppliers;

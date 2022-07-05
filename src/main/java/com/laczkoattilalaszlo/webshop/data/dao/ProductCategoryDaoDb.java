@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.ProductCategoryDto;
+import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -22,19 +22,20 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     // Method(s)
     @Override
-    public List<ProductCategoryDto> getProductCategories() {
+    public List<ProductCategory> getProductCategories() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT name FROM product_category";
+            String sql = "SELECT * FROM product_category";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Put the result in a List<ProductCategoryDto>
-            List<ProductCategoryDto> productCategories = new ArrayList<>();
+            // Put the result in a List
+            List<ProductCategory> productCategories = new ArrayList<>();
             while (resultSet.next()) {
-                ProductCategoryDto productCategoryDto = new ProductCategoryDto();
-                productCategoryDto.setName(resultSet.getString(1));
-                productCategories.add(productCategoryDto);
+                ProductCategory productCategory = new ProductCategory();
+                productCategory.setId(resultSet.getObject("id", java.util.UUID.class));
+                productCategory.setName(resultSet.getString(2));
+                productCategories.add(productCategory);
             }
 
             return productCategories;
