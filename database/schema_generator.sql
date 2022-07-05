@@ -46,6 +46,7 @@
         id             uuid not null
                        constraint product_pk
                        primary key,
+        name           text,
         description    text,
         price          numeric,
         currency       text,
