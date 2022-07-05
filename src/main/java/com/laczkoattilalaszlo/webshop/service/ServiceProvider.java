@@ -5,7 +5,6 @@ import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDao;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDaoDb;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductSupplierDao;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductSupplierDaoDb;
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
