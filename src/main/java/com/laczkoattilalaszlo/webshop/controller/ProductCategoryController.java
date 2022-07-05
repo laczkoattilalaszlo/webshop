@@ -1,4 +1,4 @@
-package com.laczkoattilalaszlo.webshop.controller.product;
+package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductCategoryDto;
