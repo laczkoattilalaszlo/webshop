@@ -1,8 +1,8 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
-import com.laczkoattilalaszlo.webshop.service.ProductSupplierService;
+import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.service.ProductService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
 import javax.servlet.ServletException;
@@ -13,21 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/product-supplier"})
-public class ProductSupplierController extends HttpServlet {
+@WebServlet(urlPatterns = {"/products-by-category"})
+public class ProductsByCategoryController extends HttpServlet {
 
     // Field(s)
-    ProductSupplierService productSupplierService;
+    ProductService productService;
 
-    @Override   // Get product suppliers
+    @Override   // Get products by categories
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get List<ProductCategoryDto>
-        productSupplierService = ServiceProvider.getInstance().setupProductSupplierService();
-        List<ProductSupplier> productSuppliers = productSupplierService.getProductSuppliers();
+        // Get product category id parameter
+        UUID categoryID = UUID.fromString(request.getParameter("category-id"));
+
+        // Get List<Product>
+        productService = ServiceProvider.getInstance().getProductService();
+        List<Product> products = productService.getProductsByCategory(categoryID);
 
         // Serialize data
-        String serializedProductCategories = new Gson().toJson(productSuppliers);
+        String serializedProductCategories = new Gson().toJson(products);
 
         // Edit response
         response.setContentType("application/json");

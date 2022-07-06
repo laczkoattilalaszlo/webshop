@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/product-category"})
-public class ProductCategoryController extends HttpServlet {
+@WebServlet(urlPatterns = {"/product-categories"})
+public class ProductCategoriesController extends HttpServlet {
 
     // Field(s)
     ProductCategoryService productCategoryService;
@@ -23,7 +23,7 @@ public class ProductCategoryController extends HttpServlet {
     @Override   // Get product categories
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get List<ProductCategoryDto>
-        productCategoryService = ServiceProvider.getInstance().setupProductCategoryService();
+        productCategoryService = ServiceProvider.getInstance().getProductCategoryService();
         List<ProductCategory> productCategories = productCategoryService.getProductCategories();
 
         // Serialize data

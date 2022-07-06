@@ -7,12 +7,15 @@ import java.util.List;
 
 public class ProductSupplierService {
 
+    // Field(s)
     private ProductSupplierDao productSupplierDao;
 
+    // Constructor(s)
     public ProductSupplierService(ProductSupplierDao productSupplierDao) {
         this.productSupplierDao = productSupplierDao;
     }
 
+    // Method(s)
     public List<ProductSupplier> getProductSuppliers() {
         return productSupplierDao.getProductSuppliers();
     }

@@ -7,12 +7,15 @@ import java.util.List;
 
 public class ProductCategoryService {
 
+    // Field(s)
     private ProductCategoryDao productCategoryDAO;
 
+    // Constructor(s)
     public ProductCategoryService(ProductCategoryDao productCategoryDao) {
         this.productCategoryDAO = productCategoryDao;
     }
 
+    // Method(s)
     public List<ProductCategory> getProductCategories() {
         return productCategoryDAO.getProductCategories();
     }
