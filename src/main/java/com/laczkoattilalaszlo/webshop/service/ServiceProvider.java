@@ -31,12 +31,8 @@ public class ServiceProvider {
             try {
                 DataBaseManager dataBaseManager = new DataBaseManager();
                 DataSource dataSource = dataBaseManager.connect();
-
                 ProductDao productDao = new ProductDaoDb(dataSource);
-                ProductCategoryDao productCategoryDao = new ProductCategoryDaoDb(dataSource);
-                ProductSupplierDao productSupplierDao = new ProductSupplierDaoDb(dataSource);
-
-                productService = new ProductService(productDao, productCategoryDao, productSupplierDao);
+                productService = new ProductService(productDao);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

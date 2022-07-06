@@ -1,8 +1,6 @@
 package com.laczkoattilalaszlo.webshop.service;
 
-import com.laczkoattilalaszlo.webshop.data.dao.ProductCategoryDao;
 import com.laczkoattilalaszlo.webshop.data.dao.ProductDao;
-import com.laczkoattilalaszlo.webshop.data.dao.ProductSupplierDao;
 import com.laczkoattilalaszlo.webshop.model.Product;
 import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
@@ -14,14 +12,10 @@ public class ProductService {
 
     // Field(s)
     private ProductDao productDao;
-    private ProductCategoryDao productCategoryDAO;
-    private ProductSupplierDao productSupplierDao;
 
     // Constructor(s)
-    public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao, ProductSupplierDao productSupplierDao) {
+    public ProductService(ProductDao productDao) {
         this.productDao = productDao;
-        this.productCategoryDAO = productCategoryDao;
-        this.productSupplierDao = productSupplierDao;
     }
 
     // Method(s)
@@ -30,11 +24,11 @@ public class ProductService {
     }
 
     public List<ProductCategory> getProductCategories() {
-        return productCategoryDAO.getProductCategories();
+        return productDao.getProductCategories();
     }
 
     public List<ProductSupplier> getProductSuppliers() {
-        return productSupplierDao.getProductSuppliers();
+        return productDao.getProductSuppliers();
     }
 
 }
