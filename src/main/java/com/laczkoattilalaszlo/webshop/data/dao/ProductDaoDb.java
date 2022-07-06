@@ -5,7 +5,6 @@ import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import javax.sql.DataSource;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +40,7 @@ public class ProductDaoDb implements ProductDao {
                 product.setId(resultSet.getObject("id", java.util.UUID.class));
                 product.setName(resultSet.getString("name"));
                 product.setDescription(resultSet.getString("description"));
-                product.setPrice(resultSet.getObject("price", java.math.BigDecimal.class));
+                product.setPrice(resultSet.getBigDecimal("price"));
                 product.setCurrency(resultSet.getString("currency"));
                 product.setSupplierId(resultSet.getObject("supplier_id", java.util.UUID.class));
                 product.setCategoryId(resultSet.getObject("category_id", java.util.UUID.class));
@@ -71,7 +70,7 @@ public class ProductDaoDb implements ProductDao {
                 product.setId(resultSet.getObject("id", java.util.UUID.class));
                 product.setName(resultSet.getString("name"));
                 product.setDescription(resultSet.getString("description"));
-                product.setPrice(resultSet.getObject("price", java.math.BigDecimal.class));
+                product.setPrice(resultSet.getBigDecimal("price"));
                 product.setCurrency(resultSet.getString("currency"));
                 product.setSupplierId(resultSet.getObject("supplier_id", java.util.UUID.class));
                 product.setCategoryId(resultSet.getObject("category_id", java.util.UUID.class));
