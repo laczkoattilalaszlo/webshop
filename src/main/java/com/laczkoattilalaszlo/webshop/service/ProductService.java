@@ -23,6 +23,10 @@ public class ProductService {
         return productDao.getProductsByCategory(id);
     }
 
+    public List<Product> getProductsBySupplier(UUID id) {
+        return productDao.getProductsBySupplier(id);
+    }
+
     public List<ProductCategory> getProductCategories() {
         return productDao.getProductCategories();
     }

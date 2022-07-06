@@ -11,6 +11,8 @@ public interface ProductDao {
 
     List<Product> getProductsByCategory(UUID id);
 
+    List<Product> getProductsBySupplier(UUID id);
+
     List<ProductCategory> getProductCategories();
 
     List<ProductSupplier> getProductSuppliers();

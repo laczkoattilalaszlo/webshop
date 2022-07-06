@@ -56,6 +56,36 @@ public class ProductDaoDb implements ProductDao {
     }
 
     @Override
+    public List<Product> getProductsBySupplier(UUID id) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT * FROM product WHERE supplier_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Put the result in a List             // TODO: Andrastol megkerdezni, hogy erre nincs-e rovidebb mod?
+            List<Product> products = new ArrayList<>();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getObject("id", java.util.UUID.class));
+                product.setName(resultSet.getString("name"));
+                product.setDescription(resultSet.getString("description"));
+                product.setPrice(resultSet.getObject("price", java.math.BigDecimal.class));
+                product.setCurrency(resultSet.getString("currency"));
+                product.setSupplierId(resultSet.getObject("supplier_id", java.util.UUID.class));
+                product.setCategoryId(resultSet.getObject("category_id", java.util.UUID.class));
+                product.setPicture(resultSet.getString("picture"));
+                products.add(product);
+            }
+
+            return products;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<ProductCategory> getProductCategories() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query

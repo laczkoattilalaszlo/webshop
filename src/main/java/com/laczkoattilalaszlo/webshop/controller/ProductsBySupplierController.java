@@ -15,20 +15,20 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/products-by-category"})
-public class ProductsByCategoryController extends HttpServlet {
+@WebServlet(urlPatterns = {"/products-by-supplier"})
+public class ProductsBySupplierController extends HttpServlet {
 
     // Field(s)
     ProductService productService;
 
-    @Override   // Get products by category
+    @Override   // Get products by supplier
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get product category id parameter
-        UUID categoryId = UUID.fromString(request.getParameter("category-id"));
+        // Get product supplier id parameter
+        UUID supplierId = UUID.fromString(request.getParameter("supplier-id"));
 
         // Get List<Product>
         productService = ServiceProvider.getInstance().getProductService();
-        List<Product> products = productService.getProductsByCategory(categoryId);
+        List<Product> products = productService.getProductsBySupplier(supplierId);
 
         // Serialize data
         String serializedProductCategories = new Gson().toJson(products);
