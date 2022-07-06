@@ -38,4 +38,20 @@ public class CartController extends HttpServlet {
         cartService.addProductToCart(productId, userId);
     }
 
+    @Override   // Remove product from cart
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get payload
+        BufferedReader bufferedReader = request.getReader();
+        String payload = bufferedReader.lines().collect(Collectors.joining());
+
+        // Deserialize payload
+        CartDto cartDto = new Gson().fromJson(payload, CartDto.class);
+        UUID productId = cartDto.getProductId();
+        UUID userId = cartDto.getUserId();
+
+        // Remove product from cart
+        cartService = ServiceProvider.getInstance().getCartService();
+        cartService.removeProductFromCart(productId, userId);
+    }
+
 }

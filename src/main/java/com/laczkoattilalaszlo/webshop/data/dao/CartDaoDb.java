@@ -47,6 +47,19 @@ public class CartDaoDb implements CartDao {
     }
 
     @Override
+    public void removeProductFromCart(UUID productId, UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM cart WHERE product_id=? AND user_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, productId);
+            preparedStatement.setObject(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void updateProductQuantityInCart(Integer quantity, UUID productId, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "UPDATE cart SET quantity = ? WHERE product_id=? AND user_id=?";

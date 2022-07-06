@@ -8,6 +8,8 @@ public interface CartDao {
 
     void addProductToCart(UUID productId, UUID userId);
 
+    void removeProductFromCart(UUID productId, UUID userId);
+
     void updateProductQuantityInCart(Integer quantity, UUID productId, UUID userId);
 
 }

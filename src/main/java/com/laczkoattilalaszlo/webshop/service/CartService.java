@@ -19,9 +19,19 @@ public class CartService {
         Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
         if (quantityOfGivenProductInCart == null) {
             cartDao.addProductToCart(productId, userId);
-        } else if (quantityOfGivenProductInCart != null) {
+        } else {
             Integer increasedQuantity = quantityOfGivenProductInCart + 1;
             cartDao.updateProductQuantityInCart(increasedQuantity, productId, userId);
+        }
+    }
+
+    public void removeProductFromCart(UUID productId, UUID userId) {
+        Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
+        if (quantityOfGivenProductInCart.equals(1)) {
+            cartDao.removeProductFromCart(productId, userId);
+        } else if (quantityOfGivenProductInCart.intValue() > 1) {
+            Integer decreasedQuantity = quantityOfGivenProductInCart - 1;
+            cartDao.updateProductQuantityInCart(decreasedQuantity, productId, userId);
         }
     }
 
