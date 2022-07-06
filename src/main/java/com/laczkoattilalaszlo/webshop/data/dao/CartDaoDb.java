@@ -1,8 +1,10 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
+import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
+
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.UUID;
+import java.util.*;
 
 public class CartDaoDb implements CartDao {
 
@@ -15,6 +17,43 @@ public class CartDaoDb implements CartDao {
     }
 
     // Implemented method(s)
+    @Override
+    public List<ProductInCartDto> getCart(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql =    "SELECT cart.product_id," +
+                                "cart.quantity, " +
+                                "product.name, " +
+                                "product.price, " +
+                                "product.currency, " +
+                                "product.picture " +
+                            "FROM cart " +
+                            "INNER JOIN product " +
+                            "ON cart.product_id = product.id " +
+                            "WHERE user_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Create a Map from results and put them into a List
+            List<ProductInCartDto> cart = new ArrayList<>();
+            while (resultSet.next()) {
+                ProductInCartDto productInCartDto = new ProductInCartDto();
+                productInCartDto.setProductId(resultSet.getObject("product_id", java.util.UUID.class));
+                productInCartDto.setQuantity(resultSet.getInt("quantity"));
+                productInCartDto.setName(resultSet.getString("name"));
+                productInCartDto.setPrice(resultSet.getBigDecimal("price"));
+                productInCartDto.setCurrency(resultSet.getString("currency"));
+                productInCartDto.setPicture(resultSet.getString("picture"));
+                cart.add(productInCartDto);
+            }
+
+            return cart;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public Integer getQuantityOfGivenProductInCart(UUID productId, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {

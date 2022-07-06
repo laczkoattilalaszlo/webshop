@@ -33,7 +33,7 @@ public class ProductDaoDb implements ProductDao {
             preparedStatement.setObject(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create Product objects from results and put the into a List
+            // Create Product objects from results and put them into a List
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
                 Product product = new Product();
@@ -63,7 +63,7 @@ public class ProductDaoDb implements ProductDao {
             preparedStatement.setObject(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create Product objects from results and put the into a List
+            // Create Product objects from results and put them into a List
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
                 Product product = new Product();
@@ -92,7 +92,7 @@ public class ProductDaoDb implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create ProductCategory objects from results and put the into a List
+            // Create ProductCategory objects from results and put them into a List
             List<ProductCategory> productCategories = new ArrayList<>();
             while (resultSet.next()) {
                 ProductCategory productCategory = new ProductCategory();
@@ -115,7 +115,7 @@ public class ProductDaoDb implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create ProductSupplier objects from results and put the into a List
+            // Create ProductSupplier objects from results and put them into a List
             List<ProductSupplier> productSuppliers = new ArrayList<>();
             while (resultSet.next()) {
                 ProductSupplier productSupplier = new ProductSupplier();

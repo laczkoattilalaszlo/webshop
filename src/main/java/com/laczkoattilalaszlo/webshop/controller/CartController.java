@@ -1,7 +1,8 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.CartDto;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationDto;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,6 +25,28 @@ public class CartController extends HttpServlet {
     CartService cartService;
 
     // Overridden HTTP method(s)
+    @Override   // Get cart
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get user id parameter
+        UUID userId = UUID.fromString(request.getParameter("user-id"));
+
+        // Get cart content
+        cartService = ServiceProvider.getInstance().getCartService();
+        List<ProductInCartDto> cart = cartService.getCart(userId);
+
+        // Serialize data
+        String serializedProductCategories = new Gson().toJson(cart);
+
+        // Edit response
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Send response
+        PrintWriter printWriter = response.getWriter();
+        printWriter.print(serializedProductCategories);
+        printWriter.flush();
+    }
+
     @Override   // Add product to cart
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get payload
@@ -29,9 +54,9 @@ public class CartController extends HttpServlet {
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        CartDto cartDto = new Gson().fromJson(payload, CartDto.class);
-        UUID productId = cartDto.getProductId();
-        UUID userId = cartDto.getUserId();
+        ProductForCartOperationDto productForCartOperationDto = new Gson().fromJson(payload, ProductForCartOperationDto.class);
+        UUID productId = productForCartOperationDto.getProductId();
+        UUID userId = productForCartOperationDto.getUserId();
 
         // Add product to cart
         cartService = ServiceProvider.getInstance().getCartService();
@@ -45,9 +70,9 @@ public class CartController extends HttpServlet {
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        CartDto cartDto = new Gson().fromJson(payload, CartDto.class);
-        UUID productId = cartDto.getProductId();
-        UUID userId = cartDto.getUserId();
+        ProductForCartOperationDto productForCartOperationDto = new Gson().fromJson(payload, ProductForCartOperationDto.class);
+        UUID productId = productForCartOperationDto.getProductId();
+        UUID userId = productForCartOperationDto.getUserId();
 
         // Remove product from cart
         cartService = ServiceProvider.getInstance().getCartService();

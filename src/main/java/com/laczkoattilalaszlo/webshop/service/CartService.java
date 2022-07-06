@@ -1,7 +1,9 @@
 package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.dao.CartDao;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 
+import java.util.List;
 import java.util.UUID;
 
 public class CartService {
@@ -15,6 +17,11 @@ public class CartService {
     }
 
     // Method(s)
+
+    public List<ProductInCartDto> getCart(UUID userId) {
+        return cartDao.getCart(userId);
+    }
+
     public void addProductToCart(UUID productId, UUID userId) {
         Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
         if (quantityOfGivenProductInCart == null) {
