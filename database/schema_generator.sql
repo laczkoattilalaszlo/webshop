@@ -4,8 +4,8 @@
     create table "user"
     (
         id                  uuid not null
-            constraint user_pk
-                primary key,
+                            constraint user_pk
+                            primary key,
         email               text,
         password            text,
         name                text,
@@ -67,15 +67,15 @@
 -- 5. CREATE CART TABLE
     create table cart
     (
-        product_id uuid
-            constraint table_name_product_id_fk
-                references product
-                on delete cascade,
-        quantity   int,
-        user_id    uuid
-            constraint table_name_user_id_fk
-                references "user"
-                on delete cascade
+        product_id  uuid
+                    constraint table_name_product_id_fk
+                    references product
+                    on delete cascade,
+        quantity    int,
+        user_id     uuid
+                    constraint table_name_user_id_fk
+                    references "user"
+                    on delete cascade
     );
 
 -- 6 CREATE SHIPPING ADDRESS TABLE
@@ -86,7 +86,7 @@
         city    text,
         address text,
         user_id uuid
-            constraint shipping_address_user_id_fk
+                constraint shipping_address_user_id_fk
                 references "user"
                 on delete cascade
     );
@@ -99,7 +99,7 @@
         city    text,
         address text,
         user_id uuid
-            constraint billing_address_user_id_fk
+                constraint billing_address_user_id_fk
                 references "user"
                 on delete cascade
     );
@@ -112,7 +112,7 @@
         expiration_date date,
         security_code   int,
         user_id         uuid
-            constraint bank_cart_user_id_fk
-                references "user"
-                on delete cascade
+                        constraint bank_cart_user_id_fk
+                        references "user"
+                        on delete cascade
     );
