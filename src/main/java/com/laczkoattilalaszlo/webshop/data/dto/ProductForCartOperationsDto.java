@@ -2,7 +2,7 @@ package com.laczkoattilalaszlo.webshop.data.dto;
 
 import java.util.UUID;
 
-public class ProductForCartOperationDto {
+public class ProductForCartOperationsDto {
 
     // Field(s)
     private UUID productId;

@@ -17,8 +17,11 @@ window.addEventListener('load', async () => {
     // const removeProductFromCart = await fetchData("/cart", "DELETE", {productId: "f7faed42-3519-4b95-9d5d-da0a924cf92f", userId: "bdc7f29e-0aa8-42ca-8070-5baba303185e"});  // TODO: JS Console shows error!
     // console.log(addProductToCart);
 
-    const getCart = await fetchData("/cart?user-id=bdc7f29e-0aa8-42ca-8070-5baba303185e");
-    console.log(getCart);
+    const cart = await fetchData("/cart?user-id=bdc7f29e-0aa8-42ca-8070-5baba303185e");
+    console.log(cart);
+
+    const totalPrice = await fetchData("/total-price?user-id=bdc7f29e-0aa8-42ca-8070-5baba303185e");
+    console.log(totalPrice);
 });
 
 async function fetchData(url, methodType, payload){

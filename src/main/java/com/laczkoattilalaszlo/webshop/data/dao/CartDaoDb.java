@@ -3,6 +3,7 @@ package com.laczkoattilalaszlo.webshop.data.dao;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class CartDaoDb implements CartDao {
     public List<ProductInCartDto> getCart(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql =    "SELECT cart.product_id," +
+            String sql =    "SELECT cart.product_id, " +
                                 "cart.quantity, " +
                                 "product.name, " +
                                 "product.price, " +
@@ -35,7 +36,7 @@ public class CartDaoDb implements CartDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create a Map from results and put them into a List
+            // Create a ProductInCartDto from results and put them into a List
             List<ProductInCartDto> cart = new ArrayList<>();
             while (resultSet.next()) {
                 ProductInCartDto productInCartDto = new ProductInCartDto();
@@ -55,6 +56,27 @@ public class CartDaoDb implements CartDao {
     }
 
     @Override
+    public BigDecimal getTotalPrice(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql =    "SELECT SUM(cart.quantity * product.price) AS total_price " +
+                            "FROM cart " +
+                            "INNER JOIN product " +
+                            "ON cart.product_id = product.id " +
+                            "WHERE user_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            BigDecimal totalPrice = resultSet.next() ? resultSet.getBigDecimal("total_price") : BigDecimal.valueOf(0);
+
+            return totalPrice;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public Integer getQuantityOfGivenProductInCart(UUID productId, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
@@ -65,6 +87,7 @@ public class CartDaoDb implements CartDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             Integer quantity = (resultSet.next()) ? resultSet.getInt("quantity") : null;
+
             return quantity;
         } catch (SQLException e) {
             throw new RuntimeException(e);

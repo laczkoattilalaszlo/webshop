@@ -1,7 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationDto;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationsDto;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
@@ -54,9 +54,9 @@ public class CartController extends HttpServlet {
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        ProductForCartOperationDto productForCartOperationDto = new Gson().fromJson(payload, ProductForCartOperationDto.class);
-        UUID productId = productForCartOperationDto.getProductId();
-        UUID userId = productForCartOperationDto.getUserId();
+        ProductForCartOperationsDto productForCartOperationsDto = new Gson().fromJson(payload, ProductForCartOperationsDto.class);
+        UUID productId = productForCartOperationsDto.getProductId();
+        UUID userId = productForCartOperationsDto.getUserId();
 
         // Add product to cart
         cartService = ServiceProvider.getInstance().getCartService();
@@ -70,9 +70,9 @@ public class CartController extends HttpServlet {
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        ProductForCartOperationDto productForCartOperationDto = new Gson().fromJson(payload, ProductForCartOperationDto.class);
-        UUID productId = productForCartOperationDto.getProductId();
-        UUID userId = productForCartOperationDto.getUserId();
+        ProductForCartOperationsDto productForCartOperationsDto = new Gson().fromJson(payload, ProductForCartOperationsDto.class);
+        UUID productId = productForCartOperationsDto.getProductId();
+        UUID userId = productForCartOperationsDto.getUserId();
 
         // Remove product from cart
         cartService = ServiceProvider.getInstance().getCartService();

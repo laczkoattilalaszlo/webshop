@@ -3,6 +3,7 @@ package com.laczkoattilalaszlo.webshop.service;
 import com.laczkoattilalaszlo.webshop.data.dao.CartDao;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,10 @@ public class CartService {
 
     public List<ProductInCartDto> getCart(UUID userId) {
         return cartDao.getCart(userId);
+    }
+
+    public BigDecimal getTotalPrice(UUID userId) {
+        return cartDao.getTotalPrice(userId);
     }
 
     public void addProductToCart(UUID productId, UUID userId) {
