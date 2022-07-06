@@ -24,6 +24,7 @@ public class ServiceProvider {
 
     // Field(s)
     ProductService productService = null;
+    CartService cartService = null;
 
     // Method(s)
     public ProductService getProductService() {
@@ -38,6 +39,20 @@ public class ServiceProvider {
             }
         }
         return productService;
+    }
+
+    public CartService getCartService() {
+        if (cartService == null) {
+            try {
+                DataBaseManager dataBaseManager = new DataBaseManager();
+                DataSource dataSource = dataBaseManager.connect();
+                CartDao cartDao = new CartDaoDb(dataSource);
+                cartService = new CartService(cartDao);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return cartService;
     }
 
 }

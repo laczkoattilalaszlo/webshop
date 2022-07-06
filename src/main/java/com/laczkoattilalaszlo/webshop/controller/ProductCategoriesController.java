@@ -20,6 +20,7 @@ public class ProductCategoriesController extends HttpServlet {
     // Field(s)
     ProductService productService;
 
+    // Overridden HTTP method(s)
     @Override   // Get product categories
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get List<ProductCategoryDto>

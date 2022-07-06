@@ -13,7 +13,8 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = {"/"})
 public class Home extends HttpServlet {
 
-    @Override
+    // Overridden HTTP method(s)
+    @Override   // Render index.html
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Edit response
         response.setContentType("text/html");

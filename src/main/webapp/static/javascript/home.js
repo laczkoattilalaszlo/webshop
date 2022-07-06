@@ -10,10 +10,17 @@ window.addEventListener('load', async () => {
 
     const productsBySupplier = await fetchData("/products-by-supplier?supplier-id=02846481-0e34-435e-9c6d-6fd1affde2b9");     // TODO: Change to automatic id search.
     console.log(productsBySupplier);
+
+    const addProductToCart = await fetchData("/cart", "POST", {productId: "f7faed42-3519-4b95-9d5d-da0a924cf92f", userId: "bdc7f29e-0aa8-42ca-8070-5baba303185e"});
+    console.log(addProductToCart);
 });
 
-async function fetchData(url){
-    const response = await fetch(url, {method: 'GET'});
+async function fetchData(url, methodType, payload){
+    let request = (typeof methodType == undefined) ? { method: "GET" } :
+                                                        { method: methodType,
+                                                          headers: { 'Content-type': 'application/json' },
+                                                          body: JSON.stringify(payload) };
+    const response = await fetch(url, request);
     if (response.ok) {
         return await response.json();
     }
