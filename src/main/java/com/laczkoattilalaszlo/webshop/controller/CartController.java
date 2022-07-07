@@ -24,7 +24,6 @@ public class CartController extends HttpServlet {
 
     // Field(s)
     CartService cartService;
-    UserService userService;
 
     // Overridden HTTP method(s)
     @Override   // Get cart
@@ -54,10 +53,6 @@ public class CartController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
-        // Get user id from session token
-        userService = ServiceProvider.getInstance().getUserService();
-        UUID userId = userService.getUserIdBySessionToken(sessionToken);
-
         // Get payload (product id) from body
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
@@ -67,7 +62,7 @@ public class CartController extends HttpServlet {
 
         // Add product to cart
         cartService = ServiceProvider.getInstance().getCartService();
-        cartService.addProductToCart(productId, userId);
+        cartService.addProductToCart(productId, sessionToken);
     }
 
     @Override   // Remove product from cart
