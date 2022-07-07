@@ -9,8 +9,7 @@
         email               text,
         password            text,
         name                text,
-        phone               text,
-        picture             text
+        phone               text
     );
 
     create unique index user_id_uindex
