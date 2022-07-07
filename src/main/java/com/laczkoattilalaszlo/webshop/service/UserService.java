@@ -1,6 +1,7 @@
 package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.dao.UserDao;
+import com.laczkoattilalaszlo.webshop.model.User;
 
 import java.util.UUID;
 
@@ -21,6 +22,14 @@ public class UserService {
 
     public void removeUser(UUID userId) {
         userDao.removeUser(userId);
+    }
+
+    public User getUser(UUID userId) {
+        return userDao.getUser(userId);
+    }
+
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 
 }
