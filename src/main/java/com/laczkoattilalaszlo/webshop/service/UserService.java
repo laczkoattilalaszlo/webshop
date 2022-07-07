@@ -46,4 +46,8 @@ public class UserService {
         }
     }
 
+    public UUID getUserIdBySessionToken(String sessionToken){
+        return userDao.getUserIdBySessionToken(sessionToken);
+    }
+
 }

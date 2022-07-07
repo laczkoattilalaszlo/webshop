@@ -5,6 +5,7 @@ import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationsDto;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
+import com.laczkoattilalaszlo.webshop.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,7 @@ public class CartController extends HttpServlet {
 
     // Field(s)
     CartService cartService;
+    UserService userService;
 
     // Overridden HTTP method(s)
     @Override   // Get cart
@@ -49,14 +51,19 @@ public class CartController extends HttpServlet {
 
     @Override   // Add product to cart
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get payload
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
+
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
+        // Get payload (product id) from body
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        ProductForCartOperationsDto productForCartOperationsDto = new Gson().fromJson(payload, ProductForCartOperationsDto.class);
-        UUID productId = productForCartOperationsDto.getProductId();
-        UUID userId = productForCartOperationsDto.getUserId();
+        UUID productId = UUID.fromString(payload);
 
         // Add product to cart
         cartService = ServiceProvider.getInstance().getCartService();

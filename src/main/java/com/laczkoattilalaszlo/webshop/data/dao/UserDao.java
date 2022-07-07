@@ -18,4 +18,6 @@ public interface UserDao {
 
     void addSessionTokenToUser(String sessionToken, UUID userId);
 
+    UUID getUserIdBySessionToken(String sessionToken);
+
 }

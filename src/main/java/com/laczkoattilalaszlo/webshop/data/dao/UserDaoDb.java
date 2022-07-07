@@ -114,4 +114,21 @@ public class UserDaoDb implements UserDao {
         }
     }
 
+    @Override
+    public UUID getUserIdBySessionToken(String sessionToken) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT id FROM \"user\" WHERE session_token=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, sessionToken);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            UUID userId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
+
+            return userId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
