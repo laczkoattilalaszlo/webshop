@@ -22,7 +22,9 @@ public class UserService {
         userDao.addUser(email, hashedPassword);
     }
 
-    public void removeUser(UUID userId) {
+    public void removeUser(String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
         userDao.removeUser(userId);
     }
 

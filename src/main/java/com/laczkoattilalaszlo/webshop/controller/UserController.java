@@ -43,16 +43,12 @@ public class UserController extends HttpServlet {
 
     @Override   // Remove user
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get payload
-        BufferedReader bufferedReader = request.getReader();
-        String payload = bufferedReader.lines().collect(Collectors.joining());
-
-        // Transform payload (text/plain) to proper form
-        UUID userId = UUID.fromString(payload);
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
 
         // Add user to database
         userService = ServiceProvider.getInstance().getUserService();
-        userService.removeUser(userId);
+        userService.removeUser(sessionToken);
     }
 
     @Override   // Get user
