@@ -28,12 +28,12 @@ public class CartController extends HttpServlet {
     // Overridden HTTP method(s)
     @Override   // Get cart
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get user id parameter
-        UUID userId = UUID.fromString(request.getParameter("user-id"));
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
 
         // Get cart content
         cartService = ServiceProvider.getInstance().getCartService();
-        List<ProductInCartDto> cart = cartService.getCart(userId);
+        List<ProductInCartDto> cart = cartService.getCart(sessionToken);
 
         // Serialize data
         String serializedProductCategories = new Gson().toJson(cart);

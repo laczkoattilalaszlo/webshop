@@ -21,7 +21,9 @@ public class CartService {
     }
 
     // Method(s)
-    public List<ProductInCartDto> getCart(UUID userId) {
+    public List<ProductInCartDto> getCart(String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
         return cartDao.getCart(userId);
     }
 
