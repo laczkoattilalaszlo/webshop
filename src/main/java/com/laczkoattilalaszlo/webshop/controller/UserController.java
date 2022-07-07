@@ -1,10 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationsDto;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationDto;
-import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
 
@@ -15,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

@@ -1,7 +1,5 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
-import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 

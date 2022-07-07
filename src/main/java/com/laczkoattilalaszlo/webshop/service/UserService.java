@@ -1,6 +1,5 @@
 package com.laczkoattilalaszlo.webshop.service;
 
-import com.laczkoattilalaszlo.webshop.data.dao.ProductDao;
 import com.laczkoattilalaszlo.webshop.data.dao.UserDao;
 
 import java.util.UUID;
