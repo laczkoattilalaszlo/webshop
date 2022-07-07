@@ -67,18 +67,19 @@ public class CartController extends HttpServlet {
 
     @Override   // Remove product from cart
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get payload
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
+
+        // Get payload (product id) from body
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        ProductForCartOperationsDto productForCartOperationsDto = new Gson().fromJson(payload, ProductForCartOperationsDto.class);
-        UUID productId = productForCartOperationsDto.getProductId();
-        UUID userId = productForCartOperationsDto.getUserId();
+        UUID productId = UUID.fromString(payload);
 
         // Remove product from cart
         cartService = ServiceProvider.getInstance().getCartService();
-        cartService.removeProductFromCart(productId, userId);
+        cartService.removeProductFromCart(productId, sessionToken);
     }
 
 }

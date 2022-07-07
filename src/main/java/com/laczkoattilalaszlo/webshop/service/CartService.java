@@ -41,7 +41,9 @@ public class CartService {
         }
     }
 
-    public void removeProductFromCart(UUID productId, UUID userId) {
+    public void removeProductFromCart(UUID productId, String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
         Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
         if (quantityOfGivenProductInCart.equals(1)) {
             cartDao.removeProductFromCart(productId, userId);
