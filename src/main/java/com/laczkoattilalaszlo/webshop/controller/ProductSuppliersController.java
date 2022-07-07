@@ -28,7 +28,7 @@ public class ProductSuppliersController extends HttpServlet {
         List<ProductSupplier> productSuppliers = productService.getProductSuppliers();
 
         // Serialize data
-        String serializedProductCategories = new Gson().toJson(productSuppliers);
+        String serializedProductSuppliers = new Gson().toJson(productSuppliers);
 
         // Edit response
         response.setContentType("application/json");
@@ -36,7 +36,7 @@ public class ProductSuppliersController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedProductCategories);
+        printWriter.print(serializedProductSuppliers);
         printWriter.flush();
     }
 

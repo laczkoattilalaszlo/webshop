@@ -32,7 +32,7 @@ public class ProductsBySupplierController extends HttpServlet {
         List<Product> products = productService.getProductsBySupplier(supplierId);
 
         // Serialize data
-        String serializedProductCategories = new Gson().toJson(products);
+        String serializedProductsBySuppliers = new Gson().toJson(products);
 
         // Edit response
         response.setContentType("application/json");
@@ -40,7 +40,7 @@ public class ProductsBySupplierController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedProductCategories);
+        printWriter.print(serializedProductsBySuppliers);
         printWriter.flush();
     }
 
