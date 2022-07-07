@@ -27,7 +27,9 @@ public class CartService {
         return cartDao.getCart(userId);
     }
 
-    public BigDecimal getTotalPrice(UUID userId) {
+    public BigDecimal getTotalPrice(String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
         return cartDao.getTotalPrice(userId);
     }
 

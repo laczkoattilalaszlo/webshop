@@ -22,12 +22,12 @@ public class CartTotalPriceController extends HttpServlet {
     // Overridden HTTP method(s)
     @Override   // Get total price
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get user id parameter
-        UUID userId = UUID.fromString(request.getParameter("user-id"));
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
 
         // Get total price
         cartService = ServiceProvider.getInstance().getCartService();
-        BigDecimal totalPrice = cartService.getTotalPrice(userId);
+        BigDecimal totalPrice = cartService.getTotalPrice(sessionToken);
 
         // Edit response
         response.setContentType("application/json");
