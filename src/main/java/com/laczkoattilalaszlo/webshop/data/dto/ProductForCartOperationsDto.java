@@ -24,4 +24,5 @@ public class ProductForCartOperationsDto {
     public void setUserId(UUID userId) {
         this.userId = userId;
     }
+
 }
