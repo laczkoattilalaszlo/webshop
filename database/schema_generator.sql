@@ -15,6 +15,9 @@
     create unique index user_id_uindex
         on "user" (id);
 
+    create unique index user_session_token_uindex
+        on "user" (session_token);
+
 -- 2. CREATE PRODUCT CATEGORY TABLE
     create table product_category
     (
