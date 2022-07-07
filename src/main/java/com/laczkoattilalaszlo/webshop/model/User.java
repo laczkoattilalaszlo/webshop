@@ -10,6 +10,7 @@ public class User {
     private String password;
     private String name;
     private String phone;
+    private String sessionToken;
 
     // Getter(s) and Setter(s)
     public UUID getId() {
@@ -52,4 +53,11 @@ public class User {
         this.phone = phone;
     }
 
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
 }

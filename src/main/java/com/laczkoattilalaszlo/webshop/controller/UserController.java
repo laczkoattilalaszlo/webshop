@@ -1,7 +1,8 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationDto;
+import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
+import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
 import com.laczkoattilalaszlo.webshop.model.User;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
@@ -31,9 +32,9 @@ public class UserController extends HttpServlet {
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload (application/json)
-        UserRegistrationDto userRegistrationDto = new Gson().fromJson(payload, UserRegistrationDto.class);
-        String email = userRegistrationDto.getEmail();
-        String password = userRegistrationDto.getPassword();
+        UserRegistrationAndAuthenticationDto userRegistrationAndAuthenticationDto = new Gson().fromJson(payload, UserRegistrationAndAuthenticationDto.class);
+        String email = userRegistrationAndAuthenticationDto.getEmail();
+        String password = userRegistrationAndAuthenticationDto.getPassword();
 
         // Add user to database
         userService = ServiceProvider.getInstance().getUserService();

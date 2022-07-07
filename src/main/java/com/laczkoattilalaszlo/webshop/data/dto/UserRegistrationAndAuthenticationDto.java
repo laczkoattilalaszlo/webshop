@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dto;
 
-public class UserRegistrationDto {
+public class UserRegistrationAndAuthenticationDto {
 
     // Field(s)
     private String email;

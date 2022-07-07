@@ -83,4 +83,35 @@ public class UserDaoDb implements UserDao {
         }
     }
 
+    @Override
+    public UUID getUserIdByEmailAndPassword(String email, String hashedPassword) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT id FROM \"user\" WHERE email=? AND password=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, hashedPassword);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            UUID userId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
+
+            return userId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addSessionTokenToUser(String sessionToken, UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE \"user\" SET session_token=? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, sessionToken);
+            preparedStatement.setObject(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
