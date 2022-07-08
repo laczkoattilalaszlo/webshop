@@ -112,7 +112,7 @@
         name            text,
         card_number     text,
         expiration_date date,
-        security_code   int,
+        security_code   text,
         user_id         uuid
                         constraint bank_cart_user_id_fk
                         references "user"

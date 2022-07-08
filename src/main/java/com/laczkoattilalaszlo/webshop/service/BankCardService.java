@@ -20,4 +20,8 @@ public class BankCardService {
         return bankCardDao.getBankCard(userId);
     }
 
+    public void updateBankCard(BankCardDto bankCardDto, UUID userId) {
+        bankCardDao.updateBankCard(bankCardDto, userId);
+    }
+
 }

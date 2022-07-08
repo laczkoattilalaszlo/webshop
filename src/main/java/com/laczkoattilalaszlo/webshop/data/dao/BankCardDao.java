@@ -8,4 +8,6 @@ public interface BankCardDao {
 
     BankCardDto getBankCard(UUID userId);
 
+    void updateBankCard(BankCardDto bankCardDto, UUID userId);
+
 }

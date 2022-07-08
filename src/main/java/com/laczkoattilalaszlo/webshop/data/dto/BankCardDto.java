@@ -1,5 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -8,7 +9,7 @@ public class BankCardDto {
     // Field(s)
     private String name;
     private String cardNumber;
-    private Date expirationDate;
+    private LocalDate expirationDate;
     private String securityCode;
 
     // Getter(s) and Setter(s)
@@ -28,11 +29,11 @@ public class BankCardDto {
         this.cardNumber = cardNumber;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
