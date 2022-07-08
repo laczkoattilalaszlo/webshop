@@ -21,4 +21,8 @@ public interface UserDao {
 
     UUID getUserIdBySessionToken(String sessionToken);
 
+    String getCurrentPassword(UUID userId);
+
+    void updatePassword(String newPassword, UUID userId);
+
 }

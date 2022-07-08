@@ -1,6 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
+import com.laczkoattilalaszlo.webshop.data.dto.UserPasswordDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
@@ -49,6 +50,24 @@ public class UserAuthenticationController extends HttpServlet {
             printWriter.print("Authentication failed");
         }
         printWriter.flush();
+    }
+
+    @Override   // Update user password
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
+
+        // Get payload
+        BufferedReader bufferedReader = request.getReader();
+        String payload = bufferedReader.lines().collect(Collectors.joining());
+
+        // Deserialize payload (application/json)
+        UserPasswordDto userPasswordDto = new Gson().fromJson(payload, UserPasswordDto.class);
+        String currentPassword = userPasswordDto.getCurrentPassword();
+        String newPassword = userPasswordDto.getNewPassword();
+
+        userService = ServiceProvider.getInstance().getUserService();
+        userService.updatePassword(currentPassword, newPassword, sessionToken);
     }
 
 }

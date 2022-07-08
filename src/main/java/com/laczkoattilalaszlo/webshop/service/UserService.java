@@ -53,8 +53,15 @@ public class UserService {
         }
     }
 
-    public UUID getUserIdBySessionToken(String sessionToken){
-        return userDao.getUserIdBySessionToken(sessionToken);
+    public void updatePassword(String currentPassword, String newPassword, String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
+        String hashedCurrentPassword = SecurityUtility.hashPassword(currentPassword);
+        String hashedCurrentPasswordFromDatabase = userDao.getCurrentPassword(userId);
+        if (hashedCurrentPassword.equals(hashedCurrentPasswordFromDatabase)) {
+            String hashedNewPassword = SecurityUtility.hashPassword(newPassword);
+            userDao.updatePassword(hashedNewPassword, userId);
+        }
     }
 
 }

@@ -129,4 +129,32 @@ public class UserDaoDb implements UserDao {
         }
     }
 
+    public String getCurrentPassword(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT password FROM \"user\" WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            String password = (resultSet.next()) ? resultSet.getString("password") : null;
+
+            return password;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updatePassword(String newPassword, UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE \"user\" SET password=? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setObject(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
