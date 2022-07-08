@@ -3,10 +3,7 @@ package com.laczkoattilalaszlo.webshop.data.dao;
 import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.UUID;
 
 public class AddressDaoDb implements AddressDao {
@@ -39,6 +36,22 @@ public class AddressDaoDb implements AddressDao {
             } else {
                 return null;
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateAddress(String tableName, UUID userId, AddressDto addressDto) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE " + tableName + " SET zip=?, country=?, city=?, address=? WHERE user_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, addressDto.getZip());
+            preparedStatement.setString(2, addressDto.getCountry());
+            preparedStatement.setString(3, addressDto.getCity());
+            preparedStatement.setString(4, addressDto.getAddress());
+            preparedStatement.setObject(5, userId);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
