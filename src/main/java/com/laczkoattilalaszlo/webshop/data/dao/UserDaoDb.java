@@ -16,6 +16,7 @@ public class UserDaoDb implements UserDao {
         this.dataSource = dataSource;
     }
 
+    // Implemented method(s)
     @Override
     public void addUser(String email, String password) {
         try (Connection connection = dataSource.getConnection()) {

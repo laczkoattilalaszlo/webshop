@@ -83,7 +83,7 @@
 -- 6 CREATE SHIPPING ADDRESS TABLE
     create table shipping_address
     (
-        zip     int,
+        zip     text,
         country text,
         city    text,
         address text,
@@ -96,7 +96,7 @@
 -- 7. CREATE BILLING ADDRESS TABLE
     create table billing_address
     (
-        zip     int,
+        zip     text,
         country text,
         city    text,
         address text,

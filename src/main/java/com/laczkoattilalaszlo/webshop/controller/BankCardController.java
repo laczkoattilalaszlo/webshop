@@ -3,7 +3,6 @@ package com.laczkoattilalaszlo.webshop.controller;
 import com.google.gson.Gson;
 
 import com.laczkoattilalaszlo.webshop.data.dto.BankCardDto;
-import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.service.BankCardService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;

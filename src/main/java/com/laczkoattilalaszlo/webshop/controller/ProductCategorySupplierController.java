@@ -23,7 +23,7 @@ public class ProductCategorySupplierController extends HttpServlet {
     // Overridden HTTP method(s)
     @Override   // Get product types by ... (category / supplier)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get parameters
+        // Get parameter(s)
         String by = request.getParameter("by");   // category / supplier
 
         // Get List<ProductCategorySupplierDto>

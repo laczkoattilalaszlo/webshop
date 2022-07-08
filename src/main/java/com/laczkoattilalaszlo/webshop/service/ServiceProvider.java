@@ -27,6 +27,7 @@ public class ServiceProvider {
     CartService cartService = null;
     UserService userService = null;
     BankCardService bankCardService = null;
+    AddressService addressService = null;
 
     // Method(s)
     public ProductService getProductService() {
@@ -83,6 +84,20 @@ public class ServiceProvider {
             }
         }
         return bankCardService;
+    }
+
+    public AddressService getAddressService() {
+        if (addressService == null) {
+            try {
+                DataBaseManager dataBaseManager = new DataBaseManager();
+                DataSource dataSource = dataBaseManager.connect();
+                AddressDao addressDao = new AddressDaoDb(dataSource);
+                addressService = new AddressService(addressDao);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return addressService;
     }
 
 }

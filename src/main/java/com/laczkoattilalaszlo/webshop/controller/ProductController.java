@@ -24,7 +24,7 @@ public class ProductController extends HttpServlet {
     // Overridden HTTP method(s)
     @Override   // Get products by ... (category / supplier)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get parameters
+        // Get parameter(s)
         String by = request.getParameter("by");                 // category / supplier
         UUID id = UUID.fromString(request.getParameter("id"));  // category id / supplier id
 
