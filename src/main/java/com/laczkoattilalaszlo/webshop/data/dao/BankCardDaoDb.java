@@ -1,11 +1,9 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
 import com.laczkoattilalaszlo.webshop.data.dto.BankCardDto;
-import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class BankCardDaoDb implements BankCardDao {
@@ -28,6 +26,7 @@ public class BankCardDaoDb implements BankCardDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             if (resultSet.next()) {
                 BankCardDto bankCardDto = new BankCardDto();
                 bankCardDto.setName(resultSet.getString("name"));

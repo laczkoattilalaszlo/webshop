@@ -36,7 +36,7 @@ public class CartDaoDb implements CartDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create a ProductInCartDto from results and put them into a List
+            // Extract result: Create a ProductInCartDto from results and put them into a List
             List<ProductInCartDto> cart = new ArrayList<>();
             while (resultSet.next()) {
                 ProductInCartDto productInCartDto = new ProductInCartDto();
@@ -68,6 +68,7 @@ public class CartDaoDb implements CartDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             BigDecimal totalPrice = resultSet.next() ? resultSet.getBigDecimal("total_price") : BigDecimal.valueOf(0);
 
             return totalPrice;
@@ -86,6 +87,7 @@ public class CartDaoDb implements CartDao {
             preparedStatement.setObject(2, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             Integer quantity = (resultSet.next()) ? resultSet.getInt("quantity") : null;
 
             return quantity;

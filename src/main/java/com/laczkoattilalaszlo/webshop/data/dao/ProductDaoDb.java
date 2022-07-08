@@ -91,7 +91,7 @@ public class ProductDaoDb implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create ProductCategory objects from results and put them into a List
+            // Extract result: Create ProductCategory objects from results and put them into a List
             List<ProductCategorySupplierDto> productCategories = new ArrayList<>();
             while (resultSet.next()) {
                 ProductCategorySupplierDto productCategorySupplierDto = new ProductCategorySupplierDto();
@@ -114,7 +114,7 @@ public class ProductDaoDb implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create ProductSupplier objects from results and put them into a List
+            // Extract result: Create ProductSupplier objects from results and put them into a List
             List<ProductCategorySupplierDto> productSuppliers = new ArrayList<>();
             while (resultSet.next()) {
                 ProductCategorySupplierDto productCategorySupplierDto = new ProductCategorySupplierDto();

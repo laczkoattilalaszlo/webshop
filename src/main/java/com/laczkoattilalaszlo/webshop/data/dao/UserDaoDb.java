@@ -52,6 +52,7 @@ public class UserDaoDb implements UserDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             if (resultSet.next()) {
                 UserDto userDto = new UserDto();
                 userDto.setEmail(resultSet.getString("email"));
@@ -91,6 +92,7 @@ public class UserDaoDb implements UserDao {
             preparedStatement.setString(2, hashedPassword);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             UUID userId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
 
             return userId;
@@ -121,6 +123,7 @@ public class UserDaoDb implements UserDao {
             preparedStatement.setString(1, sessionToken);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             UUID userId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
 
             return userId;
@@ -137,6 +140,7 @@ public class UserDaoDb implements UserDao {
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            // Extract result
             String password = (resultSet.next()) ? resultSet.getString("password") : null;
 
             return password;
