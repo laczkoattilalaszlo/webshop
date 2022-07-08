@@ -1,8 +1,7 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
+import com.laczkoattilalaszlo.webshop.data.dto.ProductCategorySupplierDto;
 import com.laczkoattilalaszlo.webshop.model.Product;
-import com.laczkoattilalaszlo.webshop.model.ProductCategory;
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,8 +12,8 @@ public interface ProductDao {
 
     List<Product> getProductsBySupplier(UUID id);
 
-    List<ProductCategory> getProductCategories();
+    List<ProductCategorySupplierDto> getProductCategories();
 
-    List<ProductSupplier> getProductSuppliers();
+    List<ProductCategorySupplierDto> getProductSuppliers();
 
 }

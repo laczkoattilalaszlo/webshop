@@ -1,9 +1,8 @@
 package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.dao.ProductDao;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductCategorySupplierDto;
 import com.laczkoattilalaszlo.webshop.model.Product;
-import com.laczkoattilalaszlo.webshop.model.ProductCategory;
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import java.util.List;
 import java.util.UUID;
@@ -27,11 +26,11 @@ public class ProductService {
         return productDao.getProductsBySupplier(id);
     }
 
-    public List<ProductCategory> getProductCategories() {
+    public List<ProductCategorySupplierDto> getProductCategories() {
         return productDao.getProductCategories();
     }
 
-    public List<ProductSupplier> getProductSuppliers() {
+    public List<ProductCategorySupplierDto> getProductSuppliers() {
         return productDao.getProductSuppliers();
     }
 

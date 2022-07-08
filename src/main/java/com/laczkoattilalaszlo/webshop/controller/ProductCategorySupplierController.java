@@ -1,8 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-
-import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductCategorySupplierDto;
 import com.laczkoattilalaszlo.webshop.service.ProductService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
@@ -14,26 +13,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/products-by-supplier"})
-public class ProductsBySupplierController extends HttpServlet {
+@WebServlet(urlPatterns = {"/product-types"})
+public class ProductCategorySupplierController extends HttpServlet {
 
     // Field(s)
     ProductService productService;
 
     // Overridden HTTP method(s)
-    @Override   // Get products by supplier
+    @Override   // Get product types by ... (category / supplier)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get product supplier id parameter
-        UUID supplierId = UUID.fromString(request.getParameter("supplier-id"));
+        // Get parameters
+        String by = request.getParameter("by");   // category / supplier
 
-        // Get List<Product>
+        // Get List<ProductCategorySupplierDto>
         productService = ServiceProvider.getInstance().getProductService();
-        List<Product> products = productService.getProductsBySupplier(supplierId);
+        List<ProductCategorySupplierDto> productCategorySupplierDtos = null;
+        if (by.equals("category")) {
+            productCategorySupplierDtos = productService.getProductCategories();
+        } else if (by.equals("supplier")) {
+            productCategorySupplierDtos = productService.getProductSuppliers();
+        }
 
         // Serialize data
-        String serializedProductsBySuppliers = new Gson().toJson(products);
+        String serializedProductCategories = new Gson().toJson(productCategorySupplierDtos);
 
         // Edit response
         response.setContentType("application/json");
@@ -41,7 +44,7 @@ public class ProductsBySupplierController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedProductsBySuppliers);
+        printWriter.print(serializedProductCategories);
         printWriter.flush();
     }
 

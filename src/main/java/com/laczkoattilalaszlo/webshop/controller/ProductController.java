@@ -1,8 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
+import com.laczkoattilalaszlo.webshop.model.Product;
 import com.laczkoattilalaszlo.webshop.service.ProductService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
@@ -14,22 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/product-suppliers"})
-public class ProductSuppliersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/products"})
+public class ProductController extends HttpServlet {
 
     // Field(s)
     ProductService productService;
 
     // Overridden HTTP method(s)
-    @Override   // Get product suppliers
+    @Override   // Get products by ... (category / supplier)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get List<ProductCategoryDto>
+        // Get parameters
+        String by = request.getParameter("by");                 // category / supplier
+        UUID id = UUID.fromString(request.getParameter("id"));  // category id / supplier id
+
+        // Get List<Product>
         productService = ServiceProvider.getInstance().getProductService();
-        List<ProductSupplier> productSuppliers = productService.getProductSuppliers();
+        List<Product> products;
+        if (by.equals("category")) {
+            products = productService.getProductsByCategory(id);
+        } else if (by.equals("supplier")) {
+            products = productService.getProductsBySupplier(id);
+        } else {
+            throw new ServletException();
+        }
 
         // Serialize data
-        String serializedProductSuppliers = new Gson().toJson(productSuppliers);
+        String serializedProducts = new Gson().toJson(products);
 
         // Edit response
         response.setContentType("application/json");
@@ -37,7 +48,7 @@ public class ProductSuppliersController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedProductSuppliers);
+        printWriter.print(serializedProducts);
         printWriter.flush();
     }
 

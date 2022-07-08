@@ -1,8 +1,7 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
+import com.laczkoattilalaszlo.webshop.data.dto.ProductCategorySupplierDto;
 import com.laczkoattilalaszlo.webshop.model.Product;
-import com.laczkoattilalaszlo.webshop.model.ProductCategory;
-import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -85,7 +84,7 @@ public class ProductDaoDb implements ProductDao {
     }
 
     @Override
-    public List<ProductCategory> getProductCategories() {
+    public List<ProductCategorySupplierDto> getProductCategories() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
             String sql = "SELECT * FROM product_category";
@@ -93,12 +92,12 @@ public class ProductDaoDb implements ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Create ProductCategory objects from results and put them into a List
-            List<ProductCategory> productCategories = new ArrayList<>();
+            List<ProductCategorySupplierDto> productCategories = new ArrayList<>();
             while (resultSet.next()) {
-                ProductCategory productCategory = new ProductCategory();
-                productCategory.setId(resultSet.getObject("id", java.util.UUID.class));
-                productCategory.setName(resultSet.getString(2));
-                productCategories.add(productCategory);
+                ProductCategorySupplierDto productCategorySupplierDto = new ProductCategorySupplierDto();
+                productCategorySupplierDto.setId(resultSet.getObject("id", java.util.UUID.class));
+                productCategorySupplierDto.setName(resultSet.getString(2));
+                productCategories.add(productCategorySupplierDto);
             }
 
             return productCategories;
@@ -108,7 +107,7 @@ public class ProductDaoDb implements ProductDao {
     }
 
     @Override
-    public List<ProductSupplier> getProductSuppliers() {
+    public List<ProductCategorySupplierDto> getProductSuppliers() {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
             String sql = "SELECT * FROM product_supplier";
@@ -116,12 +115,12 @@ public class ProductDaoDb implements ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Create ProductSupplier objects from results and put them into a List
-            List<ProductSupplier> productSuppliers = new ArrayList<>();
+            List<ProductCategorySupplierDto> productSuppliers = new ArrayList<>();
             while (resultSet.next()) {
-                ProductSupplier productSupplier = new ProductSupplier();
-                productSupplier.setId(resultSet.getObject("id", java.util.UUID.class));
-                productSupplier.setName(resultSet.getString(2));
-                productSuppliers.add(productSupplier);
+                ProductCategorySupplierDto productCategorySupplierDto = new ProductCategorySupplierDto();
+                productCategorySupplierDto.setId(resultSet.getObject("id", java.util.UUID.class));
+                productCategorySupplierDto.setName(resultSet.getString(2));
+                productSuppliers.add(productCategorySupplierDto);
             }
 
             return productSuppliers;
