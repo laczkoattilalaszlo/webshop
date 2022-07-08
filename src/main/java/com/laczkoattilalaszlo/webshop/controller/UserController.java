@@ -2,6 +2,7 @@ package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
 import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
+import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
 import com.laczkoattilalaszlo.webshop.model.User;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
@@ -53,15 +54,15 @@ public class UserController extends HttpServlet {
 
     @Override   // Get user
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get user id parameter
-        UUID userId = UUID.fromString(request.getParameter("user-id"));
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
 
         // Get user
         userService = ServiceProvider.getInstance().getUserService();
-        User user = userService.getUser(userId);
+        UserDto userDto = userService.getUser(sessionToken);
 
         // Serialize data
-        String serializedUser = new Gson().toJson(user);
+        String serializedUserDto = new Gson().toJson(userDto);
 
         // Edit response
         response.setContentType("application/json");
@@ -69,7 +70,7 @@ public class UserController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedUser);
+        printWriter.print(serializedUserDto);
         printWriter.flush();
     }
 

@@ -2,6 +2,7 @@ package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
 import com.laczkoattilalaszlo.webshop.data.dao.UserDao;
+import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.model.User;
 
 import java.util.UUID;
@@ -28,7 +29,9 @@ public class UserService {
         userDao.removeUser(userId);
     }
 
-    public User getUser(UUID userId) {
+    public UserDto getUser(String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
         return userDao.getUser(userId);
     }
 

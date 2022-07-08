@@ -1,5 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
+import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.model.User;
 
 import javax.sql.DataSource;
@@ -43,22 +44,20 @@ public class UserDaoDb implements UserDao {
     }
 
     @Override
-    public User getUser(UUID userId) {
+    public UserDto getUser(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT * FROM \"user\" WHERE id=?";
+            String sql = "SELECT email, name, phone FROM \"user\" WHERE id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getObject("id", java.util.UUID.class));
-                user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
-                user.setName(resultSet.getString("name"));
-                user.setPhone(resultSet.getString("phone"));
-                return user;
+                UserDto userDto = new UserDto();
+                userDto.setEmail(resultSet.getString("email"));
+                userDto.setName(resultSet.getString("name"));
+                userDto.setPhone(resultSet.getString("phone"));
+                return userDto;
             } else {
                 return null;
             }

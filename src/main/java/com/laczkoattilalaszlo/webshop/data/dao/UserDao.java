@@ -1,5 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
+import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.model.User;
 
 import java.util.UUID;
@@ -10,7 +11,7 @@ public interface UserDao {
 
     void removeUser(UUID userId);
 
-    User getUser(UUID userId);
+    UserDto getUser(UUID userId);
 
     void updateUser(User user);
 
