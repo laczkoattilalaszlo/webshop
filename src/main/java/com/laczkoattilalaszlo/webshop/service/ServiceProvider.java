@@ -48,8 +48,7 @@ public class ServiceProvider {
                 DataBaseManager dataBaseManager = new DataBaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 CartDao cartDao = new CartDaoDb(dataSource);
-                UserDao userDao = new UserDaoDb(dataSource);
-                cartService = new CartService(cartDao, userDao);
+                cartService = new CartService(cartDao);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

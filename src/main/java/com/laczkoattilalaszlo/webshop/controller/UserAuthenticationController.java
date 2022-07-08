@@ -1,6 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
+
 import com.laczkoattilalaszlo.webshop.data.dto.UserPasswordDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/user-authentication"})
@@ -57,6 +59,10 @@ public class UserAuthenticationController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
@@ -66,8 +72,7 @@ public class UserAuthenticationController extends HttpServlet {
         String currentPassword = userPasswordDto.getCurrentPassword();
         String newPassword = userPasswordDto.getNewPassword();
 
-        userService = ServiceProvider.getInstance().getUserService();
-        userService.updatePassword(currentPassword, newPassword, sessionToken);
+        userService.updatePassword(currentPassword, newPassword, userId);
     }
 
 }

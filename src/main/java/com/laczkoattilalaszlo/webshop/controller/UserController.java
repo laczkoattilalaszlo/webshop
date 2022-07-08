@@ -1,10 +1,9 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
+
 import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
-import com.laczkoattilalaszlo.webshop.model.User;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
 
@@ -47,9 +46,12 @@ public class UserController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
-        // Add user to database
+        // Get user id from session token
         userService = ServiceProvider.getInstance().getUserService();
-        userService.removeUser(sessionToken);
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
+        // Add user to database
+        userService.removeUser(userId);
     }
 
     @Override   // Get user
@@ -57,9 +59,12 @@ public class UserController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
-        // Get user
+        // Get user id from session token
         userService = ServiceProvider.getInstance().getUserService();
-        UserDto userDto = userService.getUser(sessionToken);
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
+        // Get user
+        UserDto userDto = userService.getUser(userId);
 
         // Serialize data
         String serializedUserDto = new Gson().toJson(userDto);
@@ -79,6 +84,10 @@ public class UserController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
@@ -87,8 +96,7 @@ public class UserController extends HttpServlet {
         UserDto userDto = new Gson().fromJson(payload, UserDto.class);
 
         // Update user
-        userService = ServiceProvider.getInstance().getUserService();
-        userService.updateUser(userDto, sessionToken);
+        userService.updateUser(userDto, userId);
     }
 
 }

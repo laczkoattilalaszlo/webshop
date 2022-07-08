@@ -1,7 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductForCartOperationsDto;
+
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
@@ -24,6 +24,7 @@ public class CartController extends HttpServlet {
 
     // Field(s)
     CartService cartService;
+    UserService userService;
 
     // Overridden HTTP method(s)
     @Override   // Get cart
@@ -31,9 +32,13 @@ public class CartController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
         // Get cart content
         cartService = ServiceProvider.getInstance().getCartService();
-        List<ProductInCartDto> cart = cartService.getCart(sessionToken);
+        List<ProductInCartDto> cart = cartService.getCart(userId);
 
         // Serialize data
         String serializedProductCategories = new Gson().toJson(cart);
@@ -53,6 +58,10 @@ public class CartController extends HttpServlet {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
 
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
+
         // Get payload (product id) from body
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
@@ -62,13 +71,17 @@ public class CartController extends HttpServlet {
 
         // Add product to cart
         cartService = ServiceProvider.getInstance().getCartService();
-        cartService.addProductToCart(productId, sessionToken);
+        cartService.addProductToCart(productId, userId);
     }
 
     @Override   // Remove product from cart
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
+
+        // Get user id from session token
+        userService = ServiceProvider.getInstance().getUserService();
+        UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
         // Get payload (product id) from body
         BufferedReader bufferedReader = request.getReader();
@@ -79,7 +92,7 @@ public class CartController extends HttpServlet {
 
         // Remove product from cart
         cartService = ServiceProvider.getInstance().getCartService();
-        cartService.removeProductFromCart(productId, sessionToken);
+        cartService.removeProductFromCart(productId, userId);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.laczkoattilalaszlo.webshop.service;
 
 import com.laczkoattilalaszlo.webshop.data.dao.CartDao;
-import com.laczkoattilalaszlo.webshop.data.dao.UserDao;
 import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
 
 import java.math.BigDecimal;
@@ -12,30 +11,22 @@ public class CartService {
 
     // Field(s)
     private CartDao cartDao;
-    private UserDao userDao;
 
     // Constructor(s)
-    public CartService(CartDao cartDao, UserDao userDao) {
+    public CartService(CartDao cartDao) {
         this.cartDao = cartDao;
-        this.userDao = userDao;
     }
 
     // Method(s)
-    public List<ProductInCartDto> getCart(String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public List<ProductInCartDto> getCart(UUID userId) {
         return cartDao.getCart(userId);
     }
 
-    public BigDecimal getTotalPrice(String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public BigDecimal getTotalPrice(UUID userId) {
         return cartDao.getTotalPrice(userId);
     }
 
-    public void addProductToCart(UUID productId, String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public void addProductToCart(UUID productId, UUID userId) {
         Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
         if (quantityOfGivenProductInCart == null) {
             cartDao.addProductToCart(productId, userId);
@@ -45,9 +36,7 @@ public class CartService {
         }
     }
 
-    public void removeProductFromCart(UUID productId, String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public void removeProductFromCart(UUID productId, UUID userId) {
         Integer quantityOfGivenProductInCart = cartDao.getQuantityOfGivenProductInCart(productId, userId);
         if (quantityOfGivenProductInCart.equals(1)) {
             cartDao.removeProductFromCart(productId, userId);

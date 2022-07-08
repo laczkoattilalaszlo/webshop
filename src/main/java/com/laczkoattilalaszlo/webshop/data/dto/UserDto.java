@@ -1,7 +1,5 @@
 package com.laczkoattilalaszlo.webshop.data.dto;
 
-import java.util.UUID;
-
 public class UserDto {
 
     // Field(s)

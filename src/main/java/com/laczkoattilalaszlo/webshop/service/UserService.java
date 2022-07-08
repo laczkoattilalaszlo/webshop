@@ -3,7 +3,6 @@ package com.laczkoattilalaszlo.webshop.service;
 import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
 import com.laczkoattilalaszlo.webshop.data.dao.UserDao;
 import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
-import com.laczkoattilalaszlo.webshop.model.User;
 
 import java.util.UUID;
 
@@ -23,21 +22,19 @@ public class UserService {
         userDao.addUser(email, hashedPassword);
     }
 
-    public void removeUser(String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public void removeUser(UUID userId) {
         userDao.removeUser(userId);
     }
 
-    public UserDto getUser(String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public UserDto getUser(UUID userId) {
         return userDao.getUser(userId);
     }
 
-    public void updateUser(UserDto userDto, String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+    public UUID getUserIdBySessionToken(String sessionToken) {
+        return userDao.getUserIdBySessionToken(sessionToken);
+    }
 
+    public void updateUser(UserDto userDto, UUID userId) {
         userDao.updateUser(userDto, userId);
     }
 
@@ -53,9 +50,7 @@ public class UserService {
         }
     }
 
-    public void updatePassword(String currentPassword, String newPassword, String sessionToken) {
-        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
-
+    public void updatePassword(String currentPassword, String newPassword, UUID userId) {
         String hashedCurrentPassword = SecurityUtility.hashPassword(currentPassword);
         String hashedCurrentPasswordFromDatabase = userDao.getCurrentPassword(userId);
         if (hashedCurrentPassword.equals(hashedCurrentPasswordFromDatabase)) {
