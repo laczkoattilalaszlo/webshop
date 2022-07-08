@@ -76,16 +76,19 @@ public class UserController extends HttpServlet {
 
     @Override   // Update user
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get session token from header
+        String sessionToken = request.getHeader("session-token");
+
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
 
         // Deserialize payload
-        User user = new Gson().fromJson(payload, User.class);
+        UserDto userDto = new Gson().fromJson(payload, UserDto.class);
 
         // Update user
         userService = ServiceProvider.getInstance().getUserService();
-        userService.updateUser(user);
+        userService.updateUser(userDto, sessionToken);
     }
 
 }

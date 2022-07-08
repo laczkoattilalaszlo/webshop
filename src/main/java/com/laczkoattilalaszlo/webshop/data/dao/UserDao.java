@@ -13,7 +13,7 @@ public interface UserDao {
 
     UserDto getUser(UUID userId);
 
-    void updateUser(User user);
+    void updateUser(UserDto userDto, UUID userId);
 
     UUID getUserIdByEmailAndPassword(String email, String hashedPassword);
 

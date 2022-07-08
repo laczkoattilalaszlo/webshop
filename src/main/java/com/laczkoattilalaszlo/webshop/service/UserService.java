@@ -35,8 +35,10 @@ public class UserService {
         return userDao.getUser(userId);
     }
 
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public void updateUser(UserDto userDto, String sessionToken) {
+        UUID userId = userDao.getUserIdBySessionToken(sessionToken);
+
+        userDao.updateUser(userDto, userId);
     }
 
     public String authenticateUser(String email, String password) {

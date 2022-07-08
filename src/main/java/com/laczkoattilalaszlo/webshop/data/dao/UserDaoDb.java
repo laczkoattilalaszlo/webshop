@@ -67,15 +67,14 @@ public class UserDaoDb implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(UserDto userDto, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE \"user\" SET email=?, password=?, name=?, phone=? WHERE id=?";
+            String sql = "UPDATE \"user\" SET email=?, name=?, phone=? WHERE id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getName());
-            preparedStatement.setString(4, user.getPhone());
-            preparedStatement.setObject(5, user.getId());
+            preparedStatement.setString(1, userDto.getEmail());
+            preparedStatement.setString(2, userDto.getName());
+            preparedStatement.setString(3, userDto.getPhone());
+            preparedStatement.setObject(4, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
