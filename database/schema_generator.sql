@@ -166,27 +166,28 @@
 -- 12. CREATE ORDER TABLE
     create table "order"
     (
-        id                      uuid  not null
-                                constraint order_pk
-                                primary key,
-        order_contact           uuid
-                                constraint order_order_contact_id_fk
-                                references order_contact
-                                on delete cascade,
-        order_shipping_address  uuid
-                                constraint order_order_shipping_address_id_fk
-                                references order_shipping_address
-                                on delete cascade,
-        order_billing_address   uuid
-                                constraint order_order_billing_address_id_fk
-                                references order_billing_address
-                                on delete cascade,
-        total_price             numeric,
-        transaction_code        text,
-        user_id                 uuid not null
-                                constraint order_user_id_fk
-                                references "user"
-                                on delete cascade
+        id                          uuid  not null
+                                    constraint order_pk
+                                    primary key,
+        order_contact               uuid
+                                    constraint order_order_contact_id_fk
+                                    references order_contact
+                                    on delete cascade,
+        order_shipping_address      uuid
+                                    constraint order_order_shipping_address_id_fk
+                                    references order_shipping_address
+                                    on delete cascade,
+        order_billing_address       uuid
+                                    constraint order_order_billing_address_id_fk
+                                    references order_billing_address
+                                    on delete cascade,
+        total_price                 numeric,
+        successful_transaction_code text,
+        date                        date,
+        user_id                     uuid not null
+                                    constraint order_user_id_fk
+                                    references "user"
+                                    on delete cascade
     );
 
     create unique index order_id_uindex
