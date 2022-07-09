@@ -20,11 +20,12 @@ public class UserDaoDb implements UserDao {
     @Override
     public void addUser(String email, String password) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO \"user\" (id, email, password) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO \"user\" (id, email, password, role) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setObject(1, UUID.randomUUID());
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, password);
+            preparedStatement.setString(4, "customer");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
