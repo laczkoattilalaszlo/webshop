@@ -16,14 +16,14 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 @WebServlet(urlPatterns = {"/order"})
-public class OrderController extends HttpServlet {
+public class InProgressOrderController extends HttpServlet {
 
     // Field(s)
     OrderService orderService;
     UserService userService;
 
     // Overridden HTTP method(s)
-    @Override   // Create order
+    @Override   // Create new in progress order
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
@@ -32,12 +32,18 @@ public class OrderController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
-        // Create order
+        // Create new in progress order
         orderService = ServiceProvider.getInstance().getOrderService();
-        orderService.createOrder(userId);
+        UUID orderId = orderService.getOrderIdOfInProgressOrder(userId);
+        if (orderId == null) {
+            orderService.createNewInProgressOrder(userId);
+        } else {
+            response.sendError(409, "Order already exists.");
+        }
+
     }
 
-    @Override   // Get order
+    @Override   // Get in progress order
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
@@ -46,12 +52,12 @@ public class OrderController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
-        // Get order
+        // Get in progress order
         orderService = ServiceProvider.getInstance().getOrderService();
-        OrderExtendedDeepDto orderExtendedDeepDto = orderService.getOrder(userId);
+        OrderExtendedDeepDto inProgressOrder = orderService.getInProgressOrder(userId);
 
         // Serialize data
-        String serializedOrderExtendedDeepDto = new Gson().toJson(orderExtendedDeepDto);
+        String serializedInProgressOrder = new Gson().toJson(inProgressOrder);
 
         // Edit response
         response.setContentType("application/json");
@@ -59,7 +65,7 @@ public class OrderController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedOrderExtendedDeepDto);
+        printWriter.print(serializedInProgressOrder);
         printWriter.flush();
     }
 

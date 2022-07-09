@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public interface OrderDao {
 
-    void createOrder(UUID userId);
+    void createNewInProgressOrder(UUID userId);
 
-    UUID getOrderIdOfOrderInProgress(UUID userId);
+    UUID getOrderIdOfInProgressOrder(UUID userId);
 
     OrderDto getOrder(UUID orderId);
 

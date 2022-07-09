@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static java.sql.Types.NULL;
+
 public class OrderDaoDb implements OrderDao{
 
     // Field(s)
@@ -20,12 +22,13 @@ public class OrderDaoDb implements OrderDao{
 
     // Implemented method(s)
     @Override
-    public void createOrder(UUID userId) {
+    public void createNewInProgressOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO \"order\" (id, user_id) VALUES (?, ?)";
+            String sql = "INSERT INTO \"order\" (id, successful_transaction_code, user_id) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setObject(1, UUID.randomUUID());
-            preparedStatement.setObject(2, userId);
+            preparedStatement.setString(2, "noSuccessfulTransactionYet");
+            preparedStatement.setObject(3, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -33,12 +36,13 @@ public class OrderDaoDb implements OrderDao{
     }
 
     @Override
-    public UUID getOrderIdOfOrderInProgress(UUID userId) {
+    public UUID getOrderIdOfInProgressOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT id FROM \"order\" WHERE user_id=?";
+            String sql = "SELECT id FROM \"order\" WHERE user_id=? AND successful_transaction_code=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, userId);
+            preparedStatement.setString(2, "noSuccessfulTransactionYet");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Extract result
@@ -175,4 +179,5 @@ public class OrderDaoDb implements OrderDao{
             throw new RuntimeException(e);
         }
     }
+
 }
