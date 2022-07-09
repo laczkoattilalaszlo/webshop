@@ -26,7 +26,6 @@ public class ServiceProvider {
     ProductService productService = null;
     CartService cartService = null;
     UserService userService = null;
-    BankCardService bankCardService = null;
     AddressService addressService = null;
 
     // Method(s)
@@ -70,20 +69,6 @@ public class ServiceProvider {
             }
         }
         return userService;
-    }
-
-    public BankCardService getBankCardService() {
-        if (bankCardService == null) {
-            try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
-                DataSource dataSource = dataBaseManager.connect();
-                BankCardDao bankCardDao = new BankCardDaoDb(dataSource);
-                bankCardService = new BankCardService(bankCardDao);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return bankCardService;
     }
 
     public AddressService getAddressService() {

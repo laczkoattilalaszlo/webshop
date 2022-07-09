@@ -105,16 +105,3 @@
                 references "user"
                 on delete cascade
     );
-
--- 8. CREATE BANK CARD TABLE
-    create table bank_card
-    (
-        name            text,
-        card_number     text,
-        expiration_date date,
-        security_code   text,
-        user_id         uuid
-                        constraint bank_cart_user_id_fk
-                        references "user"
-                        on delete cascade
-    );
