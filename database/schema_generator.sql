@@ -118,3 +118,91 @@
                         references "user"
                         on delete cascade
     );
+
+-- 9. CREATE ORDER CONTACT TABLE
+    create table order_contact
+    (
+        id    uuid not null
+              constraint order_contact_pk
+              primary key,
+        name  text,
+        email text,
+        phone text
+    );
+
+    create unique index order_contact_id_uindex
+        on order_contact (id);
+
+-- 10. CREATE ORDER SHIPPING ADDRESS TABLE
+    create table order_shipping_address
+    (
+        id      uuid not null
+                constraint order_shipping_address_pk
+                primary key,
+        zip     text,
+        country text,
+        city    text,
+        address text
+    );
+
+    create unique index order_shipping_address_id_uindex
+        on order_shipping_address (id);
+
+-- 11. CREATE ORDER BILLING ADDRESS TABLE
+    create table order_billing_address
+    (
+        id      uuid not null
+                constraint order_billing_address_pk
+                primary key,
+        zip     text,
+        country text,
+        city    text,
+        address text
+    );
+
+    create unique index order_billing_address_id_uindex
+        on order_billing_address (id);
+
+-- 12. CREATE ORDER TABLE
+    create table "order"
+    (
+        id                          uuid  not null
+                                    constraint order_pk
+                                    primary key,
+        order_contact               uuid
+                                    constraint order_order_contact_id_fk
+                                    references order_contact
+                                    on delete cascade,
+        order_shipping_address      uuid
+                                    constraint order_order_shipping_address_id_fk
+                                    references order_shipping_address
+                                    on delete cascade,
+        order_billing_address       uuid
+                                    constraint order_order_billing_address_id_fk
+                                    references order_billing_address
+                                    on delete cascade,
+        transaction_code            text,
+        date                        date,
+        status                      text,
+        user_id                     uuid not null
+                                    constraint order_user_id_fk
+                                    references "user"
+                                    on delete cascade
+    );
+
+    create unique index order_id_uindex
+        on "order" (id);
+
+-- 13. CREATE ORDER CART TABLE
+    create table order_cart
+    (
+        product_id uuid,
+        name       text,
+        unit_price numeric,
+        currency   text,
+        quantity   int,
+        order_id   uuid not null
+                   constraint order_cart_order_id_fk
+                   references "order"
+                   on delete cascade
+    );

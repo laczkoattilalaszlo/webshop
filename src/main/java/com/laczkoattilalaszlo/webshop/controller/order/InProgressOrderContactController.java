@@ -1,8 +1,8 @@
-package com.laczkoattilalaszlo.webshop.controller;
+package com.laczkoattilalaszlo.webshop.controller.order;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
-import com.laczkoattilalaszlo.webshop.service.AddressService;
+import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
+import com.laczkoattilalaszlo.webshop.service.OrderService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
 
@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/address"})
-public class AddressController extends HttpServlet {
+@WebServlet(urlPatterns = {"/order-contact"})
+public class InProgressOrderContactController extends HttpServlet {
 
     // Field(s)
-    AddressService addressService;
+    OrderService orderService;
     UserService userService;
 
-    @Override   // Get ... (shipping / billing) address
+    @Override   // Get in progress order contact
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
@@ -31,22 +31,18 @@ public class AddressController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
-        // Get parameter(s)
-        String type = request.getParameter("type");     // shipping / billing
+        // Get in progress order id
+        orderService = ServiceProvider.getInstance().getOrderService();
+        UUID inProgressOrderId = orderService.getInProgressOrderId(userId);
 
-        // Get ... (shipping / billing) address
-        addressService = ServiceProvider.getInstance().getAddressService();
-        AddressDto addressDto = null;
-        if (type.equals("shipping")) {
-            addressDto = addressService.getAddress("billing_address", userId);
-        } else if (type.equals("billing")) {
-            addressDto = addressService.getAddress("shipping_address", userId);
-        } else {
-            throw new ServletException();
-        }
+        // Get in progress order contact id
+        UUID inProgressOrderContactId = orderService.getOrderContactId(inProgressOrderId);
+
+        // Get in progress order-contact
+        UserDto inProgressOrderContact = orderService.getOrderContact(inProgressOrderContactId);
 
         // Serialize data
-        String serializedUserDto = new Gson().toJson(addressDto);
+        String serializedInProgressOrderContact = new Gson().toJson(inProgressOrderContact);
 
         // Edit response
         response.setContentType("application/json");
@@ -54,7 +50,7 @@ public class AddressController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedUserDto);
+        printWriter.print(serializedInProgressOrderContact);
         printWriter.flush();
     }
 
