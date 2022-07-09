@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static java.sql.Types.NULL;
-
 public class OrderDaoDb implements OrderDao{
 
     // Field(s)
@@ -25,10 +23,10 @@ public class OrderDaoDb implements OrderDao{
     public UUID getOrderIdOfInProgressOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT id FROM \"order\" WHERE user_id=? AND successful_transaction_code=?";
+            String sql = "SELECT id FROM \"order\" WHERE user_id=? AND status=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, userId);
-            preparedStatement.setString(2, "noSuccessfulTransactionYet");
+            preparedStatement.setString(2, "in progress");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Extract result
@@ -42,10 +40,10 @@ public class OrderDaoDb implements OrderDao{
     @Override
     public void createNewInProgressOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO \"order\" (id, successful_transaction_code, user_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO \"order\" (id, status, user_id) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setObject(1, UUID.randomUUID());
-            preparedStatement.setString(2, "noSuccessfulTransactionYet");
+            preparedStatement.setString(2, "in progress");
             preparedStatement.setObject(3, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +55,7 @@ public class OrderDaoDb implements OrderDao{
     public OrderDto getOrder(UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT order_contact, order_shipping_address, order_billing_address, successful_transaction_code, date FROM \"order\" WHERE id=?";
+            String sql = "SELECT order_contact, order_shipping_address, order_billing_address, transaction_code, date FROM \"order\" WHERE id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -68,7 +66,7 @@ public class OrderDaoDb implements OrderDao{
                 orderDto.setOrderContact(resultSet.getObject("order_contact", UUID.class));
                 orderDto.setOrderShippingAddress(resultSet.getObject("order_shipping_address", UUID.class));
                 orderDto.setOrderBillingAddress(resultSet.getObject("order_billing_address", UUID.class));
-                orderDto.setSuccessfulTransactionCode(resultSet.getString("successful_transaction_code"));
+                orderDto.setTransactionCode(resultSet.getString("transaction_code"));
                 orderDto.setDate(resultSet.getObject("date", java.time.LocalDate.class));
                 return orderDto;
             } else {

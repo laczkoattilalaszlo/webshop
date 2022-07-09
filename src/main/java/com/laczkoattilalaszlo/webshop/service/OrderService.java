@@ -32,11 +32,11 @@ public class OrderService {
         // Get in progress order id
         UUID orderId = orderDao.getOrderIdOfInProgressOrder(userId);
 
-        // Get order successful transaction code
+        // Get order transaction code
         OrderDto order = orderDao.getOrder(orderId);
-        String orderSuccessfulTransactionCode = order.getSuccessfulTransactionCode();
+        String TransactionCode = order.getTransactionCode();
 
-        deepExtendedOrder.setSuccessfulTransactionCode(orderSuccessfulTransactionCode);
+        deepExtendedOrder.setTransactionCode(TransactionCode);
 
         // Get order date
         LocalDate orderDate = order.getDate();

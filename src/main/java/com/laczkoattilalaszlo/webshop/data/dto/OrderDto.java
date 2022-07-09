@@ -1,7 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 public class OrderDto {
@@ -10,7 +9,7 @@ public class OrderDto {
     private UUID orderContact;
     private UUID orderShippingAddress;
     private UUID orderBillingAddress;
-    private String successfulTransactionCode;
+    private String transactionCode;
     private LocalDate date;
 
     // Getter(s) and Setter(s)
@@ -38,12 +37,12 @@ public class OrderDto {
         this.orderBillingAddress = orderBillingAddress;
     }
 
-    public String getSuccessfulTransactionCode() {
-        return successfulTransactionCode;
+    public String getTransactionCode() {
+        return transactionCode;
     }
 
-    public void setSuccessfulTransactionCode(String successfulTransactionCode) {
-        this.successfulTransactionCode = successfulTransactionCode;
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
     public LocalDate getDate() {

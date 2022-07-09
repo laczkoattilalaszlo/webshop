@@ -10,7 +10,7 @@ public class OrderExtendedDeepDto {
     private UserDto orderContact;
     private AddressDto orderShippingAddress;
     private AddressDto orderBillingAddress;
-    private String successfulTransactionCode;
+    private String transactionCode;
     private LocalDate date;
 
     // Getter(s) and Setter(s)
@@ -48,12 +48,12 @@ public class OrderExtendedDeepDto {
         this.orderBillingAddress = orderBillingAddress;
     }
 
-    public String getSuccessfulTransactionCode() {
-        return successfulTransactionCode;
+    public String getTransactionCode() {
+        return transactionCode;
     }
 
-    public void setSuccessfulTransactionCode(String successfulTransactionCode) {
-        this.successfulTransactionCode = successfulTransactionCode;
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
     public LocalDate getDate() {
