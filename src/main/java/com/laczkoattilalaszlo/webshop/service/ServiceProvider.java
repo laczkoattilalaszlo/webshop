@@ -28,7 +28,6 @@ public class ServiceProvider {
     UserService userService = null;
     BankCardService bankCardService = null;
     AddressService addressService = null;
-    OrderService orderService = null;
 
     // Method(s)
     public ProductService getProductService() {
@@ -99,20 +98,6 @@ public class ServiceProvider {
             }
         }
         return addressService;
-    }
-
-    public OrderService getOrderService() {
-        if (orderService == null) {
-            try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
-                DataSource dataSource = dataBaseManager.connect();
-                OrderDao orderDao = new OrderDaoDb(dataSource);
-                orderService = new OrderService(orderDao);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return orderService;
     }
 
 }
