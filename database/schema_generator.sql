@@ -181,7 +181,6 @@
                                     constraint order_order_billing_address_id_fk
                                     references order_billing_address
                                     on delete cascade,
-        total_price                 numeric,
         successful_transaction_code text,
         date                        date,
         user_id                     uuid not null
