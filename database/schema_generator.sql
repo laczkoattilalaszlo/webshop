@@ -110,3 +110,94 @@
                 references "user"
                 on delete cascade
     );
+
+-- 8. CREATE ORDER TABLE
+    create table "order"
+    (
+        id      uuid not null
+                constraint order_pk
+                primary key,
+        user_id uuid not null
+                constraint order_user_id_fk
+                references "user"
+                on delete cascade
+    );
+
+    create unique index order_id_uindex
+        on "order" (id);
+
+-- 9. CREATE ORDER CART TABLE
+    create table order_cart
+    (
+        product_id   uuid,
+        product_name text,
+        unit_price   numeric,
+        currency     text,
+        quantity     int,
+        order_id     uuid not null
+                     constraint order_cart_order_id_fk
+                     references "order"
+                     on delete cascade
+    );
+
+-- 10. CREATE ORDER CONTACT TABLE
+    create table order_contact
+    (
+        name     text,
+        email    text,
+        phone    text,
+        order_id uuid not null
+                 constraint order_contact_order_id_fk
+                 references "order"
+                 on delete cascade
+    );
+
+    create unique index order_contact_order_id_uindex
+        on order_contact (order_id);
+
+-- 11. CREATE ORDER SHIPPING ADDRESS TABLE
+    create table order_shipping
+    (
+        zip      text,
+        country  text,
+        city     text,
+        address  text,
+        order_id uuid not null
+                 constraint order_shipping_order_id_fk
+                 references "order"
+                 on delete cascade
+    );
+
+    create unique index order_shipping_order_id_uindex
+        on order_shipping (order_id);
+
+-- 12. CREATE BILLING ADDRESS TABLE
+    create table order_billing_address
+    (
+        zip      text,
+        country  text,
+        city     text,
+        address  text,
+        order_id uuid not null
+                 constraint order_billing_address_order_id_fk
+                 references "order"
+                 on delete cascade
+    );
+
+    create unique index order_billing_address_order_id_uindex
+        on order_billing_address (order_id);
+
+-- 13. CREATE PAYMENT TABLE
+    create table order_payment
+    (
+        payment_id      text not null,
+        payment_state   text,
+        start_timestamp timestamp,
+        order_id        uuid not null
+                        constraint order_payment_order_id_fk
+                        references "order"
+                        on delete cascade
+    );
+
+    create unique index order_payment_payment_id_uindex
+        on order_payment (payment_id);
