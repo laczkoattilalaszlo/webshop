@@ -32,17 +32,15 @@ public class OrderService {
         // Get in progress order id
         UUID orderId = orderDao.getOrderIdOfInProgressOrder(userId);
 
-        // Get order cart
-        List<ProductInOrderCartDto> orderCart = orderDao.getOrderCart(orderId);
-
-        deepExtendedOrder.setOrderCart(orderCart);
-
-        // Get order successful transaction code and order date
+        // Get order successful transaction code
         OrderDto order = orderDao.getOrder(orderId);
         String orderSuccessfulTransactionCode = order.getSuccessfulTransactionCode();
-        LocalDate orderDate = order.getDate();
 
         deepExtendedOrder.setSuccessfulTransactionCode(orderSuccessfulTransactionCode);
+
+        // Get order date
+        LocalDate orderDate = order.getDate();
+
         deepExtendedOrder.setDate(orderDate);
 
         // Get order contact
@@ -62,6 +60,11 @@ public class OrderService {
         AddressDto orderBillingAddress = orderDao.getOrderBillingAddress(orderBillingAddressId);
 
         deepExtendedOrder.setOrderBillingAddress(orderBillingAddress);
+
+        // Get order cart
+        List<ProductInOrderCartDto> orderCart = orderDao.getOrderCart(orderId);
+
+        deepExtendedOrder.setOrderCart(orderCart);
 
         return deepExtendedOrder;
     }

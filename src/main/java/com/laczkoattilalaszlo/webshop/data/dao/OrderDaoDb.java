@@ -22,20 +22,6 @@ public class OrderDaoDb implements OrderDao{
 
     // Implemented method(s)
     @Override
-    public void createNewInProgressOrder(UUID userId) {
-        try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO \"order\" (id, successful_transaction_code, user_id) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setObject(1, UUID.randomUUID());
-            preparedStatement.setString(2, "noSuccessfulTransactionYet");
-            preparedStatement.setObject(3, userId);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public UUID getOrderIdOfInProgressOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
@@ -48,6 +34,20 @@ public class OrderDaoDb implements OrderDao{
             // Extract result
             UUID orderId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
             return orderId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void createNewInProgressOrder(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO \"order\" (id, successful_transaction_code, user_id) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, UUID.randomUUID());
+            preparedStatement.setString(2, "noSuccessfulTransactionYet");
+            preparedStatement.setObject(3, userId);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
