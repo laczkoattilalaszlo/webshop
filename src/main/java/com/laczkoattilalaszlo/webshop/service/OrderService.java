@@ -18,8 +18,8 @@ public class OrderService {
     }
 
     // Method(s)
-    public UUID getOrderIdOfInProgressOrder(UUID userId) {
-        return orderDao.getOrderIdOfInProgressOrder(userId);
+    public UUID getInProgressOrderId(UUID userId) {
+        return orderDao.getInProgressOrderId(userId);
     }
 
     public void createNewInProgressOrder(UUID userId) {
@@ -30,7 +30,7 @@ public class OrderService {
         OrderExtendedDeepDto deepExtendedOrder = new OrderExtendedDeepDto();
 
         // Get in progress order id
-        UUID orderId = orderDao.getOrderIdOfInProgressOrder(userId);
+        UUID orderId = orderDao.getInProgressOrderId(userId);
 
         // Get order transaction code
         OrderDto order = orderDao.getOrder(orderId);
@@ -67,6 +67,14 @@ public class OrderService {
         deepExtendedOrder.setOrderCart(orderCart);
 
         return deepExtendedOrder;
+    }
+
+    public UUID getOrderContactId(UUID orderId) {
+        return orderDao.getOrderContactId(orderId);
+    }
+
+    public UserDto getOrderContact(UUID orderContactId) {
+        return orderDao.getOrderContact(orderContactId);
     }
 
 }

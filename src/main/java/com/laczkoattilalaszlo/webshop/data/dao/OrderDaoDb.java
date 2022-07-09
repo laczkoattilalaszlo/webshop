@@ -20,7 +20,7 @@ public class OrderDaoDb implements OrderDao{
 
     // Implemented method(s)
     @Override
-    public UUID getOrderIdOfInProgressOrder(UUID userId) {
+    public UUID getInProgressOrderId(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
             String sql = "SELECT id FROM \"order\" WHERE user_id=? AND status=?";
@@ -72,6 +72,24 @@ public class OrderDaoDb implements OrderDao{
             } else {
                 return null;
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public UUID getOrderContactId(UUID orderId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT order_contact FROM \"order\" WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, orderId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Extract result
+            UUID orderContactId =  (resultSet.next()) ? resultSet.getObject("order_contact", UUID.class) : null;
+
+            return orderContactId;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -34,7 +34,7 @@ public class InProgressOrderController extends HttpServlet {
 
         // Create new in progress order
         orderService = ServiceProvider.getInstance().getOrderService();
-        UUID orderId = orderService.getOrderIdOfInProgressOrder(userId);
+        UUID orderId = orderService.getInProgressOrderId(userId);
         if (orderId == null) {
             orderService.createNewInProgressOrder(userId);
         } else {
