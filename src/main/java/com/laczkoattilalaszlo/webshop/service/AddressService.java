@@ -20,8 +20,4 @@ public class AddressService {
         return addressDao.getAddress(tableName,userId);
     };
 
-    public void updateAddress(String tableName, UUID userId, AddressDto addressDto){
-        addressDao.updateAddress(tableName,userId, addressDto);
-    };
-
 }

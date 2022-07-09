@@ -2,7 +2,6 @@ package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
 import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
-import com.laczkoattilalaszlo.webshop.data.dto.BankCardDto;
 import com.laczkoattilalaszlo.webshop.service.AddressService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
@@ -12,11 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/address"})
 public class AddressController extends HttpServlet {
@@ -59,36 +56,6 @@ public class AddressController extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         printWriter.print(serializedUserDto);
         printWriter.flush();
-    }
-
-    @Override   // Update ... (shipping / billing) address
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get session token from header
-        String sessionToken = request.getHeader("session-token");
-
-        // Get user id from session token
-        userService = ServiceProvider.getInstance().getUserService();
-        UUID userId = userService.getUserIdBySessionToken(sessionToken);
-
-        // Get parameter(s)
-        String type = request.getParameter("type");     // shipping / billing
-
-        // Get payload
-        BufferedReader bufferedReader = request.getReader();
-        String payload = bufferedReader.lines().collect(Collectors.joining());
-
-        // Deserialize payload
-        AddressDto addressDto = new Gson().fromJson(payload, AddressDto.class);
-
-        // Update ... (shipping / billing) address
-        addressService = ServiceProvider.getInstance().getAddressService();
-        if (type.equals("shipping")) {
-            addressService.updateAddress("billing_address", userId, addressDto);
-        } else if (type.equals("billing")) {
-            addressService.updateAddress("shipping_address", userId, addressDto);
-        } else {
-            throw new ServletException();
-        }
     }
 
 }

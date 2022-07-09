@@ -8,6 +8,4 @@ public interface AddressDao {
 
     AddressDto getAddress(String tableName, UUID userId);
 
-    void updateAddress(String tableName, UUID userId, AddressDto addressDto);
-
 }
