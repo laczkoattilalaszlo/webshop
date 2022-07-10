@@ -156,20 +156,20 @@
         on order_contact (order_id);
 
 -- 11. CREATE ORDER SHIPPING ADDRESS TABLE
-    create table order_shipping
+    create table order_shipping_address
     (
         zip      text,
         country  text,
         city     text,
         address  text,
         order_id uuid not null
-                 constraint order_shipping_order_id_fk
+                 constraint order_shipping_address_order_id_fk
                  references "order"
                  on delete cascade
     );
 
-    create unique index order_shipping_order_id_uindex
-        on order_shipping (order_id);
+    create unique index order_shipping_address_order_id_uindex
+        on order_shipping_address (order_id);
 
 -- 12. CREATE BILLING ADDRESS TABLE
     create table order_billing_address
