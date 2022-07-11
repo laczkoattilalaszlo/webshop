@@ -17,6 +17,7 @@ public class AddressDaoDb implements AddressDao {
     }
 
     // Implemented method(s)
+    @Override
     public AddressDto getAddress(String tableName, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
