@@ -16,6 +16,10 @@ public interface OrderDao {
 
     List<ProductInOrderCartDto> getOrderCart(UUID orderId);
 
+    void addOrderCart(UUID orderId, List<ProductInOrderCartDto> orderCart);
+
+    void deleteOrderCart(UUID orderId);
+
     UserDto getOrderContact(UUID orderId);
 
     AddressDto getOrderShippingAddress(UUID orderId);

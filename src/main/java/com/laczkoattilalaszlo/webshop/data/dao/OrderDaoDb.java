@@ -85,6 +85,38 @@ public class OrderDaoDb implements OrderDao {
     }
 
     @Override
+    public void addOrderCart(UUID orderId, List<ProductInOrderCartDto> orderCart) {
+        try (Connection connection = dataSource.getConnection()) {
+            for (ProductInOrderCartDto product : orderCart) {
+                // Execute SQL query
+                String sql = "INSERT INTO order_cart (product_id, product_name, unit_price, currency, quantity, order_id) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setObject(1, product.getProductId());
+                preparedStatement.setString(2, product.getProductName());
+                preparedStatement.setBigDecimal(3, product.getUnitPrice());
+                preparedStatement.setString(4, product.getCurrency());
+                preparedStatement.setInt(5, product.getQuantity());
+                preparedStatement.setObject(6, orderId);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteOrderCart(UUID orderId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM order_cart WHERE order_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public UserDto getOrderContact(UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query

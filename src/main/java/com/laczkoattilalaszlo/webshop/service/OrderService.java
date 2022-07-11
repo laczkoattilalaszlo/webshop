@@ -3,6 +3,7 @@ package com.laczkoattilalaszlo.webshop.service;
 import com.laczkoattilalaszlo.webshop.data.dao.OrderDao;
 import com.laczkoattilalaszlo.webshop.data.dto.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,6 +50,30 @@ public class OrderService {
         order.setOrderPayments(orderPayments);
 
         return order;
+    }
+
+    public List<ProductInOrderCartDto> getOrderCart(UUID orderId) {
+        return orderDao.getOrderCart(orderId);
+    }
+
+    public void updateOrderCart(UUID orderId, List<ProductInCartDto> cart) {
+        // Delete order cart
+        orderDao.deleteOrderCart(orderId);
+
+        // Convert cart to order cart
+        List<ProductInOrderCartDto> orderCart = new ArrayList<>();
+        for (ProductInCartDto product : cart) {
+            ProductInOrderCartDto orderProduct = new ProductInOrderCartDto();
+            orderProduct.setProductId(product.getProductId());
+            orderProduct.setProductName(product.getName());
+            orderProduct.setUnitPrice(product.getPrice());
+            orderProduct.setCurrency(product.getCurrency());
+            orderProduct.setQuantity(product.getQuantity());
+            orderCart.add(orderProduct);
+        }
+
+        // Add order cart
+        orderDao.addOrderCart(orderId, orderCart);
     }
 
 }
