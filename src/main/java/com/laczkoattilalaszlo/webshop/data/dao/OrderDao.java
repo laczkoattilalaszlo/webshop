@@ -22,6 +22,10 @@ public interface OrderDao {
 
     UserDto getOrderContact(UUID orderId);
 
+    void addOrderContact(UUID orderId, UserDto orderContact);
+
+    void updateOrderContact(UUID orderId, UserDto orderContact);
+
     AddressDto getOrderShippingAddress(UUID orderId);
 
     AddressDto getOrderBillingAddress(UUID orderId);

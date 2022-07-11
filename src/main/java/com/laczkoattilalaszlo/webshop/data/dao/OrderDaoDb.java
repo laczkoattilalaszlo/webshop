@@ -141,6 +141,36 @@ public class OrderDaoDb implements OrderDao {
     }
 
     @Override
+    public void addOrderContact(UUID orderId, UserDto orderContact) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO order_contact (name, email, phone, order_id) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, orderContact.getName());
+            preparedStatement.setString(2, orderContact.getEmail());
+            preparedStatement.setString(3, orderContact.getPhone());
+            preparedStatement.setObject(4, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateOrderContact(UUID orderId, UserDto orderContact) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "UPDATE order_contact SET email=?, name=?, phone=? WHERE order_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, orderContact.getEmail());
+            preparedStatement.setString(2, orderContact.getName());
+            preparedStatement.setString(3, orderContact.getPhone());
+            preparedStatement.setObject(4, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public AddressDto getOrderShippingAddress(UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query

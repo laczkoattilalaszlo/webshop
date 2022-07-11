@@ -76,4 +76,16 @@ public class OrderService {
         orderDao.addOrderCart(orderId, orderCart);
     }
 
+    public UserDto getOrderContact(UUID orderId) {
+        return orderDao.getOrderContact(orderId);
+    }
+
+    public void addOrderContact(UUID orderId, UserDto orderContact) {
+        orderDao.addOrderContact(orderId, orderContact);
+    }
+
+    public void updateOrderContact(UUID orderId, UserDto orderContact) {
+        orderDao.updateOrderContact(orderId, orderContact);
+    }
+
 }
