@@ -25,7 +25,7 @@ public class ActiveOrderCartController extends HttpServlet {
     CartService cartService;
 
     // Overridden HTTP method(s)
-    @Override   // Update order cart
+    @Override   // Update active order cart
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
@@ -45,7 +45,7 @@ public class ActiveOrderCartController extends HttpServlet {
         cartService = ServiceProvider.getInstance().getCartService();
         List<ProductInCartDto> cart = cartService.getCart(userId);
 
-        // Transfer products from cart to order cart
+        // Transfer products from cart to active order cart
         orderService.updateOrderCart(activeOrderId, cart);
     }
 
