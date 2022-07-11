@@ -1,4 +1,4 @@
-package com.laczkoattilalaszlo.webshop.controller;
+package com.laczkoattilalaszlo.webshop.controller.order;
 
 import com.google.gson.Gson;
 import com.laczkoattilalaszlo.webshop.data.dto.OrderDto;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 @WebServlet(urlPatterns = {"/order"})
-public class OrderController extends HttpServlet {
+public class ActiveOrderController extends HttpServlet {
 
     // Field(s)
     OrderService orderService;
@@ -55,20 +55,24 @@ public class OrderController extends HttpServlet {
         orderService = ServiceProvider.getInstance().getOrderService();
         UUID activeOrderId = orderService.getActiveOrderId(userId);
 
-        // Get active order
-        OrderDto activeOrder = orderService.getOrder(activeOrderId);
+        // Get active order, if there is one
+        if (activeOrderId != null) {
+            OrderDto activeOrder = orderService.getOrder(activeOrderId);
 
-        // Serialize data
-        String serializedActiveOrder = new Gson().toJson(activeOrder);
+            // Serialize data
+            String serializedActiveOrder = new Gson().toJson(activeOrder);
 
-        // Edit response
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+            // Edit response
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
 
-        // Send response
-        PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedActiveOrder);
-        printWriter.flush();
+            // Send response
+            PrintWriter printWriter = response.getWriter();
+            printWriter.print(serializedActiveOrder);
+            printWriter.flush();
+        } else {
+            response.sendError(404, "Active order not found.");
+        }
     }
 
 }
