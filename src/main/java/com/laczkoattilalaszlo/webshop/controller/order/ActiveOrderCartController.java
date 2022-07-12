@@ -38,9 +38,6 @@ public class ActiveOrderCartController extends HttpServlet {
         orderService = ServiceProvider.getInstance().getOrderService();
         UUID activeOrderId = orderService.getActiveOrderId(userId);
 
-        // Get active order cart
-        List<ProductInOrderCartDto> activeOrderCart = orderService.getOrderCart(activeOrderId);
-
         // Get cart
         cartService = ServiceProvider.getInstance().getCartService();
         List<ProductInCartDto> cart = cartService.getCart(userId);
