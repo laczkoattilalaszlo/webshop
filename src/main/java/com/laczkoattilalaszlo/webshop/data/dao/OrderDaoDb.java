@@ -22,6 +22,30 @@ public class OrderDaoDb implements OrderDao {
     }
 
     // Implemented method(s)
+
+
+    @Override
+    public List<UUID> getOrderIdsByUserId(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT id FROM \"order\" WHERE user_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Extract result: Create UUIDs from results and put them into a List
+            List<UUID> orderIds = new ArrayList<>();
+            while (resultSet.next()) {
+                UUID orderId = resultSet.getObject("id", java.util.UUID.class);
+                orderIds.add(orderId);
+            }
+
+            return orderIds;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void createActiveOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {

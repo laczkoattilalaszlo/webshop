@@ -10,6 +10,8 @@ import java.util.UUID;
 
 public interface OrderDao {
 
+    List<UUID> getOrderIdsByUserId(UUID userId);
+
     void createActiveOrder(UUID userId);
 
     UUID getActiveOrderId(UUID userId);
