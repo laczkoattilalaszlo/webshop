@@ -1,8 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class OrderPaymentDto {
 

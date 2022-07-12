@@ -1,10 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller.order;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInCartDto;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInOrderCartDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
-import com.laczkoattilalaszlo.webshop.service.CartService;
 import com.laczkoattilalaszlo.webshop.service.OrderService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
