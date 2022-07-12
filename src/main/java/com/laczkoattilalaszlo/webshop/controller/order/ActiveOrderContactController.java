@@ -40,9 +40,6 @@ public class ActiveOrderContactController extends HttpServlet {
         orderService = ServiceProvider.getInstance().getOrderService();
         UUID activeOrderId = orderService.getActiveOrderId(userId);
 
-        // Get active order contact
-        UserDto activeOrderContact = orderService.getOrderContact(activeOrderId);
-
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
@@ -51,11 +48,7 @@ public class ActiveOrderContactController extends HttpServlet {
         UserDto NewOrderContact = new Gson().fromJson(payload, UserDto.class);
 
         // Update active order contact
-        if (activeOrderContact == null) {
-            orderService.addOrderContact(activeOrderId, NewOrderContact);
-        } else {
-            orderService.updateOrderContact(activeOrderId, NewOrderContact);
-        }
+        orderService.updateOrderContact(activeOrderId, NewOrderContact);
     }
 
 }
