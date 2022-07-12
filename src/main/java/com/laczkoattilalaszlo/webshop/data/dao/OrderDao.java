@@ -24,11 +24,13 @@ public interface OrderDao {
 
     void addOrderContact(UUID orderId, UserDto orderContact);
 
-    void updateOrderContact(UUID orderId, UserDto orderContact);
+    void deleteOrderContact(UUID orderId);
 
-    AddressDto getOrderShippingAddress(UUID orderId);
+    AddressDto getOrderAddress(String tableName, UUID orderId);
 
-    AddressDto getOrderBillingAddress(UUID orderId);
+    void addOrderAddress(String tableName, UUID orderId, AddressDto orderAddress);
+
+    void deleteOrderAddress(String tableName, UUID orderId);
 
     List<OrderPaymentDto> getOrderPayments(UUID orderId);
 

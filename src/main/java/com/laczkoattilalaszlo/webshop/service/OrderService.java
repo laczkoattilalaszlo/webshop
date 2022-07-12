@@ -38,11 +38,11 @@ public class OrderService {
         order.setOrderContact(orderContact);
 
         // Get order shipping address
-        AddressDto orderShippingAddress = orderDao.getOrderShippingAddress(orderId);
+        AddressDto orderShippingAddress = orderDao.getOrderAddress("order_shipping_address", orderId);
         order.setOrderShippingAddress(orderShippingAddress);
 
         // Get order billing address
-        AddressDto orderBillingAddress = orderDao.getOrderBillingAddress(orderId);
+        AddressDto orderBillingAddress = orderDao.getOrderAddress("order_billing_address", orderId);
         order.setOrderBillingAddress(orderBillingAddress);
 
         // Get order payment
@@ -50,10 +50,6 @@ public class OrderService {
         order.setOrderPayments(orderPayments);
 
         return order;
-    }
-
-    public List<ProductInOrderCartDto> getOrderCart(UUID orderId) {
-        return orderDao.getOrderCart(orderId);
     }
 
     public void updateOrderCart(UUID orderId, List<ProductInCartDto> cart) {
@@ -76,16 +72,20 @@ public class OrderService {
         orderDao.addOrderCart(orderId, orderCart);
     }
 
-    public UserDto getOrderContact(UUID orderId) {
-        return orderDao.getOrderContact(orderId);
-    }
+    public void updateOrderContact(UUID orderId, UserDto orderContact) {
+        // Delete order contact
+        orderDao.deleteOrderContact(orderId);
 
-    public void addOrderContact(UUID orderId, UserDto orderContact) {
+        // Add order contact
         orderDao.addOrderContact(orderId, orderContact);
     }
 
-    public void updateOrderContact(UUID orderId, UserDto orderContact) {
-        orderDao.updateOrderContact(orderId, orderContact);
+    public void updateOrderAddress(String tableName, UUID orderId, AddressDto orderAddress) {
+        // Delete order ... (shipping / billing) address
+        orderDao.deleteOrderAddress(tableName, orderId);
+
+        // Update order ... (shipping / billing) address
+        orderDao.addOrderAddress(tableName, orderId, orderAddress);
     }
 
 }

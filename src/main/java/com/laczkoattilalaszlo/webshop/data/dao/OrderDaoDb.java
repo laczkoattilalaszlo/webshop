@@ -156,14 +156,11 @@ public class OrderDaoDb implements OrderDao {
     }
 
     @Override
-    public void updateOrderContact(UUID orderId, UserDto orderContact) {
+    public void deleteOrderContact(UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "UPDATE order_contact SET email=?, name=?, phone=? WHERE order_id=?";
+            String sql = "DELETE FROM order_contact WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, orderContact.getEmail());
-            preparedStatement.setString(2, orderContact.getName());
-            preparedStatement.setString(3, orderContact.getPhone());
-            preparedStatement.setObject(4, orderId);
+            preparedStatement.setObject(1, orderId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -171,10 +168,10 @@ public class OrderDaoDb implements OrderDao {
     }
 
     @Override
-    public AddressDto getOrderShippingAddress(UUID orderId) {
+    public AddressDto getOrderAddress(String tableName, UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT zip, country, city, address FROM order_shipping_address WHERE order_id=?";
+            String sql = "SELECT zip, country, city, address FROM " + tableName + " WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -196,25 +193,28 @@ public class OrderDaoDb implements OrderDao {
     }
 
     @Override
-    public AddressDto getOrderBillingAddress(UUID orderId) {
+    public void addOrderAddress(String tableName, UUID orderId, AddressDto orderAddress) {
         try (Connection connection = dataSource.getConnection()) {
-            // Execute SQL query
-            String sql = "SELECT zip, country, city, address FROM order_billing_address WHERE order_id=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setObject(1, orderId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            String sql = "INSERT INTO " + tableName + " (zip, country, city, address, order_id) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, orderAddress.getZip());
+            preparedStatement.setString(2, orderAddress.getCountry());
+            preparedStatement.setString(3, orderAddress.getCity());
+            preparedStatement.setObject(4, orderAddress.getAddress());
+            preparedStatement.setObject(5, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-            // Extract result
-            if (resultSet.next()) {
-                AddressDto addressDto = new AddressDto();
-                addressDto.setZip(resultSet.getString("zip"));
-                addressDto.setCountry(resultSet.getString("country"));
-                addressDto.setCity(resultSet.getString("city"));
-                addressDto.setAddress(resultSet.getString("address"));
-                return addressDto;
-            } else {
-                return null;
-            }
+    @Override
+    public void deleteOrderAddress(String tableName, UUID orderId) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM " + tableName + " WHERE order_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, orderId);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
