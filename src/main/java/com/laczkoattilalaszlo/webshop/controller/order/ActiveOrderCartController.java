@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/order-cart"})
+@WebServlet(urlPatterns = {"/active-order-cart"})
 public class ActiveOrderCartController extends HttpServlet {
 
     // Field(s)

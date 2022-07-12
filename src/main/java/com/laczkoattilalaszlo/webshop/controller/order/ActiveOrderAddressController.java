@@ -16,14 +16,14 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/order-address"})
+@WebServlet(urlPatterns = {"/active-order-address"})
 public class ActiveOrderAddressController extends HttpServlet {
 
     // Field(s)
     OrderService orderService;
     UserService userService;
 
-    @Override   // Update order ... (shipping / billing) address
+    @Override   // Update active order ... (shipping / billing) address
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");

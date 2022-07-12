@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/order-contact"})
+@WebServlet(urlPatterns = {"/active-order-contact"})
 public class ActiveOrderContactController extends HttpServlet {
 
     // Field(s)
