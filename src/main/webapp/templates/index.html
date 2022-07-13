@@ -7,10 +7,67 @@
         <title>Web Shop</title>
         <link rel="stylesheet" type="text/css" href="/css/main.css" />
         <script src="/static/javascript/home.js" defer></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
     </head>
 
     <body>
-        <div>Index page</div>
+
+        <div id="header-container">
+            <div id="left-header-container-unit">
+                <div id="information-button" class="header-button-left"><img src="/static/images/icons/information.png"><div>Info</div></div>
+            </div>
+            <div id="middle-header-container-unit">
+                <div id="shop-name">Web Shop</div>
+            </div>
+            <div id="right-header-container-unit">
+                <div id="cart-button" class="header-button-right"><img src="/static/images/icons/cart.png"><div>Cart</div></div>
+                <div id="order-button" class="header-button-right"><img src="/static/images/icons/order.png"><div>Orders</div></div>
+                <div id="user-button" class="header-button-right"><img src="/static/images/icons/user.png"><div>User</div></div>
+                <div id="login-button" class="header-button-right"><img src="/static/images/icons/login.png"><div>Login</div></div>
+                <div id="logout-button" class="header-button-right"><img src="/static/images/icons/logout.png"><div>Logout</div></div>
+            </div>
+        </div>
+
+        <div id="content-container">
+
+            <div id="category-container">
+                <div class="category-button">TV</div>
+
+                <div class="supplier-button">Apple</div>
+                <div class="supplier-button">Samsung</div>
+                <div class="supplier-button">Huawei</div>
+
+                <div class="category-button">Notebook</div>
+                <div class="category-button">Tablet</div>
+            </div>
+
+            <div id="filter-product-container">
+                <div id="filter-container">
+                    <div id="search"><img src="/static/images/icons/search.png"><input id="search-input"></div>
+                    <div id="order-by">
+                        <img src="/static/images/icons/orderby.png">
+                        <select id="order-by-input">
+                            <option selected>Order by Price Ascending</option>
+                            <option>Order by Price Descending</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div id="product-container">
+                    <div>Product1</div>
+                    <div>Product2</div>
+                    <div>Product3</div>
+                    <div>Product4</div>
+                    <div>Product5</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-container">
+            <div id="footer">© 2022 Laczkó Attila László</div>
+        </div>
+
     </body>
 
 </html>
