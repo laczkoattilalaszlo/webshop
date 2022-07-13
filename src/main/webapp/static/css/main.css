@@ -181,10 +181,21 @@
 
                         #search input {
                             border-top-width: 0;
+                            border-bottom-width: 1.5pt;
                             border-left-width: 0;
                             border-right-width: 0;
                             background-color: transparent;
                             margin-left: 5pt;
+                        }
+
+                        #search input:focus {
+                            outline:none;
+                            border-style: solid;
+                            border-color: black;
+                            border-top-width: 0;
+                            border-bottom-width: 1.5pt;
+                            border-left-width: 0;
+                            border-right-width: 0;
                         }
 
                     #order-by {
@@ -206,6 +217,8 @@
                         #order-by select {
                             margin-left: 5pt;
                             border-width: 0;
+                            outline:none;
+
                             background-color: transparent;
 
                             font-size: 11pt;
