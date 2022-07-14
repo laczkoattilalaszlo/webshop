@@ -1,24 +1,32 @@
+const categoryContainer = document.querySelector("#category-container");
+
 window.addEventListener('load', async () => {
-    console.log("Test log");
+    await loadProductCategories();
 });
 
-async function fetchDataJson(url, methodType, payload){
-    let request = (typeof methodType == undefined) ? { method: "GET" } :
-                                                        { method: methodType,
-                                                          headers: { 'Content-type': 'application/json' },
-                                                          body: JSON.stringify(payload) };
-    const response = await fetch(url, request);
-    if (response.ok) {
-        return await response.json();
+async function loadProductCategories() {
+    const productCategories = await fetchData("GET", "/product-types?by=category", null, null, null, "JSON");
+    for (let productCategory of productCategories) {
+        categoryContainer.insertAdjacentHTML("beforeend", `<div id="${productCategory.id}" class="category-button">${productCategory.name}</div>`)
     }
 }
 
-async function fetchDataText(url, methodType, payload){
-    let request = { method: methodType,
-                    headers: { 'Content-type': 'text/plain' },
-                    body: payload };
+async function fetchData(methodType, url, headerContent, bodyContent, contentType, expectedType) {
+    let request;
+    if (headerContent != null || bodyContent != null || contentType!= null || expectedType != null) {
+        request = { method: methodType,
+            headers: { 'Content-type': contentType, ...headerContent },
+            body: bodyContent };
+    }
+
     const response = await fetch(url, request);
-    return response.statusText;
+    if (expectedType == "JSON" && response.ok) {
+        return await response.json();
+    } else if (expectedType == "Text" && response.ok) {
+        return await response.text();
+    } else {
+        return response.statusText;
+    }
 }
 
 
