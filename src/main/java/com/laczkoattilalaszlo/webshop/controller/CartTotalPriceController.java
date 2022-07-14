@@ -36,7 +36,7 @@ public class CartTotalPriceController extends HttpServlet {
         BigDecimal totalPrice = cartService.getTotalPrice(userId);
 
         // Edit response
-        response.setContentType("application/json");
+        response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
 
         // Send response
