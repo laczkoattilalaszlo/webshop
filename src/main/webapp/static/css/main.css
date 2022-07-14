@@ -2,6 +2,7 @@
 
     body {
         margin: 0;
+
         background-color: lightgrey;
     }
 
@@ -10,9 +11,11 @@
         #header-container {
             display: flex;
             flex-direction: row;
-            background-color: #333333;
+
             margin:10pt;
             border-radius: 10pt;
+
+            background-color: #333333;
             text-align: center;
         }
 
@@ -26,8 +29,7 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 40pt;
-                    background-color: #777777;
+
                     margin-top: 10pt;
                     margin-bottom: 10pt;
                     margin-left: 10pt;
@@ -36,12 +38,16 @@
                     padding-bottom: 5pt;
                     padding-left: 5pt;
                     padding-right: 5pt;
+
+                    width: 40pt;
+                    background-color: #777777;
                 }
 
                     .header-button-left img {
+                        padding-bottom: 5pt;
+
                         width: 16pt;
                         height: 16pt;
-                        padding-bottom: 5pt;
                     }
 
                     .header-button-left div {
@@ -73,8 +79,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 40pt;
-                background-color: #777777;
+
                 margin-top: 10pt;
                 margin-bottom: 10pt;
                 margin-right: 10pt;
@@ -83,12 +88,16 @@
                 padding-bottom: 5pt;
                 padding-left: 5pt;
                 padding-right: 5pt;
+
+                width: 40pt;
+                background-color: #777777;
             }
 
                 .header-button-right img {
+                    padding-bottom: 5pt;
+
                     width: 16pt;
                     height: 16pt;
-                    padding-bottom: 5pt;
                 }
 
                 .header-button-right div {
@@ -101,6 +110,7 @@
         #content-container {
             display: flex;
             flex-direction: row;
+
             margin-left: 10pt;
             margin-right: 10pt;
         }
@@ -110,32 +120,34 @@
                 flex-direction: column;
                 row-gap: 10pt;
 
-                background-color: #333333;
                 padding: 10pt;
                 border-radius: 10pt;
+
+                background-color: #333333;
             }
 
                 .category-button {
-                    padding: 5pt;
-                    background-color: #777777;
                     border-radius: 5pt;
+                    padding: 5pt;
+
+                    background-color: #777777;
                     color: lightgrey;
                     font-weight: bold;
                     text-align: center;
                 }
 
                 .supplier-button {
-                    background-color: lightgrey;
                     margin-left: 10pt;
-                    padding-top: 5pt;
-                    padding-bottom: 5pt;
-                    padding-left: 15pt;
-                    padding-right: 5pt;
                     border-top-left-radius: 5pt;
                     border-top-right-radius: 5pt;
                     border-bottom-right-radius: 5pt;
                     border-bottom-left-radius: 15pt;
+                    padding-top: 5pt;
+                    padding-bottom: 5pt;
+                    padding-left: 15pt;
+                    padding-right: 5pt;
 
+                    background-color: lightgrey;
                     color: black;
                     font-weight: bold;
                     text-align: center;
@@ -155,10 +167,8 @@
 
                     margin-bottom: 10pt;
                     margin-left: 10pt;
-
-                    padding: 10pt;
-
                     border-radius: 10pt;
+                    padding: 10pt;
 
                     background-color: #333333;
                 }
@@ -180,16 +190,18 @@
                         }
 
                         #search input {
+                            margin-left: 5pt;
                             border-top-width: 0;
                             border-bottom-width: 1.5pt;
                             border-left-width: 0;
                             border-right-width: 0;
+
                             background-color: transparent;
-                            margin-left: 5pt;
                         }
 
                         #search input:focus {
                             outline:none;
+
                             border-style: solid;
                             border-color: black;
                             border-top-width: 0;
@@ -203,8 +215,8 @@
                         flex-direction: row;
                         align-items: center;
 
-                        padding: 5pt;
                         border-radius: 5pt;
+                        padding: 5pt;
 
                         background-color: lightgrey;
                     }
@@ -215,12 +227,12 @@
                         }
 
                         #order-by select {
-                            margin-left: 5pt;
-                            border-width: 0;
                             outline:none;
 
-                            background-color: transparent;
+                            margin-left: 5pt;
+                            border-width: 0;
 
+                            background-color: transparent;
                             font-size: 11pt;
                         }
 
@@ -246,8 +258,8 @@
                         flex-grow: 1;
                         flex-shrink: 1;
 
-                        padding: 10pt;
                         border-radius: 10pt;
+                        padding: 10pt;
 
                         background-color: #777777;
                     }
@@ -288,13 +300,15 @@
     /* FOOTER-CONTAINER */
 
         #footer-container {
-            background-color: #333333;
             margin:10pt;
             border-radius: 10pt;
+
+            background-color: #333333;
             text-align: center;
         }
 
             #footer {
                 padding: 20pt;
+
                 color: lightgrey;
             }
