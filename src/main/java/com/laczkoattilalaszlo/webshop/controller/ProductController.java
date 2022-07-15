@@ -1,7 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductDto;
 import com.laczkoattilalaszlo.webshop.service.ProductService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
@@ -30,7 +30,7 @@ public class ProductController extends HttpServlet {
 
         // Get List<Product>
         productService = ServiceProvider.getInstance().getProductService();
-        List<Product> products = productService.getProductsByCategoryAndSupplier(categoryId, supplierId);
+        List<ProductDto> products = productService.getProductsByCategoryAndSupplier(categoryId, supplierId);
 
         // Serialize data
         String serializedProducts = new Gson().toJson(products);

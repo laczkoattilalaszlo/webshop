@@ -1,9 +1,9 @@
-package com.laczkoattilalaszlo.webshop.model;
+package com.laczkoattilalaszlo.webshop.data.dto;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class Product {
+public class ProductDto {
 
     // Field(s)
     private UUID id;
@@ -11,8 +11,8 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String currency;
-    private UUID supplierId;
-    private UUID categoryId;
+    private String supplierName;
+    private String categoryName;
     private String picture;
 
     // Getter(s) and Setter(s)
@@ -56,20 +56,20 @@ public class Product {
         this.currency = currency;
     }
 
-    public UUID getSupplierId() {
-        return supplierId;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setSupplierId(UUID supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
-    public UUID getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getPicture() {
@@ -89,8 +89,8 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", currency='" + currency + '\'' +
-                ", supplier_id=" + supplierId +
-                ", category_id=" + categoryId +
+                ", supplier_id=" + supplierName +
+                ", category_id=" + categoryName +
                 ", picture='" + picture + '\'' +
                 '}';
     }
