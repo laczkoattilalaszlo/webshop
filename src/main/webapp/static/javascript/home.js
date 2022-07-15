@@ -79,7 +79,7 @@ async function listProducts(categoryButton, supplierButton) {
                     </div>
                     <div class="bottom-product-unit">
                         <div class="product-price-currency"><span class="product-price">${product.price}</span> <span class="product-currency">${product.currency}</span></div>
-                        <div class="add-to-cart-button">Add to cart</div>
+                        <div class="add-to-cart-button" data-product-id="${product.id}" hidden>Add to cart</div>
                     </div>
                 </div>
             `);
