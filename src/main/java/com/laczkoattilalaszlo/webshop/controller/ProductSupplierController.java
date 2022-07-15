@@ -1,7 +1,7 @@
 package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 import com.laczkoattilalaszlo.webshop.service.ProductService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 
@@ -15,25 +15,24 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(urlPatterns = {"/products-by-category-and-supplier"})
-public class ProductController extends HttpServlet {
+@WebServlet(urlPatterns = {"/product-suppliers-by-category"})
+public class ProductSupplierController extends HttpServlet {
 
     // Field(s)
     ProductService productService;
 
     // Overridden HTTP method(s)
-    @Override   // Get products by category and supplier
+    @Override   // Get product suppliers by category
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get parameter(s)
         UUID categoryId = UUID.fromString(request.getParameter("category-id"));
-        UUID supplierId = UUID.fromString(request.getParameter("supplier-id"));
 
-        // Get List<Product>
+        // Get product suppliers by category
         productService = ServiceProvider.getInstance().getProductService();
-        List<Product> products = productService.getProductsByCategoryAndSupplier(categoryId, supplierId);
+        List<ProductSupplier> productSuppliers = productService.getProductSuppliersByCategory(categoryId);
 
         // Serialize data
-        String serializedProducts = new Gson().toJson(products);
+        String serializedProductSuppliers = new Gson().toJson(productSuppliers);
 
         // Edit response
         response.setContentType("application/json");
@@ -41,7 +40,7 @@ public class ProductController extends HttpServlet {
 
         // Send response
         PrintWriter printWriter = response.getWriter();
-        printWriter.print(serializedProducts);
+        printWriter.print(serializedProductSuppliers);
         printWriter.flush();
     }
 
