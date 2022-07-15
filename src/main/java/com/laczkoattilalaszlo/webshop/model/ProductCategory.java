@@ -1,8 +1,8 @@
-package com.laczkoattilalaszlo.webshop.data.dto;
+package com.laczkoattilalaszlo.webshop.model;
 
 import java.util.UUID;
 
-public class ProductCategorySupplierDto {
+public class ProductCategory {
 
     // Field(s)
     protected UUID id;
@@ -28,7 +28,7 @@ public class ProductCategorySupplierDto {
     // Overridden method(s)
     @Override
     public String toString() {
-        return "ProductCategorySupplierDto{" +
+        return "ProductCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
