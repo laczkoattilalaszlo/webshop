@@ -215,7 +215,7 @@
                             border-right-width: 0;
                         }
 
-                    #order-by {
+                    #sort-by {
                         display: flex;
                         flex-direction: row;
                         align-items: center;
@@ -226,12 +226,12 @@
                         background-color: lightgrey;
                     }
 
-                        #order-by img {
+                        #sort-by img {
                             width: 12pt;
                             height: 12pt;
                         }
 
-                        #order-by select {
+                        #sort-by select {
                             outline:none;
 
                             margin-left: 5pt;
@@ -241,7 +241,7 @@
                             font-size: 11pt;
                         }
 
-                            #order-by select option {
+                            #sort-by select option {
                                 background: lightgrey;
                             }
 
