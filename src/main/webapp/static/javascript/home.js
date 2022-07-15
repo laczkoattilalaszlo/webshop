@@ -37,20 +37,20 @@ async function loadProductCategoryButtons() {
     const categoryButtons = document.querySelectorAll(".category-button");
     for (let categoryButton of categoryButtons) {
         categoryButton.addEventListener('click', async () => {
-            await loadProductSupplierButtons(categoryButton);
+            if (categoryButton.nextElementSibling != null && categoryButton.nextElementSibling.classList.contains("supplier-button") ) {
+                shrinkProductCategoryButton(categoryButton);
+            } else {
+                await expandProductCategoryButton(categoryButton);
+            }
         });
     }
 }
 
-async function loadProductSupplierButtons(categoryButton) {
-    // Remove product existing product supplier buttons
-    const existingProductSupplierButtons = document.querySelectorAll(".supplier-button");
-    existingProductSupplierButtons.forEach(productSupplierButton => productSupplierButton.remove());
-
-    // Add fetched product supplier buttons
+async function expandProductCategoryButton(categoryButton) {
+    // Add fetched product supplier buttons under clicked product category button
     const productSuppliersOfCategory = await fetchData("GET", `/product-suppliers-by-category?category-id=${categoryButton.id}`, null, null, null, "JSON");
     for (let productSupplier of productSuppliersOfCategory) {
-        categoryButton.insertAdjacentHTML("afterend", `<div id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
+        categoryButton.insertAdjacentHTML("afterend", `<div id="${productSupplier.id}" data-category-id="${categoryButton.id}" class="supplier-button">${productSupplier.name}</div>`);
     }
 
     // Add event listeners to the product supplier buttons
@@ -62,6 +62,11 @@ async function loadProductSupplierButtons(categoryButton) {
     }
 }
 
+function shrinkProductCategoryButton(categoryButton) {
+    const existingProductSupplierButtons = document.querySelectorAll(".supplier-button");
+    existingProductSupplierButtons.forEach(productSupplierButton => (productSupplierButton.dataset.categoryId == categoryButton.id) ? productSupplierButton.remove() : "");
+}
+
 async function listProducts(categoryButton, supplierButton) {
     // Empty product-container
     productContainer.innerHTML = "";
@@ -71,7 +76,7 @@ async function listProducts(categoryButton, supplierButton) {
     for (let product of products) {
         productContainer.insertAdjacentHTML("beforeend",
             `
-            <div class="product">
+                <div class="product">
                     <div class="top-product-unit">
                         <img class="product-photo" src="/static/images/products/product-placeholder.jpeg">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
