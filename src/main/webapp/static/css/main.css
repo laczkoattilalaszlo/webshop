@@ -257,6 +257,7 @@
                         flex-basis: 150pt;
                         flex-grow: 1;
                         flex-shrink: 1;
+                        justify-content: space-between;
 
                         border-radius: 10pt;
                         padding: 10pt;

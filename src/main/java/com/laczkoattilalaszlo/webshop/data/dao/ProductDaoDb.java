@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductDto;
 import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
@@ -75,28 +75,39 @@ public class ProductDaoDb implements ProductDao {
     }
 
     @Override
-    public List<Product> getProductsByCategoryAndSupplier(UUID categoryId, UUID supplierId) {
+    public List<ProductDto> getProductsByCategoryAndSupplier(UUID categoryId, UUID supplierId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT * FROM product WHERE category_id=? AND supplier_id=?";
+            String sql = "SELECT product.id AS id, " +
+                                "product.name AS name, " +
+                                "product.description AS description, " +
+                                "product.price AS price, " +
+                                "product.currency AS currency, " +
+                                "product_supplier.name AS supplier_name, " +
+                                "product_category.name AS category_name, " +
+                                "product.picture AS picture " +
+                         "FROM product " +
+                         "INNER JOIN product_category ON product.category_id = product_category.id " +
+                         "INNER JOIN product_supplier ON product.supplier_id = product_supplier.id " +
+                         "WHERE product.category_id=? AND product.supplier_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, categoryId);
             preparedStatement.setObject(2, supplierId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Create Product objects from results and put them into a List
-            List<Product> products = new ArrayList<>();
+            // Create ProductDto objects from results and put them into a List
+            List<ProductDto> products = new ArrayList<>();
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getObject("id", java.util.UUID.class));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setCurrency(resultSet.getString("currency"));
-                product.setSupplierId(resultSet.getObject("supplier_id", java.util.UUID.class));
-                product.setCategoryId(resultSet.getObject("category_id", java.util.UUID.class));
-                product.setPicture(resultSet.getString("picture"));
-                products.add(product);
+                ProductDto productDto = new ProductDto();
+                productDto.setId(resultSet.getObject("id", java.util.UUID.class));
+                productDto.setName(resultSet.getString("name"));
+                productDto.setDescription(resultSet.getString("description"));
+                productDto.setPrice(resultSet.getBigDecimal("price"));
+                productDto.setCurrency(resultSet.getString("currency"));
+                productDto.setSupplierName(resultSet.getString("supplier_name"));
+                productDto.setCategoryName(resultSet.getString("category_name"));
+                productDto.setPicture(resultSet.getString("picture"));
+                products.add(productDto);
             }
 
             return products;

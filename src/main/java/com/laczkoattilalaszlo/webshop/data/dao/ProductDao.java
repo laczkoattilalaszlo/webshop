@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.model.Product;
+import com.laczkoattilalaszlo.webshop.data.dto.ProductDto;
 import com.laczkoattilalaszlo.webshop.model.ProductCategory;
 import com.laczkoattilalaszlo.webshop.model.ProductSupplier;
 
@@ -13,6 +13,6 @@ public interface ProductDao {
 
     List<ProductSupplier> getProductSuppliersByCategory(UUID categoryId);
 
-    List<Product> getProductsByCategoryAndSupplier(UUID categoryId, UUID supplierId);
+    List<ProductDto> getProductsByCategoryAndSupplier(UUID categoryId, UUID supplierId);
 
 }
