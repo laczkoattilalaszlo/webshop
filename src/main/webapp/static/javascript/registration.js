@@ -37,7 +37,7 @@ export function registrationButtonAddEventListener() {
         AddEventListenerToCancelButton();
 
         // Add event listener to registration button
-        addEventListenerToRegistrationButton();
+        addEventListenerToModalRegistrationButton();
     });
 }
 
@@ -48,9 +48,9 @@ function AddEventListenerToCancelButton() {
     registrationModalCancelButton.addEventListener('click', ()=> modalDialog.remove());
 }
 
-function addEventListenerToRegistrationButton() {
-    const registrationButton = document.querySelector("#registration-modal-registration-button");
-    registrationButton.addEventListener('click', async ()=> {
+function addEventListenerToModalRegistrationButton() {
+    const modalRegistrationButton = document.querySelector("#registration-modal-registration-button");
+    modalRegistrationButton.addEventListener('click', async ()=> {
         // Get input values
         const registrationModalEmailInput = document.querySelector("#registration-modal-email-input");
         const registrationModalEmailInputValue = registrationModalEmailInput.value;
