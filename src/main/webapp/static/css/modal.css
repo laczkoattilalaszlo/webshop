@@ -1,0 +1,110 @@
+/* BODY */
+
+    .block-scroll {
+        overflow: hidden;
+    }
+
+/* COMMON PROPERTIES OF ALL MODAL DIALOG */
+
+    #modal-fade {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+        #modal-dialog-container {
+            display: flex;
+            flex-direction: column;
+
+            background-color: transparent;
+        }
+
+/* OWN PROPERTIES OF REGISTRATION MODAL DIALOG */
+
+    #registration-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #registration-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #registration-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #registration-modal-content-container{
+        display: flex;
+        flex-direction: column;
+
+        padding: 20pt;
+
+        background-color: #888888;
+    }
+
+        #registration-modal-content-container input {
+            margin: 5pt;
+            border-radius: 5pt;
+            padding: 5pt;
+        }
+
+    #registration-modal-footer-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
+
+        background-color: #555555;
+    }
+
+        #registration-modal-cancel-button{
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+        }
+
+        #registration-modal-register-button{
+            display: inline-block;
+
+            margin-left: 10pt;
+            border-radius: 5pt;
+            padding: 5pt;
+
+            width: 100%;
+
+            text-align: center;
+            background-color: crimson;
+        }
