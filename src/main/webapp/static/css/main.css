@@ -182,39 +182,71 @@
                     #search {
                         display: flex;
                         flex-direction: row;
-                        align-items: center;
-
-                        padding: 5pt;
-                        border-radius: 5pt;
-
-                        background-color: lightgrey;
                     }
 
-                        #search img {
-                            width: 12pt;
-                            height: 12pt;
+                        #left-search-unit {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+
+                            border-right-style: solid;
+                            border-right-width: 1pt;
+                            border-right-color: #333333;
+
+                            border-top-left-radius: 5pt;
+                            border-bottom-left-radius: 5pt;
+
+                            padding: 5pt;
+
+                            background-color: lightgrey;
                         }
 
-                        #search input {
-                            margin-left: 5pt;
-                            border-top-width: 0;
-                            border-bottom-width: 1.5pt;
-                            border-left-width: 0;
-                            border-right-width: 0;
+                        #right-search-unit {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
 
-                            background-color: transparent;
+                            border-top-right-radius: 5pt;
+                            border-bottom-right-radius: 5pt;
+
+                            padding: 5pt;
+
+                            background-color: lightgrey;
                         }
 
-                        #search input:focus {
-                            outline:none;
+                            #search img {
+                                width: 12pt;
+                                height: 12pt;
+                            }
 
-                            border-style: solid;
-                            border-color: black;
-                            border-top-width: 0;
-                            border-bottom-width: 1.5pt;
-                            border-left-width: 0;
-                            border-right-width: 0;
-                        }
+                            #search input[type="text"] {
+                                margin-left: 5pt;
+                                margin-right: 13pt;
+                                border-top-width: 0;
+                                border-bottom-width: 1.5pt;
+                                border-left-width: 0;
+                                border-right-width: 0;
+
+                                background-color: transparent;
+                            }
+
+                            #search input:focus[type="text"] {
+                                outline:none;
+
+                                border-style: solid;
+                                border-color: black;
+                                border-top-width: 0;
+                                border-bottom-width: 1.5pt;
+                                border-left-width: 0;
+                                border-right-width: 0;
+                            }
+
+                            #search input[type="radio"] {
+                                margin-top: 0;
+                                margin-bottom: 0;
+                                margin-left: 10pt;
+                                margin-right: 3pt;
+                            }
 
                     #sort-by {
                         display: flex;

@@ -34,7 +34,16 @@
 
             <div id="filter-product-container">
                 <div id="filter-container">
-                    <div id="search"><img src="/static/images/icons/search.png"><input id="search-input"></div>
+                    <div id="search">
+                        <div id="left-search-unit">
+                            <img src="/static/images/icons/search.png">
+                            <input type="text" id="search-input">
+                        </div>
+                        <div id="right-search-unit">
+                            <input type="radio" checked>Selected area
+                            <input type="radio">Everywhere
+                        </div>
+                    </div>
                     <div id="sort-by">
                         <img src="/static/images/icons/sortby.png">
                         <select id="sort-by-input">
