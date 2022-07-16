@@ -50,15 +50,17 @@ async function expandProductCategoryButton(categoryButton) {
     // Add fetched product supplier buttons under clicked product category button
     const productSuppliersOfCategory = await fetchData("GET", `/product-suppliers-by-category?category-id=${categoryButton.id}`, null, null, null, "JSON");
     for (let productSupplier of productSuppliersOfCategory) {
-        categoryButton.insertAdjacentHTML("afterend", `<div id="${productSupplier.id}" data-category-id="${categoryButton.id}" class="supplier-button">${productSupplier.name}</div>`);
+        categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
     }
 
-    // Add event listeners to the product supplier buttons
+    // Add event listeners to the product supplier buttons of the product category
     const supplierButtons = document.querySelectorAll(".supplier-button");
     for (let supplierButton of supplierButtons) {
-        supplierButton.addEventListener('click', async () => {
-            await listProducts(categoryButton, supplierButton);
-        });
+        if (supplierButton.dataset.categoryId == categoryButton.id) {
+            supplierButton.addEventListener('click', async () => {
+                await listProducts(supplierButton);
+            });
+        }
     }
 }
 
@@ -67,12 +69,12 @@ function shrinkProductCategoryButton(categoryButton) {
     existingProductSupplierButtons.forEach(productSupplierButton => (productSupplierButton.dataset.categoryId == categoryButton.id) ? productSupplierButton.remove() : "");
 }
 
-async function listProducts(categoryButton, supplierButton) {
+async function listProducts(supplierButton) {
     // Empty product-container
     productContainer.innerHTML = "";
 
     // Fetch products and show them
-    const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${categoryButton.id}&supplier-id=${supplierButton.id}`, null, null, null, "JSON");
+    const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${supplierButton.dataset.categoryId}&supplier-id=${supplierButton.dataset.supplierId}`, null, null, null, "JSON");
     for (let product of products) {
         productContainer.insertAdjacentHTML("beforeend",
             `
