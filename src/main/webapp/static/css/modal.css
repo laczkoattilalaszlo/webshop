@@ -56,7 +56,7 @@
             background-color: transparent;
         }
 
-    #registration-modal-content-container{
+    #registration-modal-content-container {
         display: flex;
         flex-direction: column;
 
@@ -71,7 +71,7 @@
             padding: 5pt;
         }
 
-    #registration-modal-footer-container{
+    #registration-modal-footer-container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -86,7 +86,7 @@
         background-color: #555555;
     }
 
-        #registration-modal-cancel-button{
+        #registration-modal-cancel-button {
             display: inline-block;
 
             border-radius: 5pt;
@@ -96,7 +96,89 @@
             background-color: #888888;
         }
 
-        #registration-modal-registration-button{
+        #registration-modal-registration-button {
+            display: inline-block;
+
+            margin-left: 10pt;
+            border-radius: 5pt;
+            padding: 5pt;
+
+            width: 100%;
+
+            text-align: center;
+            background-color: crimson;
+        }
+
+/* OWN PROPERTIES OF LOGIN MODAL DIALOG */
+
+    #login-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #login-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #login-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #login-modal-content-container {
+        display: flex;
+        flex-direction: column;
+
+        padding: 20pt;
+
+        background-color: #888888;
+    }
+
+        #login-modal-content-container input {
+            margin: 5pt;
+            border-radius: 5pt;
+            padding: 5pt;
+        }
+
+    #login-modal-footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
+
+        background-color: #555555;
+    }
+
+        #login-modal-cancel-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+        }
+
+        #login-modal-login-button {
             display: inline-block;
 
             margin-left: 10pt;

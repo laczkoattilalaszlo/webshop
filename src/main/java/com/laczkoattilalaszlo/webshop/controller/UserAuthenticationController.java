@@ -40,18 +40,12 @@ public class UserAuthenticationController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         String sessionToken = userService.authenticateUser(email, password);
 
-        // Edit response
-        response.setContentType("plain/text");
-        response.setCharacterEncoding("UTF-8");
-
-        // Send response according to the authentication result
-        PrintWriter printWriter = response.getWriter();
+        // Edit response according to the authentication result
         if (sessionToken != null) {
-            printWriter.print(sessionToken);
+            response.addHeader("session-token", sessionToken);
         } else {
-            printWriter.print("Authentication failed");
+            response.setStatus(401);
         }
-        printWriter.flush();
     }
 
     @Override   // Update user password
