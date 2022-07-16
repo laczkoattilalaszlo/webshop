@@ -1,6 +1,6 @@
-import {loadProductCategoryButtons} from "./product.js";
-import {registrationButtonAddEventListener} from "./registration.js";
-import {loginButtonAddEventListener} from "./login.js";
+import {loadProductCategoryButtons} from "./modules/product.js";
+import {registrationButtonAddEventListener} from "./modules/registration.js";
+import {loginButtonAddEventListener} from "./modules/login.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
