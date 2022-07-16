@@ -13,6 +13,6 @@ export async function fetchData(methodType, url, headerContent, bodyContent, con
     } else if (expectedType == "Text" && response.ok) {
         return await response.text();
     } else {
-        return response.statusText;
+        return response;
     }
 }
