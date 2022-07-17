@@ -13,10 +13,12 @@ let loginModalCancelButton;
 let modalDialog;
 
 // EXPORTED FUNCTIONS //
-export function loginButtonAddEventListener() {
-    // Show modal dialog
+export function addEventListenerToLoginButton() {
     loginButton.addEventListener('click', () => {
+        // Disable scrolling on site
         body.classList.add("block-scroll");
+
+        // Add login modal dialog
         body.insertAdjacentHTML('beforeend',    `
                                                             <div id="modal-dialog">
                                                                 <div id="modal-fade">
@@ -49,7 +51,7 @@ export function loginButtonAddEventListener() {
 function AddEventListenerToCancelButton() {
     loginModalCancelButton = document.querySelector("#login-modal-cancel-button");
     modalDialog = document.querySelector("#modal-dialog");
-    loginModalCancelButton.addEventListener('click', ()=> modalDialog.remove());
+    loginModalCancelButton.addEventListener('click', ()=> closeModalDialog());
 }
 
 function addEventListenerToModalLoginButton() {
@@ -71,17 +73,43 @@ function addEventListenerToModalLoginButton() {
             sessionStorage.setItem("session-token", sessionToken);
 
             // Hide not authentication related features
-            loginButton.classList.replace("header-button-right", "hidden");
-            registerButton.classList.replace("header-button-right", "hidden");
+            hideAuthenticationRelatedFeatures();
 
             // Show authentication related features
-            cartButton.classList.replace("hidden", "header-button-right");
-            orderButton.classList.replace("hidden", "header-button-right");
-            userButton.classList.replace("hidden", "header-button-right");
-            logoutButton.classList.replace("hidden", "header-button-right");
+            showAuthenticationRelatedFeatures()
 
             // Close modal dialog
-            modalDialog.remove();
+            closeModalDialog();
         }
     });
+}
+
+function showAuthenticationRelatedFeatures() {
+    // Header menu buttons
+    cartButton.classList.replace("hidden", "header-button-right");
+    orderButton.classList.replace("hidden", "header-button-right");
+    userButton.classList.replace("hidden", "header-button-right");
+    logoutButton.classList.replace("hidden", "header-button-right");
+
+    // Add to cart buttons on product cards
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+    if (addToCartButtons != null) {
+        for (let addToCartButton of addToCartButtons) {
+            addToCartButton.removeAttribute("hidden");
+        }
+    }
+}
+
+function hideAuthenticationRelatedFeatures() {
+    // Header menu buttons
+    loginButton.classList.replace("header-button-right", "hidden");
+    registerButton.classList.replace("header-button-right", "hidden");
+}
+
+function closeModalDialog() {
+    // Enable scrolling on site
+    body.classList.remove("block-scroll");
+
+    // Remove modal dialog
+    modalDialog.remove();
 }

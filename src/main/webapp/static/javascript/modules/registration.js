@@ -8,10 +8,12 @@ let registrationModalCancelButton;
 let modalDialog;
 
 // EXPORTED FUNCTIONS //
-export function registrationButtonAddEventListener() {
-    // Show modal dialog
+export function addEventListenerToRegistrationButton() {
     registrationButton.addEventListener('click', () => {
+        // Disable scrolling on site
         body.classList.add("block-scroll");
+        
+        // Add registration modal dialog
         body.insertAdjacentHTML('beforeend',    `
                                                             <div id="modal-dialog">
                                                                 <div id="modal-fade">
@@ -34,7 +36,7 @@ export function registrationButtonAddEventListener() {
                                                             </div>
                                                         `);
         // Add event listener to cancel button
-        AddEventListenerToCancelButton();
+        addEventListenerToCancelButton();
 
         // Add event listener to registration button
         addEventListenerToModalRegistrationButton();
@@ -42,10 +44,10 @@ export function registrationButtonAddEventListener() {
 }
 
 // INNER FUNCTIONS //
-function AddEventListenerToCancelButton() {
+function addEventListenerToCancelButton() {
     registrationModalCancelButton = document.querySelector("#registration-modal-cancel-button");
     modalDialog = document.querySelector("#modal-dialog");
-    registrationModalCancelButton.addEventListener('click', ()=> modalDialog.remove());
+    registrationModalCancelButton.addEventListener('click', ()=> closeModalDialog());
 }
 
 function addEventListenerToModalRegistrationButton() {
@@ -68,8 +70,16 @@ function addEventListenerToModalRegistrationButton() {
 
             // Close modal dialog
             if (response.ok) {
-                modalDialog.remove();
+                closeModalDialog();
             }
         }
     });
+}
+
+function closeModalDialog() {
+    // Enable scrolling on site
+    body.classList.remove("block-scroll");
+
+    // Remove modal dialog
+    modalDialog.remove();
 }
