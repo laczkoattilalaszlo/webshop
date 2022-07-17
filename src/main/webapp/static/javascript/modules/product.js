@@ -56,8 +56,8 @@ async function listProducts(supplierButton) {
     // Fetch products and show them
     const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${supplierButton.dataset.categoryId}&supplier-id=${supplierButton.dataset.supplierId}`, null, null, null, "JSON");
     for (let product of products) {
-        // Set hide state of 'Add to cart' button according to the authentication
-        let addToCartButtonHideState = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
+        // Set visibility state of 'Add to cart' button according to the authentication
+        let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
 
         // Show product cards
         productContainer.insertAdjacentHTML("beforeend",
@@ -70,7 +70,7 @@ async function listProducts(supplierButton) {
                     </div>
                     <div class="bottom-product-unit">
                         <div class="product-price-currency"><span class="product-price">${product.price}</span> <span class="product-currency">${product.currency}</span></div>
-                        <div class="add-to-cart-button" data-product-id="${product.id}" ${addToCartButtonHideState}>Add to cart</div>
+                        <div class="add-to-cart-button" data-product-id="${product.id}" ${VisibilityStateOfAddToCartButton}>Add to cart</div>
                     </div>
                 </div>
             `);

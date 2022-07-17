@@ -5,9 +5,9 @@ const body = document.querySelector('body');
 const cartButton = document.querySelector("#cart-button");
 const orderButton = document.querySelector("#order-button");
 const userButton = document.querySelector("#user-button");
-const logoutButton = document.querySelector("#logout-button");
+const registrationButton = document.querySelector("#registration-button");
 const loginButton = document.querySelector("#login-button");
-const registerButton = document.querySelector("#registration-button");
+const logoutButton = document.querySelector("#logout-button");
 
 let loginModalCancelButton;
 let modalDialog;
@@ -87,7 +87,7 @@ function addEventListenerToModalLoginButton() {
 function hideAuthenticationRelatedFeatures() {
     // Header menu buttons
     loginButton.classList.replace("header-button-right", "hidden");
-    registerButton.classList.replace("header-button-right", "hidden");
+    registrationButton.classList.replace("header-button-right", "hidden");
 }
 
 function showAuthenticationRelatedFeatures() {

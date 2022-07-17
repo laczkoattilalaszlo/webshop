@@ -2,9 +2,9 @@
 const cartButton = document.querySelector("#cart-button");
 const orderButton = document.querySelector("#order-button");
 const userButton = document.querySelector("#user-button");
-const logoutButton = document.querySelector("#logout-button");
+const registrationButton = document.querySelector("#registration-button");
 const loginButton = document.querySelector("#login-button");
-const registerButton = document.querySelector("#registration-button");
+const logoutButton = document.querySelector("#logout-button");
 
 // EXPORTED FUNCTIONS //
 export function addEventListenerToLogoutButton() {
@@ -39,5 +39,5 @@ function hideAuthenticationRelatedFeatures() {
 function showNotAuthenticationRelatedFeatures() {
     // Header menu buttons
     loginButton.classList.replace("hidden", "header-button-right");
-    registerButton.classList.replace("hidden", "header-button-right");
+    registrationButton.classList.replace("hidden", "header-button-right");
 }
