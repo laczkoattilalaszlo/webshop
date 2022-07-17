@@ -36,9 +36,17 @@ public class UserController extends HttpServlet {
         String email = userRegistrationAndAuthenticationDto.getEmail();
         String password = userRegistrationAndAuthenticationDto.getPassword();
 
-        // Add user to database
+        // Check whether database the given e-mail already belongs to a user
         userService = ServiceProvider.getInstance().getUserService();
-        userService.addUser(email, password);
+        UUID existingUserId = userService.getUserIdByEmail(email);
+
+        // Add user to database
+        if (existingUserId == null) {
+            userService.addUser(email, password);
+        } else {
+            response.setStatus(409);
+        }
+
     }
 
     @Override   // Remove user

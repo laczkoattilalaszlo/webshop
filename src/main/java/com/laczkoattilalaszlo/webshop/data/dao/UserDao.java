@@ -14,6 +14,8 @@ public interface UserDao {
 
     void updateUser(UserDto userDto, UUID userId);
 
+    UUID getUserIdByEmail(String email);
+
     UUID getUserIdByEmailAndPassword(String email, String hashedPassword);
 
     void addSessionTokenToUser(String sessionToken, UUID userId);

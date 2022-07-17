@@ -84,6 +84,24 @@ public class UserDaoDb implements UserDao {
     }
 
     @Override
+    public UUID getUserIdByEmail(String email) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT id FROM \"user\" WHERE email=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Extract result
+            UUID userId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
+
+            return userId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public UUID getUserIdByEmailAndPassword(String email, String hashedPassword) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
