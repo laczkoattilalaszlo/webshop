@@ -84,6 +84,12 @@ function addEventListenerToModalLoginButton() {
     });
 }
 
+function hideAuthenticationRelatedFeatures() {
+    // Header menu buttons
+    loginButton.classList.replace("header-button-right", "hidden");
+    registerButton.classList.replace("header-button-right", "hidden");
+}
+
 function showAuthenticationRelatedFeatures() {
     // Header menu buttons
     cartButton.classList.replace("hidden", "header-button-right");
@@ -98,12 +104,6 @@ function showAuthenticationRelatedFeatures() {
             addToCartButton.removeAttribute("hidden");
         }
     }
-}
-
-function hideAuthenticationRelatedFeatures() {
-    // Header menu buttons
-    loginButton.classList.replace("header-button-right", "hidden");
-    registerButton.classList.replace("header-button-right", "hidden");
 }
 
 function closeModalDialog() {
