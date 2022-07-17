@@ -80,8 +80,8 @@
         border-bottom-right-radius: 10pt;
         padding-top: 10pt;
         padding-bottom: 10pt;
-        padding-left: 20pt;
-        padding-right: 20pt;
+        padding-left: 25pt;
+        padding-right: 25pt;
 
         background-color: #555555;
     }
@@ -106,7 +106,7 @@
             width: 100%;
 
             text-align: center;
-            background-color: crimson;
+            background-color: indianred;
         }
 
 /* OWN PROPERTIES OF LOGIN MODAL DIALOG */
@@ -162,8 +162,8 @@
         border-bottom-right-radius: 10pt;
         padding-top: 10pt;
         padding-bottom: 10pt;
-        padding-left: 20pt;
-        padding-right: 20pt;
+        padding-left: 25pt;
+        padding-right: 25pt;
 
         background-color: #555555;
     }
@@ -188,5 +188,5 @@
             width: 100%;
 
             text-align: center;
-            background-color: crimson;
+            background-color: indianred;
         }
