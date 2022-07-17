@@ -46,7 +46,6 @@ export function addEventListenerToRegistrationButton() {
 // INNER FUNCTIONS //
 function addEventListenerToCancelButton() {
     registrationModalCancelButton = document.querySelector("#registration-modal-cancel-button");
-    modalDialog = document.querySelector("#modal-dialog");
     registrationModalCancelButton.addEventListener('click', ()=> closeModalDialog());
 }
 
@@ -66,7 +65,7 @@ function addEventListenerToModalRegistrationButton() {
         // Validate input values
         if (registrationModalPasswordInputValue === registrationModalPasswordConfirmationInputValue) {
             // Send values to the backend
-            const response = await fetchData("POST", `/user`, null, `{"email": "${registrationModalEmailInputValue}", "password": "${registrationModalPasswordInputValue}"}`, "application/json", );
+            const response = await fetchData("POST", `/user`, null, `{"email": "${registrationModalEmailInputValue}", "password": "${registrationModalPasswordInputValue}"}`, "application/json", null);
 
             // Close modal dialog
             if (response.ok) {
@@ -81,5 +80,6 @@ function closeModalDialog() {
     body.classList.remove("block-scroll");
 
     // Remove modal dialog
+    modalDialog = document.querySelector("#modal-dialog");
     modalDialog.remove();
 }
