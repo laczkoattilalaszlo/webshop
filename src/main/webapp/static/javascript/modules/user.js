@@ -25,9 +25,9 @@ export function addEventListenerToUserButton() {
                             </div>
                             <div id="user-modal-tabs">
                                 <div id="user-modal-contact-tab" class="user-modal-tab user-modal-tab-selected">Contact</div>
-                                <div id="user-modal-password-tab" class="user-modal-tab">Password</div>
                                 <div id="user-modal-shipping-address-tab" class="user-modal-tab">Shipping Address</div>
                                 <div id="user-modal-billing-address-tab" class="user-modal-tab">Billing Address</div>
+                                <div id="user-modal-password-tab" class="user-modal-tab">Password</div>
                             </div>
     
                         </div>
@@ -46,9 +46,9 @@ export function addEventListenerToUserButton() {
 
         // Add event listeners to all tabs
         addEventListenerToContactTab();
-        addEventListenerToPasswordTab();
         addEventListenerToShippingAddressTab();
         addEventListenerToBillingAddressTab();
+        addEventListenerToPasswordTab();
 
         // Show first tab (contact) at opening
         const contactTab = document.querySelector("#user-modal-contact-tab");
@@ -123,69 +123,6 @@ function addEventListenerToContactTab() {
                 UserModalOperationResult.textContent = "Contact details updated successfully.";
             } else {
                 UserModalOperationResult.textContent = "Contact details update was unsuccessful.";
-            }
-        });
-    });
-}
-
-function addEventListenerToPasswordTab() {
-    const passwordTab = document.querySelector("#user-modal-password-tab");
-    passwordTab.addEventListener('click', ()=> {
-        // Highlight password tab
-        const selectedTab = document.querySelector('.user-modal-tab-selected');
-        selectedTab.classList.remove("user-modal-tab-selected")
-
-        passwordTab.classList.add("user-modal-tab-selected");
-
-        // Empty dialog content
-        const userModalContentContainer = document.querySelector("#user-modal-content-container");
-        userModalContentContainer.innerHTML = "";
-
-        // Fill dialog content with password related fields
-        userModalContentContainer.insertAdjacentHTML('afterbegin', `
-            <div class="user-modal-content-container-row">
-                <label for="user-modal-current-password-input">Current Password:</label><input type="text" id="user-modal-current-password-input" required>
-            </div>
-            <div class="user-modal-content-container-row">
-                <label for="user-modal-new-password-input">New Password:</label><input type="text" id="user-modal-new-password-input" required>
-            </div>
-            <div class="user-modal-content-container-row">
-                <label for="user-modal-password-confirmation-input">Password Confirmation:</label><input type="text" id="user-modal-password-confirmation-input" required>
-            </div>
-            <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
-        `);
-
-        // Change modal update button
-        let userModalUpdateButton = document.querySelector("#user-modal-update-button");
-        userModalUpdateButton.remove();
-        const userModalFooterContainer = document.querySelector("#user-modal-footer-container");
-        userModalFooterContainer.insertAdjacentHTML("beforeend", `<div id="user-modal-update-button">Update Password</div>`);
-
-        // Add event listener to modal update button
-        userModalUpdateButton = document.querySelector("#user-modal-update-button");
-        userModalUpdateButton.addEventListener('click', async () => {
-            // Get input values
-            const userModalCurrentPasswordInput = document.querySelector("#user-modal-current-password-input");
-            const userModalCurrentPasswordInputValue = userModalCurrentPasswordInput.value;
-
-            const userModalNewPasswordInput = document.querySelector("#user-modal-new-password-input");
-            const userModalNewPasswordInputValue = userModalNewPasswordInput.value;
-
-            const userModalPasswordConfirmationInput = document.querySelector("#user-modal-password-confirmation-input");
-            const userModalPasswordConfirmationInputValue = userModalPasswordConfirmationInput.value;
-
-            if (userModalNewPasswordInputValue === userModalPasswordConfirmationInputValue) {
-                // Update user data
-                const response = await fetchData("PUT", `/user-authentication`, {"session-token": sessionStorage.getItem("session-token")}, `{"currentPassword": "${userModalCurrentPasswordInputValue}", "newPassword": "${userModalNewPasswordInputValue}"}`, "application/json", null);
-
-                // Show result of update operation in modal dialog
-                const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
-                if (response.ok) {
-                    const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
-                    UserModalOperationResult.textContent = "Password updated successfully.";
-                } else {
-                    UserModalOperationResult.textContent = "Password update was unsuccessful.";
-                }
             }
         });
     });
@@ -336,6 +273,69 @@ function addEventListenerToBillingAddressTab() {
                 UserModalOperationResult.textContent = "Billing Address updated successfully.";
             } else {
                 UserModalOperationResult.textContent = "Billing Address update was unsuccessful.";
+            }
+        });
+    });
+}
+
+function addEventListenerToPasswordTab() {
+    const passwordTab = document.querySelector("#user-modal-password-tab");
+    passwordTab.addEventListener('click', ()=> {
+        // Highlight password tab
+        const selectedTab = document.querySelector('.user-modal-tab-selected');
+        selectedTab.classList.remove("user-modal-tab-selected")
+
+        passwordTab.classList.add("user-modal-tab-selected");
+
+        // Empty dialog content
+        const userModalContentContainer = document.querySelector("#user-modal-content-container");
+        userModalContentContainer.innerHTML = "";
+
+        // Fill dialog content with password related fields
+        userModalContentContainer.insertAdjacentHTML('afterbegin', `
+            <div class="user-modal-content-container-row">
+                <label for="user-modal-current-password-input">Current Password:</label><input type="text" id="user-modal-current-password-input" required>
+            </div>
+            <div class="user-modal-content-container-row">
+                <label for="user-modal-new-password-input">New Password:</label><input type="text" id="user-modal-new-password-input" required>
+            </div>
+            <div class="user-modal-content-container-row">
+                <label for="user-modal-password-confirmation-input">Password Confirmation:</label><input type="text" id="user-modal-password-confirmation-input" required>
+            </div>
+            <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
+        `);
+
+        // Change modal update button
+        let userModalUpdateButton = document.querySelector("#user-modal-update-button");
+        userModalUpdateButton.remove();
+        const userModalFooterContainer = document.querySelector("#user-modal-footer-container");
+        userModalFooterContainer.insertAdjacentHTML("beforeend", `<div id="user-modal-update-button">Update Password</div>`);
+
+        // Add event listener to modal update button
+        userModalUpdateButton = document.querySelector("#user-modal-update-button");
+        userModalUpdateButton.addEventListener('click', async () => {
+            // Get input values
+            const userModalCurrentPasswordInput = document.querySelector("#user-modal-current-password-input");
+            const userModalCurrentPasswordInputValue = userModalCurrentPasswordInput.value;
+
+            const userModalNewPasswordInput = document.querySelector("#user-modal-new-password-input");
+            const userModalNewPasswordInputValue = userModalNewPasswordInput.value;
+
+            const userModalPasswordConfirmationInput = document.querySelector("#user-modal-password-confirmation-input");
+            const userModalPasswordConfirmationInputValue = userModalPasswordConfirmationInput.value;
+
+            if (userModalNewPasswordInputValue === userModalPasswordConfirmationInputValue) {
+                // Update user data
+                const response = await fetchData("PUT", `/user-authentication`, {"session-token": sessionStorage.getItem("session-token")}, `{"currentPassword": "${userModalCurrentPasswordInputValue}", "newPassword": "${userModalNewPasswordInputValue}"}`, "application/json", null);
+
+                // Show result of update operation in modal dialog
+                const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+                if (response.ok) {
+                    const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+                    UserModalOperationResult.textContent = "Password updated successfully.";
+                } else {
+                    UserModalOperationResult.textContent = "Password update was unsuccessful.";
+                }
             }
         });
     });
