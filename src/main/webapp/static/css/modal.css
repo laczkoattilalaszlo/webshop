@@ -341,7 +341,7 @@
 
 /* OWN PROPERTIES OF CART MODAL DIALOG */
 
-    #cart-modal-header-container {
+    #checkout-modal-header-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -353,7 +353,7 @@
         background-color: #555555;
     }
 
-        #cart-modal-title {
+        #checkout-modal-title {
             padding: 15pt 5pt 15pt 5pt;
 
             font-weight: bold;
@@ -361,7 +361,7 @@
             background-color: transparent;
         }
 
-        #cart-modal-steps {
+        #checkout-modal-steps {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -376,12 +376,12 @@
             background-color: #777777;
         }
 
-            .cart-model-step-separator {
+            .checkout-model-step-separator {
                 width: 10pt;
                 height: 10pt;
             }
 
-            .cart-modal-step {
+            .checkout-modal-step {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
@@ -392,30 +392,30 @@
                 text-align: center;
             }
 
-                .cart-modal-step img {
+                .checkout-modal-step img {
                     width: 18pt;
                     height: 18pt;
                 }
 
-            .cart-modal-step-finished {
+            .checkout-modal-step-finished {
                 filter: contrast(1.0);
 
                 font-weight: bold;
             }
 
-            .cart-modal-step-selected {
+            .checkout-modal-step-selected {
                 filter: drop-shadow(2px 4px 6px black);
 
                 font-size: 14pt;
                 font-weight: bold;
             }
 
-                .cart-modal-step-selected img {
+                .checkout-modal-step-selected img {
                     width: 22pt;
                     height: 22pt;
                 }
 
-    #cart-modal-content-container {
+    #checkout-modal-content-container {
         display: flex;
         flex-direction: column;
         row-gap: 10pt;
@@ -425,53 +425,7 @@
         background-color: #888888;
     }
 
-        .cart-modal-content-container-double-row {
-            display: flex;
-            flex-direction: row;
-
-            column-gap: 15pt;
-        }
-
-        .cart-modal-content-container-double-row-row {
-            display: flex;
-            flex-direction: column;
-        }
-
-            .cart-modal-content-container-double-row-row input {
-                margin-top: 3pt;
-                border-radius: 5pt;
-                padding: 5pt;
-            }
-
-            #cart-container {
-                width: 80pt;
-            }
-
-            #cart-container {
-                width: 100%;
-            }
-
-        .cart-modal-content-container-row {
-            display: flex;
-            flex-direction: column;
-        }
-
-            .cart-modal-content-container-row input {
-                margin-top: 3pt;
-                border-radius: 5pt;
-                padding: 5pt;
-            }
-
-        #cart-modal-operation-result {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-
-            height: 20pt;
-            font-weight: bold;
-        }
-
-    #cart-modal-footer-container {
+    #checkout-modal-footer-container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -486,7 +440,7 @@
         background-color: #555555;
     }
 
-        #cart-modal-close-button {
+        #checkout-modal-close-button {
             display: inline-block;
 
             border-radius: 5pt;
@@ -496,11 +450,11 @@
             background-color: #888888;
         }
 
-        #cart-modal-footer-container-left-unit {
+        #checkout-modal-footer-container-left-unit {
             width: 60%;
         }
 
-        #cart-modal-footer-container-right-unit {
+        #checkout-modal-footer-container-right-unit {
             display: flex;
             flex-direction: row;
             column-gap: 10pt;
@@ -508,7 +462,7 @@
             width: 40%;
         }
 
-            #cart-modal-previous-button {
+            #checkout-modal-previous-button {
                 display: inline-block;
 
                 border-radius: 5pt;
@@ -518,7 +472,7 @@
                 background-color: #888888;
             }
 
-            #cart-modal-next-button {
+            #checkout-modal-next-button {
                 display: inline-block;
 
                 border-radius: 5pt;
