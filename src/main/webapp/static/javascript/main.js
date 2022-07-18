@@ -4,6 +4,7 @@ import {addEventListenerToLoginButton} from "./modules/login.js";
 import {addEventListenerToLogoutButton} from "./modules/logout.js";
 import {setVisibilityOfHeaderButtons} from "./modules/header.js";
 import {addEventListenerToUserButton} from "./modules/user.js";
+import {addEventListenerToCartButton} from "./modules/cart.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
@@ -13,5 +14,6 @@ window.addEventListener('load', async () => {
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
     addEventListenerToUserButton();
+    addEventListenerToCartButton();
 });
 
