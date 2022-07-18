@@ -85,7 +85,7 @@ function addEventListenerToContactTab() {
         userModalContentContainer.innerHTML = "";
 
         // Get existing user data from backend
-        let userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        const userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
 
         // Fill dialog content with contact related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
