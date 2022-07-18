@@ -40,11 +40,11 @@ public class AddressController extends HttpServlet {
         addressService = ServiceProvider.getInstance().getAddressService();
         AddressDto addressDto = null;
         if (type.equals("shipping")) {
-            addressDto = addressService.getAddress("billing_address", userId);
-        } else if (type.equals("billing")) {
             addressDto = addressService.getAddress("shipping_address", userId);
+        } else if (type.equals("billing")) {
+            addressDto = addressService.getAddress("billing_address", userId);
         } else {
-            throw new ServletException();
+            response.setStatus(400);
         }
 
         // Serialize data

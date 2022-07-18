@@ -6,10 +6,10 @@
         id                  uuid not null
                             constraint user_pk
                             primary key,
-        email               text,
+        email               text default '',
         password            text,
-        name                text,
-        phone               text,
+        name                text default '',
+        phone               text default '',
         role                text,
         session_token       text
     );

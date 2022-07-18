@@ -72,7 +72,7 @@ function closeModalDialog() {
 
 function addEventListenerToContactTab() {
     const contactTab = document.querySelector("#user-modal-contact-tab");
-    contactTab.addEventListener('click', ()=> {
+    contactTab.addEventListener('click', async () => {
         // Highlight password tab
         const selectedTab = document.querySelector('.user-modal-tab-selected');
         selectedTab.classList.remove("user-modal-tab-selected")
@@ -83,16 +83,19 @@ function addEventListenerToContactTab() {
         const userModalContentContainer = document.querySelector("#user-modal-content-container");
         userModalContentContainer.innerHTML = "";
 
-        // Fill dialog content with contact related fields
+        // Get existing user data from backend
+        let userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+
+        // Fill dialog content with contact related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
             <div class="user-modal-content-container-row">
-                <label for="user-modal-name-input">Name:</label><input type="text" id="user-modal-name-input" required>
+                <label for="user-modal-name-input">Name:</label><input type="text" id="user-modal-name-input" value="${userContact.name}" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-email-input">E-mail:</label><input type="text" id="user-modal-email-input" required>
+                <label for="user-modal-email-input">E-mail:</label><input type="text" id="user-modal-email-input" value="${userContact.email}" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-phone-input">Phone:</label><input type="text" id="user-modal-phone-input" required>
+                <label for="user-modal-phone-input">Phone:</label><input type="text" id="user-modal-phone-input" value="${userContact.phone}"required>
             </div>
             <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
         `);
@@ -190,7 +193,7 @@ function addEventListenerToPasswordTab() {
 
 function addEventListenerToShippingAddressTab() {
     const shippingAddressTab = document.querySelector("#user-modal-shipping-address-tab");
-    shippingAddressTab.addEventListener('click', ()=> {
+    shippingAddressTab.addEventListener('click', async () => {
         // Highlight password tab
         const selectedTab = document.querySelector('.user-modal-tab-selected');
         selectedTab.classList.remove("user-modal-tab-selected")
@@ -201,21 +204,27 @@ function addEventListenerToShippingAddressTab() {
         const userModalContentContainer = document.querySelector("#user-modal-content-container");
         userModalContentContainer.innerHTML = "";
 
-        // Fill dialog content with shipping address related fields
+        // Get existing user data from backend
+        let userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userShippingAddress == null) {
+            userShippingAddress = {zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill dialog content with shipping address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
             <div class="user-modal-content-container-double-row">
                 <div class="user-modal-content-container-double-row-row" id="zip-container">
-                    <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" required>
+                    <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" value="${userShippingAddress.zip}" required>
                 </div>
                 <div class="user-modal-content-container-double-row-row" id="country-container">
-                    <label for="user-modal-country-input">Country:</label><input type="text" id="user-modal-country-input" required>
+                    <label for="user-modal-country-input">Country:</label><input type="text" id="user-modal-country-input" value="${userShippingAddress.country}" required>
                 </div>                
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-city-input">City:</label><input type="text" id="user-modal-city-input" required>
+                <label for="user-modal-city-input">City:</label><input type="text" id="user-modal-city-input" value="${userShippingAddress.city}" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-address-input">Address:</label><input type="text" id="user-modal-address-input" required>
+                <label for="user-modal-address-input">Address:</label><input type="text" id="user-modal-address-input" value="${userShippingAddress.address}" required>
             </div>
             <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
         `);
@@ -243,14 +252,23 @@ function addEventListenerToShippingAddressTab() {
             const userModalAddressInputValue = userModalAddressInput.value;
 
             // Update user data
-            await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+            const response = await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+
+            // Show result of update operation in modal dialog
+            const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+            if (response.ok) {
+                const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+                UserModalOperationResult.textContent = "Shipping Address updated successfully.";
+            } else {
+                UserModalOperationResult.textContent = "Shipping Address update was unsuccessful.";
+            }
         });
     });
 }
 
 function addEventListenerToBillingAddressTab() {
     const billingAddressTab = document.querySelector("#user-modal-billing-address-tab");
-    billingAddressTab.addEventListener('click', ()=> {
+    billingAddressTab.addEventListener('click', async () => {
         // Highlight password tab
         const selectedTab = document.querySelector('.user-modal-tab-selected');
         selectedTab.classList.remove("user-modal-tab-selected")
@@ -261,21 +279,27 @@ function addEventListenerToBillingAddressTab() {
         const userModalContentContainer = document.querySelector("#user-modal-content-container");
         userModalContentContainer.innerHTML = "";
 
-        // Fill dialog content with billing address related fields
+        // Get existing user data from backend
+        let userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userBillingAddress == null) {
+            userBillingAddress = {zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill dialog content with billing address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
             <div class="user-modal-content-container-double-row">
                 <div class="user-modal-content-container-double-row-row" id="zip-container">
-                    <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" required>
+                    <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" value="${userBillingAddress.zip}" required>
                 </div>
                 <div class="user-modal-content-container-double-row-row" id="country-container">
-                    <label for="user-modal-country-input">Country:</label><input type="text" id="user-modal-country-input" required>
+                    <label for="user-modal-country-input">Country:</label><input type="text" id="user-modal-country-input" value="${userBillingAddress.country}" required>
                 </div>                
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-city-input">City:</label><input type="text" id="user-modal-city-input" required>
+                <label for="user-modal-city-input">City:</label><input type="text" id="user-modal-city-input" value="${userBillingAddress.city}" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-address-input">Address:</label><input type="text" id="user-modal-address-input" required>
+                <label for="user-modal-address-input">Address:</label><input type="text" id="user-modal-address-input" value="${userBillingAddress.address}" required>
             </div>
             <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
         `);
@@ -284,7 +308,7 @@ function addEventListenerToBillingAddressTab() {
         let userModalUpdateButton = document.querySelector("#user-modal-update-button");
         userModalUpdateButton.remove();
         const userModalFooterContainer = document.querySelector("#user-modal-footer-container");
-        userModalFooterContainer.insertAdjacentHTML("beforeend", `<div id="user-modal-update-button">Update Shipping Address</div>`);
+        userModalFooterContainer.insertAdjacentHTML("beforeend", `<div id="user-modal-update-button">Update Billing Address</div>`);
 
         // Add event listener to modal update button
         userModalUpdateButton = document.querySelector("#user-modal-update-button");
@@ -303,7 +327,16 @@ function addEventListenerToBillingAddressTab() {
             const userModalAddressInputValue = userModalAddressInput.value;
 
             // Update user data
-            await fetchData("PUT", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+            const response = await fetchData("PUT", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+
+            // Show result of update operation in modal dialog
+            const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+            if (response.ok) {
+                const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
+                UserModalOperationResult.textContent = "Billing Address updated successfully.";
+            } else {
+                UserModalOperationResult.textContent = "Billing Address update was unsuccessful.";
+            }
         });
     });
 }
