@@ -62,16 +62,20 @@ public class CartController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
-        // Get payload (product id) from body
-        BufferedReader bufferedReader = request.getReader();
-        String payload = bufferedReader.lines().collect(Collectors.joining());
+        if (userId != null) {
+            // Get payload (product id) from body
+            BufferedReader bufferedReader = request.getReader();
+            String payload = bufferedReader.lines().collect(Collectors.joining());
 
-        // Deserialize payload
-        UUID productId = UUID.fromString(payload);
+            // Deserialize payload
+            UUID productId = UUID.fromString(payload);
 
-        // Add product to cart
-        cartService = ServiceProvider.getInstance().getCartService();
-        cartService.addProductToCart(productId, userId);
+            // Add product to cart
+            cartService = ServiceProvider.getInstance().getCartService();
+            cartService.addProductToCart(productId, userId);
+        } else {
+            response.setStatus(401);
+        }
     }
 
     @Override   // Remove product from cart
