@@ -56,6 +56,7 @@ export function addEventListenerToUserButton() {
     });
 }
 
+// INNER FUNCTIONS //
 function addEventListenerToCloseButton() {
     userModalCloseButton = document.querySelector("#user-modal-close-button");
     userModalCloseButton.addEventListener('click', ()=> closeModalDialog());
