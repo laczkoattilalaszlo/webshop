@@ -76,4 +76,16 @@ async function listProducts(supplierButton) {
             `);
     }
 
+    // Add event listeners to 'add to cart' buttons
+    addEventListenerToAddToCartButtons();
+}
+
+function addEventListenerToAddToCartButtons() {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
+    for (let addToCartButton of addToCartButtons) {
+        addToCartButton.addEventListener('click', async () => {
+            const productId = addToCartButton.dataset.productId;
+            await fetchData("POST", `/cart`, {"session-token": sessionStorage.getItem("session-token")}, `${productId}`, "plain/text", null);
+        });
+    }
 }
