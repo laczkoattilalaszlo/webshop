@@ -39,6 +39,11 @@ export function addEventListenerToLoginButton() {
                                                                 </div>
                                                             </div>
                                                         `);
+
+        // Put focus on e-mail input
+        const registrationModalEmailInput = document.querySelector("#login-modal-email-input");
+        registrationModalEmailInput.focus()
+
         // Add event listener to cancel button
         AddEventListenerToCancelButton();
 
