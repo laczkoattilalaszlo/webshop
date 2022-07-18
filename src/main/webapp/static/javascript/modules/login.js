@@ -50,7 +50,6 @@ export function addEventListenerToLoginButton() {
 // INNER FUNCTIONS //
 function AddEventListenerToCancelButton() {
     loginModalCancelButton = document.querySelector("#login-modal-cancel-button");
-    modalDialog = document.querySelector("#modal-dialog");
     loginModalCancelButton.addEventListener('click', ()=> closeModalDialog());
 }
 
@@ -111,5 +110,6 @@ function closeModalDialog() {
     body.classList.remove("block-scroll");
 
     // Remove modal dialog
+    modalDialog = document.querySelector("#modal-dialog");
     modalDialog.remove();
 }

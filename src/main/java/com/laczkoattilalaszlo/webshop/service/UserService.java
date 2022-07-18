@@ -30,6 +30,10 @@ public class UserService {
         return userDao.getUser(userId);
     }
 
+    public UUID getUserIdByEmail(String email) {
+        return userDao.getUserIdByEmail(email);
+    }
+
     public UUID getUserIdBySessionToken(String sessionToken) {
         return userDao.getUserIdBySessionToken(sessionToken);
     }
@@ -50,13 +54,12 @@ public class UserService {
         }
     }
 
-    public void updatePassword(String currentPassword, String newPassword, UUID userId) {
-        String hashedCurrentPassword = SecurityUtility.hashPassword(currentPassword);
-        String hashedCurrentPasswordFromDatabase = userDao.getCurrentPassword(userId);
-        if (hashedCurrentPassword.equals(hashedCurrentPasswordFromDatabase)) {
-            String hashedNewPassword = SecurityUtility.hashPassword(newPassword);
-            userDao.updatePassword(hashedNewPassword, userId);
-        }
+    public String getCurrentPassword(UUID userId) {
+        return userDao.getCurrentPassword(userId);
+    }
+
+    public void updatePassword(String hashedNewPassword, UUID userId) {
+        userDao.updatePassword(hashedNewPassword, userId);
     }
 
 }

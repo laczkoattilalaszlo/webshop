@@ -3,6 +3,7 @@ import {addEventListenerToRegistrationButton} from "./modules/registration.js";
 import {addEventListenerToLoginButton} from "./modules/login.js";
 import {addEventListenerToLogoutButton} from "./modules/logout.js";
 import {setVisibilityOfHeaderButtons} from "./modules/header.js";
+import {addEventListenerToUserButton} from "./modules/user.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
@@ -11,5 +12,6 @@ window.addEventListener('load', async () => {
     addEventListenerToRegistrationButton();
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
+    addEventListenerToUserButton();
 });
 

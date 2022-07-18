@@ -18,6 +18,22 @@ public class AddressDaoDb implements AddressDao {
 
     // Implemented method(s)
     @Override
+    public void addAddress(String tableName, UUID userId, AddressDto addressDto) {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, addressDto.getZip());
+            preparedStatement.setString(2, addressDto.getCountry());
+            preparedStatement.setString(3, addressDto.getCity());
+            preparedStatement.setString(4, addressDto.getAddress());
+            preparedStatement.setObject(5, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public AddressDto getAddress(String tableName, UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query

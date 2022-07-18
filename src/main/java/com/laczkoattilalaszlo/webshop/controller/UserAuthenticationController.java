@@ -2,6 +2,7 @@ package com.laczkoattilalaszlo.webshop.controller;
 
 import com.google.gson.Gson;
 
+import com.laczkoattilalaszlo.webshop.data.SecurityUtility;
 import com.laczkoattilalaszlo.webshop.data.dto.UserPasswordDto;
 import com.laczkoattilalaszlo.webshop.data.dto.UserRegistrationAndAuthenticationDto;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
@@ -66,7 +67,15 @@ public class UserAuthenticationController extends HttpServlet {
         String currentPassword = userPasswordDto.getCurrentPassword();
         String newPassword = userPasswordDto.getNewPassword();
 
-        userService.updatePassword(currentPassword, newPassword, userId);
+        // Update password
+        String hashedCurrentPassword = SecurityUtility.hashPassword(currentPassword);
+        String hashedCurrentPasswordFromDatabase = userService.getCurrentPassword(userId);
+        if (hashedCurrentPassword.equals(hashedCurrentPasswordFromDatabase)) {
+            String hashedNewPassword = SecurityUtility.hashPassword(newPassword);
+            userService.updatePassword(hashedNewPassword, userId);
+        } else {
+            response.setStatus(400);
+        }
     }
 
 }

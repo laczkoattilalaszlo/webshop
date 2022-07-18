@@ -16,8 +16,12 @@ public class AddressService {
     }
 
     // Method(s)
+    public void addAddress(String tableName, UUID userId, AddressDto addressDto) {
+        addressDao.addAddress(tableName, userId, addressDto);
+    }
+
     public AddressDto getAddress(String tableName, UUID userId){
-        return addressDao.getAddress(tableName,userId);
+        return addressDao.getAddress(tableName, userId);
     };
 
     public void updateAddress(String tableName, UUID userId, AddressDto addressDto){

@@ -82,11 +82,21 @@ public class AddressController extends HttpServlet {
         // Update ... (shipping / billing) address
         addressService = ServiceProvider.getInstance().getAddressService();
         if (type.equals("shipping")) {
-            addressService.updateAddress("billing_address", userId, addressDto);
+            AddressDto existingAddress = addressService.getAddress("shipping_address", userId);
+            if (existingAddress == null) {
+                addressService.addAddress("shipping_address", userId, addressDto);
+            } else {
+                addressService.updateAddress("shipping_address", userId, addressDto);
+            }
         } else if (type.equals("billing")) {
-            addressService.updateAddress("shipping_address", userId, addressDto);
+            AddressDto existingAddress = addressService.getAddress("billing_address", userId);
+            if (existingAddress == null) {
+                addressService.addAddress("billing_address", userId, addressDto);
+            } else {
+                addressService.updateAddress("billing_address", userId, addressDto);
+            }
         } else {
-            throw new ServletException();
+            response.setStatus(400);
         }
     }
 
