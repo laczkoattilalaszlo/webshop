@@ -406,13 +406,13 @@
             .cart-modal-step-selected {
                 filter: drop-shadow(2px 4px 6px black);
 
-                font-size: 15pt;
+                font-size: 14pt;
                 font-weight: bold;
             }
 
                 .cart-modal-step-selected img {
-                    width: 23pt;
-                    height: 23pt;
+                    width: 22pt;
+                    height: 22pt;
                 }
 
     #cart-modal-content-container {
