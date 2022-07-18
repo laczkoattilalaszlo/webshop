@@ -44,12 +44,34 @@ export function addEventListenerToCartButton() {
                         </div>
                         <div id="cart-modal-content-container"></div>
                         <div id="cart-modal-footer-container">
-                            <div id="cart-modal-previous-button">Previous</div>
-                            <div id="cart-modal-next-button">Next</div>
+                            <div id="cart-modal-footer-container-left-unit">
+                                <div id="cart-modal-close-button">Close</div>
+                            </div>
+                            <div id="cart-modal-footer-container-right-unit">
+                                <div id="cart-modal-previous-button">Previous</div>
+                                <div id="cart-modal-next-button">Next</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `);
+
+        // Add event listener to close button
+        addEventListenerToCloseButton();
     });
+}
+
+function addEventListenerToCloseButton() {
+    const cartModalCloseButton = document.querySelector("#cart-modal-close-button");
+    cartModalCloseButton.addEventListener('click', ()=> closeModalDialog());
+}
+
+function closeModalDialog() {
+    // Enable scrolling on site
+    body.classList.remove("block-scroll");
+
+    // Remove modal dialog
+    const modalDialog = document.querySelector("#modal-dialog");
+    modalDialog.remove();
 }
