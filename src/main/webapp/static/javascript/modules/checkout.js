@@ -83,33 +83,73 @@ function closeModalDialog() {
     modalDialog.remove();
 }
 
-function addEventListenerToNextButton(actionToExecute) {
-    const modalNextButton = document.querySelector("#checkout-modal-next-button");
+function changePreviousButton(actionToExecute) {
+    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
+
+    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.addEventListener('click', async () => await actionToExecute());
+}
+
+function changeNextButton(actionToExecute) {
+    let modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
+
+    modalNextButton = document.querySelector("#checkout-modal-next-button");
     modalNextButton.addEventListener('click', async () => await actionToExecute());
 }
 
 async function showCartStep() {
-    // Highlight cart step
+    // Remove highlight from delivery step
+    const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
+    deliveryStep.classList.remove("checkout-modal-step-selected");
+
+    // Remove finished from cart step
     const cartStep = document.querySelector("#checkout-modal-cart-step");
+    deliveryStep.classList.remove("checkout-modal-step-finished");
+
+    // Add highlight to cart step
     cartStep.classList.add("checkout-modal-step-selected");
 
-    // Hide previous button
-    const modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    // Change previous button
+    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
+
+    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.addEventListener('click', async () => await showCartStep());
+
+    // // Hide previous button
+    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
     modalPreviousButton.classList.add("invisible");
 
-    // Add event listener to next button
-    addEventListenerToNextButton(showDeliveryStep);
+    // Change next button
+    let modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.remove();
 
-    // Empty dialog content
-    const userModalContentContainer = document.querySelector("#checkout-modal-content-container");
-    userModalContentContainer.innerHTML = "";
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
+
+    modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.addEventListener('click', async () => await showDeliveryStep());
+
+    // Empty modal dialog content
+    const modalContentContainer = document.querySelector("#checkout-modal-content-container");
+    modalContentContainer.innerHTML = "";
 
     // Get cart from backend
     const cart = await fetchData("GET", `/cart`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
 
     // Show cart content in a table
     if (cart.length === 0) {
-        userModalContentContainer.insertAdjacentHTML('afterbegin', "<div id='modal-cart-is-empty-text'>Cart is empty, choose product from product categories!</div>");
+        modalContentContainer.insertAdjacentHTML('afterbegin', "<div id='modal-cart-is-empty-text'>Cart is empty, choose product from product categories!</div>");
     } else {
         let cartTable = `<table id="checkout-modal-cart-table">
                             <colgroup>
@@ -157,14 +197,84 @@ async function showCartStep() {
                         </tr>
                       </table>`;
 
-        userModalContentContainer.insertAdjacentHTML('afterbegin', cartTable);
+        modalContentContainer.insertAdjacentHTML('afterbegin', cartTable);
     }
 
+    // Add event listener to 'Modal add to cart' button
+    const modalAddToCartButtons = document.querySelectorAll(".checkout-modal-add-to-cart-button");
+    for(let modalAddToCartButton of modalAddToCartButtons) {
+        modalAddToCartButton.addEventListener('click', async () => {
+            const productId = modalAddToCartButton.dataset.productId;
+            const response = await fetchData("POST", `/cart`, {"session-token": sessionStorage.getItem("session-token")}, `${productId}`, null, null);
+            if (response.ok) {
+                // Empty modal dialog content
+                modalContentContainer.innerHTML = "";
+                await showCartStep();
+            }
+        });
+    }
 
-
-
+    // Add event listener to 'Modal remove from cart' button
+    const modalRemoveFromCartButtons = document.querySelectorAll(".checkout-modal-remove-from-cart-button");
+    for(let modalRemoveFromCartButton of modalRemoveFromCartButtons) {
+        modalRemoveFromCartButton.addEventListener('click', async () => {
+            const productId = modalRemoveFromCartButton.dataset.productId;
+            const response = await fetchData("DELETE", `/cart`, {"session-token": sessionStorage.getItem("session-token")}, `${productId}`, null, null);
+            if (response.ok) {
+                // Empty modal dialog content
+                modalContentContainer.innerHTML = "";
+                await showCartStep();
+            }
+        });
+    }
 }
 
 async function showDeliveryStep() {
-    console.log("Delivery Step Content");
+    // Mark earlier steps as finished
+    const finishedSteps = document.querySelectorAll(".checkout-modal-step-finished");
+    for (let finishedStep of finishedSteps) {
+        finishedStep.classList.remove("checkout-modal-step-finished");
+    }
+
+    const cartStep = document.querySelector("#checkout-modal-cart-step");
+    cartStep.classList.add("checkout-modal-step-finished");
+
+    // Highlight delivery step
+    const highlightedSteps = document.querySelectorAll(".checkout-modal-step-selected");
+    for (let highlightedStep of highlightedSteps) {
+        highlightedStep.classList.remove("checkout-modal-step-selected");
+    }
+
+    const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
+    deliveryStep.classList.add("checkout-modal-step-selected");
+
+    // Change previous button
+    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
+
+    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.addEventListener('click', async () => await showCartStep());
+
+    // Change next button
+    let modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.remove();
+
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
+
+    modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.addEventListener('click', async () => await showReviewStep());
+
+    // Empty modal dialog content
+    const modalContentContainer = document.querySelector("#checkout-modal-content-container");
+    modalContentContainer.innerHTML = "";
+
+    // Get delivery data from backend (contact information, shipping address, billing address)
+    console.log("Delivery Step");
+}
+
+async function showReviewStep() {
+    console.log("Review Step");
 }
