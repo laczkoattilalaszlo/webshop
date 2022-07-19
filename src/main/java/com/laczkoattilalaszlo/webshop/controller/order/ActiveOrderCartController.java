@@ -33,16 +33,20 @@ public class ActiveOrderCartController extends HttpServlet {
         userService = ServiceProvider.getInstance().getUserService();
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
-        // Get active order id
-        orderService = ServiceProvider.getInstance().getOrderService();
-        UUID activeOrderId = orderService.getActiveOrderId(userId);
+        if (userId != null) {
+            // Get active order id
+            orderService = ServiceProvider.getInstance().getOrderService();
+            UUID activeOrderId = orderService.getActiveOrderId(userId);
 
-        // Get cart
-        cartService = ServiceProvider.getInstance().getCartService();
-        List<ProductInCartDto> cart = cartService.getCart(userId);
+            // Get cart
+            cartService = ServiceProvider.getInstance().getCartService();
+            List<ProductInCartDto> cart = cartService.getCart(userId);
 
-        // Transfer products from cart to active order cart
-        orderService.updateOrderCart(activeOrderId, cart);
+            // Transfer products from cart to active order cart
+            orderService.updateOrderCart(activeOrderId, cart);
+        } else {
+            response.setStatus(401);
+        }
     }
 
 }

@@ -233,6 +233,12 @@ async function showCartStep() {
             }
         });
     }
+
+    // Create active order if it does not exist
+    await fetchData("POST", `/active-order`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
+
+    // Transfer cart content to active order cart
+    await fetchData("PUT", `/active-order-cart`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
 }
 
 async function showDeliveryStep() {

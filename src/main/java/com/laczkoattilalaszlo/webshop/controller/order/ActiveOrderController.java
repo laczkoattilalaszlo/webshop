@@ -37,8 +37,6 @@ public class ActiveOrderController extends HttpServlet {
         UUID activeOrderId = orderService.getActiveOrderId(userId);
         if (activeOrderId == null) {
             orderService.createActiveOrder(userId);
-        } else {
-            response.sendError(409, "An active order already exists.");
         }
     }
 
