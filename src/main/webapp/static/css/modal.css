@@ -445,11 +445,11 @@
             /* Column width */
 
                 #checkout-modal-picture-column {
-                    width: 7%;
+                    width: 8%;
                 }
 
                 #checkout-modal-supplier-and-name-column {
-                    /* Takes the rest percentage */
+                    width: 33%;
                 }
 
                 #checkout-modal-price-and-currency-column {
@@ -480,7 +480,10 @@
 
                 .checkout-modal-right-aligned-column {
                     text-align: right;
+                }
 
+                .checkout-modal-column-with-right-padding {
+                    padding-right: 15pt;
                 }
 
             /* Row padding */

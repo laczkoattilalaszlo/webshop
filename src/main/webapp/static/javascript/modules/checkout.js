@@ -179,7 +179,7 @@ async function showCartStep() {
             cartTable += `<tbody>
                             <tr>
                                 <td class="checkout-modal-left-aligned-column"><img class="checkout-modal-product-photo" src="${product.picture}"></td>
-                                <td class="checkout-modal-left-aligned-column">${product.supplierName} ${product.name}</td>
+                                <td class="checkout-modal-left-aligned-column checkout-modal-column-with-right-padding">${product.supplierName} ${product.name}</td>
                                 <td class="checkout-modal-left-aligned-column">${product.price} ${product.currency}</td>
                                 <td class="checkout-modal-center-aligned-column">${product.quantity}</td>
                                 <td class="checkout-modal-right-aligned-column">${subTotalPrice} ${product.currency}</td>
