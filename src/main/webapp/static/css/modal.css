@@ -1,3 +1,8 @@
+/* GLOBAL */
+        .invisible {
+            visibility: hidden;
+        }
+
 /* BODY */
 
     .block-scroll {
@@ -339,7 +344,7 @@
             background-color: indianred;
         }
 
-/* OWN PROPERTIES OF CART MODAL DIALOG */
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG */
 
     #checkout-modal-header-container {
         display: flex;
@@ -368,15 +373,15 @@
 
             padding-top: 5pt;
             padding-bottom: 5pt;
-            padding-left: 25pt;
-            padding-right: 25pt;
+            padding-left: 20pt;
+            padding-right: 20pt;
 
             column-gap: 25pt;
 
             background-color: #777777;
         }
 
-            .checkout-model-step-separator {
+            .checkout-modal-step-separator {
                 width: 10pt;
                 height: 10pt;
             }
@@ -416,14 +421,61 @@
                 }
 
     #checkout-modal-content-container {
-        display: flex;
-        flex-direction: column;
-        row-gap: 10pt;
-
         padding: 20pt;
 
         background-color: #888888;
     }
+
+        #checkout-modal-cart-table {
+            width: 100%;
+        }
+
+            /* Column width */
+
+            #checkout-modal-picture-column {
+                width: 7%;
+            }
+
+            #checkout-modal-supplier-and-name-column {
+                width: 33%;
+            }
+
+            #checkout-modal-price-and-currency-column {
+                width: 15%;
+            }
+
+            #checkout-modal-quantity-column {
+                width: 15%;
+            }
+
+            #checkout-modal-sub-total-column {
+                width: 15%;
+            }
+            #checkout-modal-buttons-column {
+                width: 15%;
+            }
+
+            /* Column text */
+
+            .checkout-modal-left-aligned-column {
+                text-align: left;
+            }
+
+            .checkout-modal-center-aligned-column {
+                text-align: center;
+            }
+
+            .checkout-modal-right-aligned-column {
+                text-align: right;
+
+            }
+
+            /* Other column related settings */
+
+            .checkout-modal-product-photo {
+                width: 30pt;
+                height: 30pt;
+            }
 
     #checkout-modal-footer-container {
         display: flex;
@@ -434,8 +486,8 @@
         border-bottom-right-radius: 10pt;
         padding-top: 10pt;
         padding-bottom: 10pt;
-        padding-left: 25pt;
-        padding-right: 25pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
 
         background-color: #555555;
     }
@@ -463,8 +515,6 @@
         }
 
             #checkout-modal-previous-button {
-                display: inline-block;
-
                 border-radius: 5pt;
                 padding: 5pt;
 
@@ -473,8 +523,6 @@
             }
 
             #checkout-modal-next-button {
-                display: inline-block;
-
                 border-radius: 5pt;
                 padding: 5pt;
 
