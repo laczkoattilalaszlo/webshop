@@ -80,6 +80,7 @@ public class OrderService {
         for (ProductInCartDto product : cart) {
             ProductInOrderCartDto orderProduct = new ProductInOrderCartDto();
             orderProduct.setProductId(product.getProductId());
+            orderProduct.setProductSupplier(product.getSupplierName());
             orderProduct.setProductName(product.getName());
             orderProduct.setUnitPrice(product.getPrice());
             orderProduct.setCurrency(product.getCurrency());

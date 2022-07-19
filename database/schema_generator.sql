@@ -129,15 +129,16 @@
 -- 9. CREATE ORDER CART TABLE
     create table order_cart
     (
-        product_id   uuid,
-        product_name text,
-        unit_price   numeric,
-        currency     text,
-        quantity     int,
-        order_id     uuid not null
-                     constraint order_cart_order_id_fk
-                     references "order"
-                     on delete cascade
+        product_id          uuid,
+        product_supplier    text,
+        product_name        text,
+        unit_price          numeric,
+        currency            text,
+        quantity            int,
+        order_id            uuid not null
+                            constraint order_cart_order_id_fk
+                            references "order"
+                            on delete cascade
     );
 
 -- 10. CREATE ORDER CONTACT TABLE

@@ -7,6 +7,7 @@ public class ProductInOrderCartDto {
 
     // Field(s)
     private UUID productId;
+    private String productSupplier;
     private String productName;
     private BigDecimal unitPrice;
     private String currency;
@@ -15,6 +16,14 @@ public class ProductInOrderCartDto {
     // Getter(s) and Setter(s)
     public UUID getProductId() {
         return productId;
+    }
+
+    public String getProductSupplier() {
+        return productSupplier;
+    }
+
+    public void setProductSupplier(String productSupplier) {
+        this.productSupplier = productSupplier;
     }
 
     public void setProductId(UUID productId) {

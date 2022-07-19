@@ -85,7 +85,7 @@ public class OrderDaoDb implements OrderDao {
     public List<ProductInOrderCartDto> getOrderCart(UUID orderId){
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT product_id, product_name, unit_price, currency, quantity FROM order_cart WHERE order_id=?";
+            String sql = "SELECT product_id, product_supplier, product_name, unit_price, currency, quantity FROM order_cart WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -95,6 +95,7 @@ public class OrderDaoDb implements OrderDao {
             while (resultSet.next()) {
                 ProductInOrderCartDto productInOrderCartDto = new ProductInOrderCartDto();
                 productInOrderCartDto.setProductId(resultSet.getObject("product_id", java.util.UUID.class));
+                productInOrderCartDto.setProductName(resultSet.getString("product_supplier"));
                 productInOrderCartDto.setProductName(resultSet.getString("product_name"));
                 productInOrderCartDto.setUnitPrice(resultSet.getBigDecimal("unit_price"));
                 productInOrderCartDto.setCurrency(resultSet.getString("currency"));
@@ -113,14 +114,15 @@ public class OrderDaoDb implements OrderDao {
         try (Connection connection = dataSource.getConnection()) {
             for (ProductInOrderCartDto product : orderCart) {
                 // Execute SQL query
-                String sql = "INSERT INTO order_cart (product_id, product_name, unit_price, currency, quantity, order_id) VALUES (?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO order_cart (product_id, product_supplier,product_name, unit_price, currency, quantity, order_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setObject(1, product.getProductId());
-                preparedStatement.setString(2, product.getProductName());
-                preparedStatement.setBigDecimal(3, product.getUnitPrice());
-                preparedStatement.setString(4, product.getCurrency());
-                preparedStatement.setInt(5, product.getQuantity());
-                preparedStatement.setObject(6, orderId);
+                preparedStatement.setString(2, product.getProductSupplier());
+                preparedStatement.setString(3, product.getProductName());
+                preparedStatement.setBigDecimal(4, product.getUnitPrice());
+                preparedStatement.setString(5, product.getCurrency());
+                preparedStatement.setInt(6, product.getQuantity());
+                preparedStatement.setObject(7, orderId);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {

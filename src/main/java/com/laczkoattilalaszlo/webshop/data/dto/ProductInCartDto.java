@@ -7,11 +7,13 @@ public class ProductInCartDto {
 
     // Field(s)
     private UUID productId;
-    private Integer quantity;
+    private String picture;
+    private String supplierName;
     private String name;
     private BigDecimal price;
     private String currency;
-    private String picture;
+    private Integer quantity;
+
 
     // Getter(s) and Setter(s)
     public UUID getProductId() {
@@ -22,12 +24,20 @@ public class ProductInCartDto {
         this.productId = productId;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getName() {
@@ -54,12 +64,11 @@ public class ProductInCartDto {
         this.currency = currency;
     }
 
-    public String getPicture() {
-        return picture;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
-
 }

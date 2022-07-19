@@ -23,14 +23,17 @@ public class CartDaoDb implements CartDao {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
             String sql =    "SELECT cart.product_id, " +
-                                "cart.quantity, " +
+                                "product.picture, " +
+                                "product_supplier.name AS supplier_name, " +
                                 "product.name, " +
                                 "product.price, " +
                                 "product.currency, " +
-                                "product.picture " +
+                                "cart.quantity " +
                             "FROM cart " +
                             "INNER JOIN product " +
                             "ON cart.product_id = product.id " +
+                            "INNER JOIN product_supplier " +
+                            "ON product.supplier_id = product_supplier.id " +
                             "WHERE user_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, userId);
@@ -41,11 +44,12 @@ public class CartDaoDb implements CartDao {
             while (resultSet.next()) {
                 ProductInCartDto productInCartDto = new ProductInCartDto();
                 productInCartDto.setProductId(resultSet.getObject("product_id", java.util.UUID.class));
-                productInCartDto.setQuantity(resultSet.getInt("quantity"));
+                productInCartDto.setPicture(resultSet.getString("picture"));
+                productInCartDto.setSupplierName(resultSet.getString("supplier_name"));
                 productInCartDto.setName(resultSet.getString("name"));
                 productInCartDto.setPrice(resultSet.getBigDecimal("price"));
                 productInCartDto.setCurrency(resultSet.getString("currency"));
-                productInCartDto.setPicture(resultSet.getString("picture"));
+                productInCartDto.setQuantity(resultSet.getInt("quantity"));
                 cart.add(productInCartDto);
             }
 
