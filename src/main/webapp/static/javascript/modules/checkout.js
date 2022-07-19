@@ -160,41 +160,47 @@ async function showCartStep() {
                                 <col id="checkout-modal-sub-total-column">
                                 <col id="checkout-modal-buttons-column">
                             </colgroup>
-                            <tr>
-                                <th class="checkout-modal-left-aligned-column"></th>
-                                <th class="checkout-modal-left-aligned-column"></th>
-                                <th class="checkout-modal-left-aligned-column">Unit price</th>
-                                <th class="checkout-modal-center-aligned-column">Quantity</th>
-                                <th class="checkout-modal-right-aligned-column">Sub-total</th>
-                                <th class="checkout-modal-right-aligned-column"></th>
-                            </tr>`;
+                            <thead>
+                                <tr>
+                                    <th class="checkout-modal-left-aligned-column"></th>
+                                    <th class="checkout-modal-left-aligned-column"></th>
+                                    <th class="checkout-modal-left-aligned-column">Unit price</th>
+                                    <th class="checkout-modal-center-aligned-column">Quantity</th>
+                                    <th class="checkout-modal-right-aligned-column">Sub-total</th>
+                                    <th class="checkout-modal-right-aligned-column"></th>
+                                </tr>
+                            </thead>`;
 
         let totalPrice = 0;
         let currency = cart[0].currency;
         for (let product of cart) {
             let subTotalPrice = product.price * product.quantity;
             totalPrice += subTotalPrice;
-            cartTable += `<tr>
-                            <td class="checkout-modal-left-aligned-column"><img class="checkout-modal-product-photo" src="${product.picture}"></td>
-                            <td class="checkout-modal-left-aligned-column">${product.supplierName} ${product.name}</td>
-                            <td class="checkout-modal-left-aligned-column">${product.price} ${product.currency}</td>
-                            <td class="checkout-modal-center-aligned-column">${product.quantity}</td>
-                            <td class="checkout-modal-right-aligned-column">${subTotalPrice} ${product.currency}</td>
-                            <td class="checkout-modal-right-aligned-column">
-                                <button class="checkout-modal-add-to-cart-button" data-product-id="${product.productId}" type="button">+</button> 
-                                <button class="checkout-modal-remove-from-cart-button" data-product-id="${product.productId}" type="button">-</button>
-                            </td class="checkout-modal-right-aligned-column">
-                          </tr>`;
+            cartTable += `<tbody>
+                            <tr>
+                                <td class="checkout-modal-left-aligned-column"><img class="checkout-modal-product-photo" src="${product.picture}"></td>
+                                <td class="checkout-modal-left-aligned-column">${product.supplierName} ${product.name}</td>
+                                <td class="checkout-modal-left-aligned-column">${product.price} ${product.currency}</td>
+                                <td class="checkout-modal-center-aligned-column">${product.quantity}</td>
+                                <td class="checkout-modal-right-aligned-column">${subTotalPrice} ${product.currency}</td>
+                                <td class="checkout-modal-right-aligned-column">
+                                    <button class="checkout-modal-add-to-cart-button" data-product-id="${product.productId}" type="button">+</button> 
+                                    <button class="checkout-modal-remove-from-cart-button" data-product-id="${product.productId}" type="button">-</button>
+                                </td class="checkout-modal-right-aligned-column">
+                            </tr>
+                          </tbody>`;
         }
 
-        cartTable += `  <tr id="checkout-modal-total-row">
-                            <td class="checkout-modal-left-aligned-column"></td>
-                            <td class="checkout-modal-left-aligned-column"></td>
-                            <td class="checkout-modal-left-aligned-column"></td>
-                            <td class="checkout-modal-center-aligned-column" id="checkout-modal-total-prize-text"><div>Total:</div></td>
-                            <td class="checkout-modal-right-aligned-column" id="checkout-modal-total-price"><div>${totalPrice} ${currency}</div></td>
-                            <td class="checkout-modal-right-aligned-column"></td>
-                        </tr>
+        cartTable += `   <tfoot>
+                            <tr>
+                                <td class="checkout-modal-left-aligned-column"></td>
+                                <td class="checkout-modal-left-aligned-column"></td>
+                                <td class="checkout-modal-left-aligned-column"></td>
+                                <td class="checkout-modal-center-aligned-column" id="checkout-modal-total-prize-text"><div>Total:</div></td>
+                                <td class="checkout-modal-right-aligned-column" id="checkout-modal-total-price"><div>${totalPrice} ${currency}</div></td>
+                                <td class="checkout-modal-right-aligned-column"></td>
+                            </tr>
+                         </tfoot>
                       </table>`;
 
         modalContentContainer.insertAdjacentHTML('afterbegin', cartTable);

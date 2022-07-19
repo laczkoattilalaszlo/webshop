@@ -431,9 +431,15 @@
     }
 
         #checkout-modal-cart-table {
+            display: table;
+
             border-collapse:collapse;
+            border-radius: 5pt;
+            border: transparent solid 10pt;
 
             width: 100%;
+
+            background-color: grey;
         }
 
             /* Column width */
@@ -477,7 +483,7 @@
 
                 }
 
-            /* Other column related settings */
+            /* Other table related settings */
 
                 .checkout-modal-product-photo {
                     border-radius: 5pt;
@@ -497,19 +503,27 @@
                     color: lightgrey;
                 }
 
-                #checkout-modal-total-row {
+                #checkout-modal-cart-table thead tr th {
+                    padding-bottom: 5pt;
+                }
+
+                #checkout-modal-cart-table tbody tr td {
+                    padding-bottom: 5pt;
+                }
+
+                #checkout-modal-cart-table tfoot {
                     border-top: #555555 solid 1pt;
                 }
 
-                #checkout-modal-total-prize-text div {
-                    padding-top: 5pt;
+                    #checkout-modal-cart-table tfoot tr td {
+                        padding-top: 10pt;
+                    }
 
+                #checkout-modal-total-prize-text div {
                     font-weight: bold;
                 }
 
                 #checkout-modal-total-price div {
-                    padding-top: 5pt;
-
                     font-weight: bold;
                     color: crimson;
                 }
