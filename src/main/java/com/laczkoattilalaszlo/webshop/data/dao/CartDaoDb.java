@@ -34,7 +34,8 @@ public class CartDaoDb implements CartDao {
                             "ON cart.product_id = product.id " +
                             "INNER JOIN product_supplier " +
                             "ON product.supplier_id = product_supplier.id " +
-                            "WHERE user_id=?";
+                            "WHERE user_id=? " +
+                            "ORDER BY product_supplier.name ASC, product.name ASC";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
