@@ -136,23 +136,23 @@ async function showCartStep() {
             totalPrice += subTotalPrice;
             cartTable += `<tr>
                             <td class="checkout-modal-left-aligned-column"><img class="checkout-modal-product-photo" src="${product.picture}"></td>
-                            <td class="checkout-modal-left-aligned-column">${product.name}</td>
+                            <td class="checkout-modal-left-aligned-column">${product.supplierName} ${product.name}</td>
                             <td class="checkout-modal-left-aligned-column">${product.price} ${product.currency}</td>
                             <td class="checkout-modal-center-aligned-column">${product.quantity}</td>
                             <td class="checkout-modal-right-aligned-column">${subTotalPrice} ${product.currency}</td>
                             <td class="checkout-modal-right-aligned-column">
-                                <button id="checkout-modal-add-to-cart-button" data-product-id="${product.id}" type="button">+</button> 
-                                <button id="checkout-modal-remove-from-cart-button" data-product-id="${product.id}" type="button">-</button>
+                                <button class="checkout-modal-add-to-cart-button" data-product-id="${product.productId}" type="button">+</button> 
+                                <button class="checkout-modal-remove-from-cart-button" data-product-id="${product.productId}" type="button">-</button>
                             </td class="checkout-modal-right-aligned-column">
                           </tr>`;
         }
 
-        cartTable += `  <tr>
+        cartTable += `  <tr id="checkout-modal-total-row">
                             <td class="checkout-modal-left-aligned-column"></td>
                             <td class="checkout-modal-left-aligned-column"></td>
                             <td class="checkout-modal-left-aligned-column"></td>
-                            <td class="checkout-modal-center-aligned-column" id="checkout-modal-total-prize-text">Total:</td>
-                            <td class="checkout-modal-right-aligned-column" id="checkout-modal-total-price">${totalPrice} ${currency}</td>
+                            <td class="checkout-modal-center-aligned-column" id="checkout-modal-total-prize-text"><div>Total:</div></td>
+                            <td class="checkout-modal-right-aligned-column" id="checkout-modal-total-price"><div>${totalPrice} ${currency}</div></td>
                             <td class="checkout-modal-right-aligned-column"></td>
                         </tr>
                       </table>`;

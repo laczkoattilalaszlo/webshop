@@ -421,61 +421,98 @@
                 }
 
     #checkout-modal-content-container {
+        overflow: auto;
+
         padding: 20pt;
+
+        height: 250pt;
 
         background-color: #888888;
     }
 
         #checkout-modal-cart-table {
+            border-collapse:collapse;
+
             width: 100%;
         }
 
             /* Column width */
 
-            #checkout-modal-picture-column {
-                width: 7%;
-            }
+                #checkout-modal-picture-column {
+                    width: 7%;
+                }
 
-            #checkout-modal-supplier-and-name-column {
-                width: 33%;
-            }
+                #checkout-modal-supplier-and-name-column {
+                    /* Takes the rest percentage */
+                }
 
-            #checkout-modal-price-and-currency-column {
-                width: 15%;
-            }
+                #checkout-modal-price-and-currency-column {
+                    width: 15%;
+                }
 
-            #checkout-modal-quantity-column {
-                width: 15%;
-            }
+                #checkout-modal-quantity-column {
+                    width: 15%;
+                }
 
-            #checkout-modal-sub-total-column {
-                width: 15%;
-            }
-            #checkout-modal-buttons-column {
-                width: 15%;
-            }
+                #checkout-modal-sub-total-column {
+                    width: 15%;
+                }
+
+                #checkout-modal-buttons-column {
+                    width: 14%;
+                }
 
             /* Column text */
 
-            .checkout-modal-left-aligned-column {
-                text-align: left;
-            }
+                .checkout-modal-left-aligned-column {
+                    text-align: left;
+                }
 
-            .checkout-modal-center-aligned-column {
-                text-align: center;
-            }
+                .checkout-modal-center-aligned-column {
+                    text-align: center;
+                }
 
-            .checkout-modal-right-aligned-column {
-                text-align: right;
+                .checkout-modal-right-aligned-column {
+                    text-align: right;
 
-            }
+                }
 
             /* Other column related settings */
 
-            .checkout-modal-product-photo {
-                width: 30pt;
-                height: 30pt;
-            }
+                .checkout-modal-product-photo {
+                    border-radius: 5pt;
+
+                    width: 30pt;
+                    height: 30pt;
+                }
+
+                .checkout-modal-add-to-cart-button, .checkout-modal-remove-from-cart-button {
+                    border-radius: 7pt;
+                    margin-left: 2pt;
+
+                    width: 22pt;
+                    height: 22pt;
+
+                    background-color: #555555;
+                    color: lightgrey;
+                }
+
+                #checkout-modal-total-row {
+                    border-top: #555555 solid 1pt;
+                }
+
+                #checkout-modal-total-prize-text div {
+                    padding-top: 5pt;
+
+                    font-weight: bold;
+                }
+
+                #checkout-modal-total-price div {
+                    padding-top: 5pt;
+
+                    font-weight: bold;
+                    color: crimson;
+                }
 
     #checkout-modal-footer-container {
         display: flex;
