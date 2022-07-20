@@ -88,11 +88,11 @@
 -- 6 CREATE SHIPPING ADDRESS TABLE
     create table shipping_address
     (
-        name    text,
-        zip     text,
-        country text,
-        city    text,
-        address text,
+        name    text default '',
+        zip     text default '',
+        country text default '',
+        city    text default '',
+        address text default '',
         user_id uuid
                 constraint shipping_address_user_id_fk
                 references "user"
@@ -102,11 +102,11 @@
 -- 7. CREATE BILLING ADDRESS TABLE
     create table billing_address
     (
-        name    text,
-        zip     text,
-        country text,
-        city    text,
-        address text,
+        name    text default '',
+        zip     text default '',
+        country text default '',
+        city    text default '',
+        address text default '',
         user_id uuid
                 constraint billing_address_user_id_fk
                 references "user"
@@ -161,11 +161,11 @@
 -- 11. CREATE ORDER SHIPPING ADDRESS TABLE
     create table order_shipping_address
     (
-        name     text,
-        zip      text,
-        country  text,
-        city     text,
-        address  text,
+        name     text default '',
+        zip      text default '',
+        country  text default '',
+        city     text default '',
+        address  text default '',
         order_id uuid not null
                  constraint order_shipping_address_order_id_fk
                  references "order"
@@ -178,11 +178,11 @@
 -- 12. CREATE BILLING ADDRESS TABLE
     create table order_billing_address
     (
-        name     text,
-        zip      text,
-        country  text,
-        city     text,
-        address  text,
+        name     text default '',
+        zip      text default '',
+        country  text default '',
+        city     text default '',
+        address  text default '',
         order_id uuid not null
                  constraint order_billing_address_order_id_fk
                  references "order"

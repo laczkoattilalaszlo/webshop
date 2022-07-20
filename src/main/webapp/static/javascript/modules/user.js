@@ -143,10 +143,7 @@ function addEventListenerToShippingAddressTab() {
         userModalContentContainer.innerHTML = "";
 
         // Get existing user data from backend
-        let userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-        if (userShippingAddress == null) {
-            userShippingAddress = {zip: "", country: "", city: "", address: ""};
-        }
+        const userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
 
         // Fill dialog content with shipping address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
@@ -224,10 +221,7 @@ function addEventListenerToBillingAddressTab() {
         userModalContentContainer.innerHTML = "";
 
         // Get existing user data from backend
-        let userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-        if (userBillingAddress == null) {
-            userBillingAddress = {zip: "", country: "", city: "", address: ""};
-        }
+        const userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
 
         // Fill dialog content with billing address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
