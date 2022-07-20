@@ -146,9 +146,9 @@
 -- 10. CREATE ORDER CONTACT TABLE
     create table order_contact
     (
-        name     text,
-        email    text,
-        phone    text,
+        name     text default '',
+        email    text default '',
+        phone    text default '',
         order_id uuid not null
                  constraint order_contact_order_id_fk
                  references "order"
