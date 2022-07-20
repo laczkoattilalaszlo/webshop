@@ -6,22 +6,10 @@ import {showReviewStep} from "./checkout-review.js";
 // EXPORTED FUNCTION(S) //
 export async function showDeliveryStep() {
     // Mark earlier steps as finished
-    const finishedSteps = document.querySelectorAll(".checkout-modal-step-finished");
-    for (let finishedStep of finishedSteps) {
-        finishedStep.classList.remove("checkout-modal-step-finished");
-    }
-
-    const cartStep = document.querySelector("#checkout-modal-cart-step");
-    cartStep.classList.add("checkout-modal-step-finished");
+    markEarlierStepsAsFinished();
 
     // Highlight delivery step
-    const highlightedSteps = document.querySelectorAll(".checkout-modal-step-selected");
-    for (let highlightedStep of highlightedSteps) {
-        highlightedStep.classList.remove("checkout-modal-step-selected");
-    }
-
-    const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
-    deliveryStep.classList.add("checkout-modal-step-selected");
+    highlightDeliveryStep();
 
     // Change close button
     changeCloseButton();
@@ -59,7 +47,7 @@ export async function showDeliveryStep() {
     const modalContentContainer = document.querySelector("#checkout-modal-content-container");
     modalContentContainer.innerHTML = "";
 
-    // Get order contact, order shipping address and order billing address
+    // Get active order contact, active order shipping address and active order billing address
     let orderContact = await fetchData("GET", `/active-order-contact`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
     if (orderContact == null) {
         orderContact = {name: "", email: "", phone: ""};
@@ -151,77 +139,36 @@ export async function showDeliveryStep() {
     `);
 
     // Add event listeners to 'Load Contact Details' buttons
-    const loadContactDetailsButton = document.querySelector("#load-contact-details-button");
-    loadContactDetailsButton.addEventListener('click', async () => {
-        // Get existing user data from backend
-        const userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-
-        // Fill contact related fields
-        const contactNameInput = document.querySelector('#contact-name-input');
-        contactNameInput.setAttribute("value", userContact.name);
-
-        const contactEmailInput = document.querySelector('#contact-email-input');
-        contactEmailInput.setAttribute("value", userContact.email);
-
-        const contactPhoneInput = document.querySelector('#contact-phone-input');
-        contactPhoneInput.setAttribute("value", userContact.phone);
-    });
+    addEventListenerToLoadContactDetailsButton();
 
     // Add event listeners to 'Load Shipping Details' buttons
-    const loadShippingDetailsButton = document.querySelector("#load-shipping-details-button");
-    loadShippingDetailsButton.addEventListener('click', async () => {
-        // Get existing user data from backend
-        let userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-        if (userShippingAddress == null) {
-            userShippingAddress = {name: "", zip: "", country: "", city: "", address: ""};
-        }
-
-        // Fill shipping related fields
-        const shippingNameInput = document.querySelector('#shipping-name-input');
-        shippingNameInput.setAttribute("value", userShippingAddress.name);
-
-        const shippingZipInput = document.querySelector('#shipping-zip-input');
-        shippingZipInput.setAttribute("value", userShippingAddress.zip);
-
-        const shippingCountryInput = document.querySelector('#shipping-country-input');
-        shippingCountryInput.setAttribute("value", userShippingAddress.country);
-
-        const shippingCityInput = document.querySelector('#shipping-city-input');
-        shippingCityInput.setAttribute("value", userShippingAddress.city);
-
-        const shippingAddressInput = document.querySelector('#shipping-address-input');
-        shippingAddressInput.setAttribute("value", userShippingAddress.address);
-    });
+    addEventListenerToLoadShippingDetailsButton
 
     // Add event listeners to 'Load Billing Details' buttons
-    const loadBillingDetailsButton = document.querySelector("#load-billing-details-button");
-    loadBillingDetailsButton.addEventListener('click', async () => {
-        // Get existing user data from backend
-        let userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-        if (userBillingAddress == null) {
-            userBillingAddress = {name: "", zip: "", country: "", city: "", address: ""};
-        }
-
-        // Fill billing related fields
-        const billingNameInput = document.querySelector('#billing-name-input');
-        billingNameInput.setAttribute("value", userBillingAddress.name);
-
-        const billingZipInput = document.querySelector('#billing-zip-input');
-        billingZipInput.setAttribute("value", userBillingAddress.zip);
-
-        const billingCountryInput = document.querySelector('#billing-country-input');
-        billingCountryInput.setAttribute("value", userBillingAddress.country);
-
-        const billingCityInput = document.querySelector('#billing-city-input');
-        billingCityInput.setAttribute("value", userBillingAddress.city);
-
-        const billingAddressInput = document.querySelector('#billing-address-input');
-        billingAddressInput.setAttribute("value", userBillingAddress.address);
-    });
+    addEventListenerToLoadBillingDetailsButton
 }
 
-
 // INNER FUNCTION(S) //
+function markEarlierStepsAsFinished() {
+    const finishedSteps = document.querySelectorAll(".checkout-modal-step-finished");
+    for (let finishedStep of finishedSteps) {
+        finishedStep.classList.remove("checkout-modal-step-finished");
+    }
+
+    const cartStep = document.querySelector("#checkout-modal-cart-step");
+    cartStep.classList.add("checkout-modal-step-finished");
+}
+
+function highlightDeliveryStep() {
+    const highlightedSteps = document.querySelectorAll(".checkout-modal-step-selected");
+    for (let highlightedStep of highlightedSteps) {
+        highlightedStep.classList.remove("checkout-modal-step-selected");
+    }
+
+    const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
+    deliveryStep.classList.add("checkout-modal-step-selected");
+}
+
 function changeCloseButton() {
     let checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
     checkoutModalCloseButton.remove();
@@ -299,4 +246,76 @@ async function updateActiveOrderBillingAddress() {
 
     // Update active order billing address
     await fetchData("PUT", `/active-order-address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${billingNameInputValue}", "zip": "${billingZipInputValue}", "country": "${billingCountryInputValue}", "city": "${billingCityInputValue}", "address": "${billingAddressInputValue}"}`, "application/json", null);
+}
+
+function addEventListenerToLoadContactDetailsButton() {
+    const loadContactDetailsButton = document.querySelector("#load-contact-details-button");
+    loadContactDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        const userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+
+        // Fill contact related fields
+        const contactNameInput = document.querySelector('#contact-name-input');
+        contactNameInput.setAttribute("value", userContact.name);
+
+        const contactEmailInput = document.querySelector('#contact-email-input');
+        contactEmailInput.setAttribute("value", userContact.email);
+
+        const contactPhoneInput = document.querySelector('#contact-phone-input');
+        contactPhoneInput.setAttribute("value", userContact.phone);
+    });
+}
+
+function addEventListenerToLoadShippingDetailsButton() {
+    const loadShippingDetailsButton = document.querySelector("#load-shipping-details-button");
+    loadShippingDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        let userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userShippingAddress == null) {
+            userShippingAddress = {name: "", zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill shipping related fields
+        const shippingNameInput = document.querySelector('#shipping-name-input');
+        shippingNameInput.setAttribute("value", userShippingAddress.name);
+
+        const shippingZipInput = document.querySelector('#shipping-zip-input');
+        shippingZipInput.setAttribute("value", userShippingAddress.zip);
+
+        const shippingCountryInput = document.querySelector('#shipping-country-input');
+        shippingCountryInput.setAttribute("value", userShippingAddress.country);
+
+        const shippingCityInput = document.querySelector('#shipping-city-input');
+        shippingCityInput.setAttribute("value", userShippingAddress.city);
+
+        const shippingAddressInput = document.querySelector('#shipping-address-input');
+        shippingAddressInput.setAttribute("value", userShippingAddress.address);
+    });
+}
+
+function addEventListenerToLoadBillingDetailsButton() {
+    const loadBillingDetailsButton = document.querySelector("#load-billing-details-button");
+    loadBillingDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        let userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userBillingAddress == null) {
+            userBillingAddress = {name: "", zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill billing related fields
+        const billingNameInput = document.querySelector('#billing-name-input');
+        billingNameInput.setAttribute("value", userBillingAddress.name);
+
+        const billingZipInput = document.querySelector('#billing-zip-input');
+        billingZipInput.setAttribute("value", userBillingAddress.zip);
+
+        const billingCountryInput = document.querySelector('#billing-country-input');
+        billingCountryInput.setAttribute("value", userBillingAddress.country);
+
+        const billingCityInput = document.querySelector('#billing-city-input');
+        billingCityInput.setAttribute("value", userBillingAddress.city);
+
+        const billingAddressInput = document.querySelector('#billing-address-input');
+        billingAddressInput.setAttribute("value", userBillingAddress.address);
+    });
 }
