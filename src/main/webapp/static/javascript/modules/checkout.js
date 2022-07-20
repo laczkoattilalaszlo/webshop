@@ -63,9 +63,6 @@ export function addEventListenerToCartButton() {
         // Show cart step
         await showCartStep();
     });
-
-    // Click when loading site (development only)
-    cartButton.click();
 }
 
 // INNER FUNCTIONS //
@@ -81,28 +78,6 @@ function closeModalDialog() {
     // Remove modal dialog
     const modalDialog = document.querySelector("#modal-dialog");
     modalDialog.remove();
-}
-
-function changePreviousButton(actionToExecute) {
-    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.remove();
-
-    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
-    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
-
-    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.addEventListener('click', async () => await actionToExecute());
-}
-
-function changeNextButton(actionToExecute) {
-    let modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.remove();
-
-    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
-    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
-
-    modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.addEventListener('click', async () => await actionToExecute());
 }
 
 async function showCartStep() {
