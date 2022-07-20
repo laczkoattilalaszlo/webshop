@@ -15,8 +15,8 @@ export async function showCartStep() {
     // Add highlight to cart step
     cartStep.classList.add("checkout-modal-step-selected");
 
-    // Add event listener to close button
-    addEventListenerToCloseButton();
+    // Change close button
+    changeCloseButton();
 
     // Change previous button
     changePreviousButton();
@@ -105,9 +105,15 @@ export async function showCartStep() {
 }
 
 // INNER FUNCTION(S) //
-function addEventListenerToCloseButton() {
-    const checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
-    checkoutModalCloseButton.addEventListener('click', ()=> closeModalDialog());
+function changeCloseButton() {
+    let checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
+    checkoutModalCloseButton.remove();
+
+    const checkoutModalFooterContainerLeftUnit = document.querySelector("#checkout-modal-footer-container-left-unit");
+    checkoutModalFooterContainerLeftUnit.insertAdjacentHTML('afterbegin', `<div id="checkout-modal-close-button">Close</div>`);
+
+    checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
+    checkoutModalCloseButton.addEventListener('click', async () => closeModalDialog());
 }
 
 function changePreviousButton() {
