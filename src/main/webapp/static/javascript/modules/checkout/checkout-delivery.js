@@ -1,6 +1,7 @@
+import {fetchData} from "../fetch.js";
+import {closeModalDialog} from "./checkout.js";
 import {showCartStep} from "./checkout-cart.js";
 import {showReviewStep} from "./checkout-review.js";
-import {fetchData} from "../fetch.js";
 
 // EXPORTED FUNCTION(S) //
 export async function showDeliveryStep() {
@@ -22,6 +23,9 @@ export async function showDeliveryStep() {
     const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
     deliveryStep.classList.add("checkout-modal-step-selected");
 
+    // Change close button
+    changeCloseButton();
+
     // Change previous button
     let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
     modalPreviousButton.remove();
@@ -30,7 +34,12 @@ export async function showDeliveryStep() {
     checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
 
     modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.addEventListener('click', async () => await showCartStep());
+    modalPreviousButton.addEventListener('click', async () => {
+        await updateActiveOrderContact();
+        await updateActiveOrderShippingAddress();
+        await updateActiveOrderBillingAddress();
+        await showCartStep();
+    });
 
     // Change next button
     let modalNextButton = document.querySelector("#checkout-modal-next-button");
@@ -39,7 +48,12 @@ export async function showDeliveryStep() {
     checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
 
     modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.addEventListener('click', async () => await showReviewStep());
+    modalNextButton.addEventListener('click', async () => {
+        await updateActiveOrderContact();
+        await updateActiveOrderShippingAddress();
+        await updateActiveOrderBillingAddress();
+        await showReviewStep();
+    });
 
     // Empty modal dialog content
     const modalContentContainer = document.querySelector("#checkout-modal-content-container");
@@ -204,4 +218,85 @@ export async function showDeliveryStep() {
         const billingAddressInput = document.querySelector('#billing-address-input');
         billingAddressInput.setAttribute("value", userBillingAddress.address);
     });
+}
+
+
+// INNER FUNCTION(S) //
+function changeCloseButton() {
+    let checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
+    checkoutModalCloseButton.remove();
+
+    const checkoutModalFooterContainerLeftUnit = document.querySelector("#checkout-modal-footer-container-left-unit");
+    checkoutModalFooterContainerLeftUnit.insertAdjacentHTML('afterbegin', `<div id="checkout-modal-close-button">Close</div>`);
+
+    checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
+    checkoutModalCloseButton.addEventListener('click', async () => {
+        await updateActiveOrderContact();
+        await updateActiveOrderShippingAddress();
+        await updateActiveOrderBillingAddress();
+        closeModalDialog();
+    });
+}
+
+async function updateActiveOrderContact() {
+    // Get input values
+    const contactNameInput = document.querySelector('#contact-name-input');
+    const contactNameInputValue = contactNameInput.value;
+
+    const contactEmailInput = document.querySelector('#contact-email-input');
+    const contactEmailInputValue = contactEmailInput.value;
+
+    const contactPhoneInput = document.querySelector('#contact-phone-input');
+    const contactPhoneInputValue = contactPhoneInput.value;
+
+    // Update active order contact
+    await fetchData("PUT", `/active-order-contact`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${contactNameInputValue}", "email": "${contactEmailInputValue}", "phone": "${contactPhoneInputValue}"}`, "application/json", null);
+}
+
+async function updateActiveOrderShippingAddress() {
+    // Get input values
+    const shippingNameInput = document.querySelector('#shipping-name-input');
+    const shippingNameInputValue = shippingNameInput.value;
+
+    const shippingZipInput = document.querySelector('#shipping-zip-input');
+    const shippingZipInputValue = shippingZipInput.value;
+
+
+    const shippingCountryInput = document.querySelector('#shipping-country-input');
+    const shippingCountryInputValue = shippingCountryInput.value;
+
+
+    const shippingCityInput = document.querySelector('#shipping-city-input');
+    const shippingCityInputValue = shippingCityInput.value;
+
+
+    const shippingAddressInput = document.querySelector('#shipping-address-input');
+    const shippingAddressInputValue = shippingAddressInput.value;
+
+    // Update active order shipping address
+    await fetchData("PUT", `/active-order-address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${shippingNameInputValue}", "zip": "${shippingZipInputValue}", "country": "${shippingCountryInputValue}", "city": "${shippingCityInputValue}", "address": "${shippingAddressInputValue}"}`, "application/json", null);
+}
+
+async function updateActiveOrderBillingAddress() {
+    // Get input values
+    const billingNameInput = document.querySelector('#billing-name-input');
+    const billingNameInputValue = billingNameInput.value;
+
+    const billingZipInput = document.querySelector('#billing-zip-input');
+    const billingZipInputValue = billingZipInput.value;
+
+
+    const billingCountryInput = document.querySelector('#billing-country-input');
+    const billingCountryInputValue = billingCountryInput.value;
+
+
+    const billingCityInput = document.querySelector('#billing-city-input');
+    const billingCityInputValue = billingCityInput.value;
+
+
+    const billingAddressInput = document.querySelector('#billing-address-input');
+    const billingAddressInputValue = billingAddressInput.value;
+
+    // Update active order billing address
+    await fetchData("PUT", `/active-order-address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${billingNameInputValue}", "zip": "${billingZipInputValue}", "country": "${billingCountryInputValue}", "city": "${billingCityInputValue}", "address": "${billingAddressInputValue}"}`, "application/json", null);
 }

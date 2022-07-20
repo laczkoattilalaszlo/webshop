@@ -57,21 +57,12 @@ export function addEventListenerToCartButton() {
             </div>
         `);
 
-        // Add event listener to close button
-        addEventListenerToCloseButton();
-
         // Show cart step
         await showCartStep();
     });
 }
 
-// INNER FUNCTION(S) //
-function addEventListenerToCloseButton() {
-    const checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
-    checkoutModalCloseButton.addEventListener('click', ()=> closeModalDialog());
-}
-
-function closeModalDialog() {
+export function closeModalDialog() {
     // Enable scrolling on site
     body.classList.remove("block-scroll");
 

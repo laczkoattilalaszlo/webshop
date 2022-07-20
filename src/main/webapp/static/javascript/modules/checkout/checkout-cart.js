@@ -1,4 +1,5 @@
 import {fetchData} from "../fetch.js";
+import {closeModalDialog} from "./checkout.js";
 import {showDeliveryStep} from "./checkout-delivery.js";
 
 // EXPORTED FUNCTION(S) //
@@ -13,6 +14,9 @@ export async function showCartStep() {
 
     // Add highlight to cart step
     cartStep.classList.add("checkout-modal-step-selected");
+
+    // Add event listener to close button
+    addEventListenerToCloseButton();
 
     // Change previous button
     changePreviousButton();
@@ -98,12 +102,14 @@ export async function showCartStep() {
 
     // Create active order if it does not exist
     await fetchData("POST", `/active-order`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
-
-    // Transfer cart content to active order cart
-    await fetchData("PUT", `/active-order-cart`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
 }
 
 // INNER FUNCTION(S) //
+function addEventListenerToCloseButton() {
+    const checkoutModalCloseButton = document.querySelector("#checkout-modal-close-button");
+    checkoutModalCloseButton.addEventListener('click', ()=> closeModalDialog());
+}
+
 function changePreviousButton() {
     let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
     modalPreviousButton.remove();
@@ -123,7 +129,10 @@ function changeNextButton() {
     checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
 
     modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.addEventListener('click', async () => await showDeliveryStep());
+    modalNextButton.addEventListener('click', async () => {
+        await transferCartContentToActiveOrderCart();
+        await showDeliveryStep();
+    });
 }
 
 function addEventListenerToModalAddToCartButton() {
@@ -160,4 +169,8 @@ function addEventListenerToModalRemoveCartButton() {
             }
         });
     }
+}
+
+async function transferCartContentToActiveOrderCart() {
+    await fetchData("PUT", `/active-order-cart`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
 }
