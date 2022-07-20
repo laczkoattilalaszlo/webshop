@@ -197,7 +197,7 @@ public class OrderDaoDb implements OrderDao {
     public AddressDto getOrderAddress(String tableName, UUID orderId) {
         try (Connection connection = dataSource.getConnection()) {
             // Execute SQL query
-            String sql = "SELECT zip, country, city, address FROM " + tableName + " WHERE order_id=?";
+            String sql = "SELECT name, zip, country, city, address FROM " + tableName + " WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -205,6 +205,7 @@ public class OrderDaoDb implements OrderDao {
             // Extract result
             if (resultSet.next()) {
                 AddressDto addressDto = new AddressDto();
+                addressDto.setName(resultSet.getString("name"));
                 addressDto.setZip(resultSet.getString("zip"));
                 addressDto.setCountry(resultSet.getString("country"));
                 addressDto.setCity(resultSet.getString("city"));
@@ -221,13 +222,14 @@ public class OrderDaoDb implements OrderDao {
     @Override
     public void addOrderAddress(String tableName, UUID orderId, AddressDto orderAddress) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO " + tableName + " (zip, country, city, address, order_id) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO " + tableName + " (name, zip, country, city, address, order_id) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, orderAddress.getZip());
-            preparedStatement.setString(2, orderAddress.getCountry());
-            preparedStatement.setString(3, orderAddress.getCity());
-            preparedStatement.setObject(4, orderAddress.getAddress());
-            preparedStatement.setObject(5, orderId);
+            preparedStatement.setString(1, orderAddress.getName());
+            preparedStatement.setString(2, orderAddress.getZip());
+            preparedStatement.setString(3, orderAddress.getCountry());
+            preparedStatement.setString(4, orderAddress.getCity());
+            preparedStatement.setObject(5, orderAddress.getAddress());
+            preparedStatement.setObject(6, orderId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

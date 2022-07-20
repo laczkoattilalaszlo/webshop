@@ -88,6 +88,7 @@
 -- 6 CREATE SHIPPING ADDRESS TABLE
     create table shipping_address
     (
+        name    text,
         zip     text,
         country text,
         city    text,
@@ -101,6 +102,7 @@
 -- 7. CREATE BILLING ADDRESS TABLE
     create table billing_address
     (
+        name    text,
         zip     text,
         country text,
         city    text,
@@ -159,6 +161,7 @@
 -- 11. CREATE ORDER SHIPPING ADDRESS TABLE
     create table order_shipping_address
     (
+        name     text,
         zip      text,
         country  text,
         city     text,
@@ -175,6 +178,7 @@
 -- 12. CREATE BILLING ADDRESS TABLE
     create table order_billing_address
     (
+        name     text,
         zip      text,
         country  text,
         city     text,

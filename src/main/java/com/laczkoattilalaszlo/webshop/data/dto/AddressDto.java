@@ -3,12 +3,21 @@ package com.laczkoattilalaszlo.webshop.data.dto;
 public class AddressDto {
 
     // Field(s)
+    private String name;
     private String zip;
     private String country;
     private String city;
     private String address;
 
     // Getter(s) and Setter(s)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getZip() {
         return zip;
     }

@@ -150,6 +150,9 @@ function addEventListenerToShippingAddressTab() {
 
         // Fill dialog content with shipping address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
+            <div class="user-modal-content-container-row">
+                <label for="user-modal-name-input">Name / Company:</label><input type="text" id="user-modal-name-input" value="${userShippingAddress.name}" required>
+            </div>
             <div class="user-modal-content-container-double-row">
                 <div class="user-modal-content-container-double-row-row" id="zip-container">
                     <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" value="${userShippingAddress.zip}" required>
@@ -177,6 +180,9 @@ function addEventListenerToShippingAddressTab() {
         userModalUpdateButton = document.querySelector("#user-modal-update-button");
         userModalUpdateButton.addEventListener('click', async () => {
             // Get input values
+            const userModalNameInput = document.querySelector("#user-modal-name-input");
+            const userModalNameInputValue = userModalNameInput.value;
+
             const userModalZipInput = document.querySelector("#user-modal-zip-input");
             const userModalZipInputValue = userModalZipInput.value;
 
@@ -190,7 +196,7 @@ function addEventListenerToShippingAddressTab() {
             const userModalAddressInputValue = userModalAddressInput.value;
 
             // Update user data
-            const response = await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+            const response = await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${userModalNameInputValue}", "zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
 
             // Show result of update operation in modal dialog
             const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
@@ -225,6 +231,9 @@ function addEventListenerToBillingAddressTab() {
 
         // Fill dialog content with billing address related fields and user data
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
+            <div class="user-modal-content-container-row">
+                <label for="user-modal-name-input">Name / Company:</label><input type="text" id="user-modal-name-input" value="${userBillingAddress.name}" required>
+            </div>
             <div class="user-modal-content-container-double-row">
                 <div class="user-modal-content-container-double-row-row" id="zip-container">
                     <label for="user-modal-zip-input">Zip:</label><input type="text" id="user-modal-zip-input" value="${userBillingAddress.zip}" required>
@@ -252,6 +261,9 @@ function addEventListenerToBillingAddressTab() {
         userModalUpdateButton = document.querySelector("#user-modal-update-button");
         userModalUpdateButton.addEventListener('click', async () => {
             // Get input values
+            const userModalNameInput = document.querySelector("#user-modal-name-input");
+            const userModalNameInputValue = userModalNameInput.value;
+
             const userModalZipInput = document.querySelector("#user-modal-zip-input");
             const userModalZipInputValue = userModalZipInput.value;
 
@@ -265,7 +277,7 @@ function addEventListenerToBillingAddressTab() {
             const userModalAddressInputValue = userModalAddressInput.value;
 
             // Update user data
-            const response = await fetchData("PUT", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+            const response = await fetchData("PUT", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${userModalNameInputValue}", "zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
 
             // Show result of update operation in modal dialog
             const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
