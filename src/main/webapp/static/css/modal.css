@@ -422,6 +422,20 @@
                     height: 22pt;
                 }
 
+    #checkout-modal-content-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15pt;
+
+        overflow: auto;
+
+        padding: 20pt;
+
+        height: 350pt;
+
+        background-color: #888888;
+    }
+
     #checkout-modal-footer-container {
         display: flex;
         flex-direction: row;
@@ -479,250 +493,226 @@
 
 /* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */
 
-    #checkout-modal-content-container {
-        overflow: auto;
+    #checkout-modal-cart-table {
+        display: table;
 
-        padding: 20pt;
+        border-collapse:collapse;
+        border-radius: 5pt;
+        border: transparent solid 10pt;
 
-        height: 250pt;
+        width: 100%;
 
-        background-color: #888888;
+        background-color: grey;
     }
 
-        #checkout-modal-cart-table {
-            display: table;
+        /* Column width */
 
-            border-collapse:collapse;
-            border-radius: 5pt;
-            border: transparent solid 10pt;
+            #checkout-modal-picture-column {
+                width: 8%;
+            }
 
-            width: 100%;
+            #checkout-modal-supplier-and-name-column {
+                width: 33%;
+            }
+
+            #checkout-modal-price-and-currency-column {
+                width: 15%;
+            }
+
+            #checkout-modal-quantity-column {
+                width: 15%;
+            }
+
+            #checkout-modal-sub-total-column {
+                width: 15%;
+            }
+
+            #checkout-modal-buttons-column {
+                width: 14%;
+            }
+
+        /* Column text */
+
+            .checkout-modal-left-aligned-column {
+                text-align: left;
+            }
+
+            .checkout-modal-center-aligned-column {
+                text-align: center;
+            }
+
+            .checkout-modal-right-aligned-column {
+                text-align: right;
+            }
+
+            .checkout-modal-column-with-right-padding {
+                padding-right: 15pt;
+            }
+
+        /* Row padding */
+
+            #checkout-modal-cart-table thead tr th {
+                padding-bottom: 5pt;
+            }
+
+            #checkout-modal-cart-table tbody tr td {
+                padding-bottom: 5pt;
+            }
+
+            #checkout-modal-cart-table tfoot tr td {
+                padding-top: 10pt;
+            }
+
+        /* Other table related settings */
+
+            #checkout-modal-cart-table tfoot {
+                border-top: #555555 solid 1pt;
+            }
+
+            .checkout-modal-product-photo {
+                border-radius: 5pt;
+
+                width: 30pt;
+                height: 30pt;
+            }
+
+            .checkout-modal-add-to-cart-button, .checkout-modal-remove-from-cart-button {
+                border-radius: 7pt;
+                margin-left: 2pt;
+
+                width: 22pt;
+                height: 22pt;
+
+                background-color: #555555;
+                color: lightgrey;
+            }
+
+            #checkout-modal-total-prize-text div {
+                font-weight: bold;
+            }
+
+            #checkout-modal-total-price div {
+                font-weight: bold;
+                color: crimson;
+            }
+
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / DELIVERY STEP */
+
+    .delivery-content-unit {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .delivery-content-unit-title {
+            border-top-left-radius: 5pt;
+            border-top-right-radius: 5pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+            .delivery-content-unit-title span {
+                font-weight: bold;
+            }
+
+            .delivery-content-unit-title button {
+                border-radius: 7pt;
+
+                width: 120pt;
+
+                background-color: #555555;
+                color: lightgrey;
+
+                float: right;
+            }
+
+        .delivery-content-unit-content {
+            border-bottom-left-radius: 5pt;
+            border-bottom-right-radius: 5pt;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10pt;
+
+            padding: 10pt;
 
             background-color: grey;
         }
 
-            /* Column width */
-
-                #checkout-modal-picture-column {
-                    width: 8%;
-                }
-
-                #checkout-modal-supplier-and-name-column {
-                    width: 33%;
-                }
-
-                #checkout-modal-price-and-currency-column {
-                    width: 15%;
-                }
-
-                #checkout-modal-quantity-column {
-                    width: 15%;
-                }
-
-                #checkout-modal-sub-total-column {
-                    width: 15%;
-                }
-
-                #checkout-modal-buttons-column {
-                    width: 14%;
-                }
-
-            /* Column text */
-
-                .checkout-modal-left-aligned-column {
-                    text-align: left;
-                }
-
-                .checkout-modal-center-aligned-column {
-                    text-align: center;
-                }
-
-                .checkout-modal-right-aligned-column {
-                    text-align: right;
-                }
-
-                .checkout-modal-column-with-right-padding {
-                    padding-right: 15pt;
-                }
-
-            /* Row padding */
-
-                #checkout-modal-cart-table thead tr th {
-                    padding-bottom: 5pt;
-                }
-
-                #checkout-modal-cart-table tbody tr td {
-                    padding-bottom: 5pt;
-                }
-
-                #checkout-modal-cart-table tfoot tr td {
-                    padding-top: 10pt;
-                }
-
-            /* Other table related settings */
-
-                #checkout-modal-cart-table tfoot {
-                    border-top: #555555 solid 1pt;
-                }
-
-                .checkout-modal-product-photo {
-                    border-radius: 5pt;
-
-                    width: 30pt;
-                    height: 30pt;
-                }
-
-                .checkout-modal-add-to-cart-button, .checkout-modal-remove-from-cart-button {
-                    border-radius: 7pt;
-                    margin-left: 2pt;
-
-                    width: 22pt;
-                    height: 22pt;
-
-                    background-color: #555555;
-                    color: lightgrey;
-                }
-
-                #checkout-modal-total-prize-text div {
-                    font-weight: bold;
-                }
-
-                #checkout-modal-total-price div {
-                    font-weight: bold;
-                    color: crimson;
-                }
-
-/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / DELIVERY STEP */
-
-    #checkout-modal-content-container {
-        display: flex;
-        flex-direction: column;
-        row-gap: 15pt;
-
-        overflow: auto;
-
-        padding: 20pt;
-
-        height: 350pt;
-
-        background-color: #888888;
-    }
-
-        .delivery-content-unit {
-            display: flex;
-            flex-direction: column;
-        }
-
-            .delivery-content-unit-title {
-                border-top-left-radius: 5pt;
-                border-top-right-radius: 5pt;
-                padding: 10pt;
-
-                background-color: dimgrey;
-            }
-
-                .delivery-content-unit-title span {
-                    font-weight: bold;
-                }
-
-                .delivery-content-unit-title button {
-                    border-radius: 7pt;
-
-                    width: 120pt;
-
-                    background-color: #555555;
-                    color: lightgrey;
-
-                    float: right;
-                }
-
-            .delivery-content-unit-content {
-                border-bottom-left-radius: 5pt;
-                border-bottom-right-radius: 5pt;
+            .checkout-modal-content-container-single-row {
                 display: flex;
                 flex-direction: column;
-                row-gap: 10pt;
-
-                padding: 10pt;
-
-                background-color: grey;
             }
 
-                .checkout-modal-content-container-single-row {
+                .checkout-modal-content-container-single-row input {
+                    margin-top: 3pt;
+                    border-radius: 5pt;
+                    padding: 5pt;
+                }
+
+                    #billing-zip-container {
+                        width: 10%;
+                    }
+
+                    #billing-country-container {
+                        width: 40%;
+                    }
+
+                    #billing-city-container {
+                        width: 50%;
+                    }
+
+            .checkout-modal-content-container-double-row {
+                display: flex;
+                flex-direction: row;
+
+                column-gap: 15pt;
+            }
+
+                .checkout-modal-content-container-double-row-unit {
                     display: flex;
                     flex-direction: column;
                 }
 
-                    .checkout-modal-content-container-single-row input {
+                    .checkout-modal-content-container-double-row-unit input {
                         margin-top: 3pt;
                         border-radius: 5pt;
                         padding: 5pt;
                     }
 
-                        #billing-zip-container {
-                            width: 10%;
-                        }
-
-                        #billing-country-container {
-                            width: 40%;
-                        }
-
-                        #billing-city-container {
+                        #contact-email-container {
                             width: 50%;
                         }
 
-                .checkout-modal-content-container-double-row {
-                    display: flex;
-                    flex-direction: row;
-
-                    column-gap: 15pt;
-                }
-
-                    .checkout-modal-content-container-double-row-unit {
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                        .checkout-modal-content-container-double-row-unit input {
-                            margin-top: 3pt;
-                            border-radius: 5pt;
-                            padding: 5pt;
-                        }
-
-                            #contact-email-container {
-                                width: 50%;
-                            }
-
-                            #contact-phone-container {
-                                width: 50%;
-                            }
-
-                .checkout-modal-content-container-triple-row {
-                    display: flex;
-                    flex-direction: row;
-
-                    column-gap: 15pt;
-                }
-
-                    .checkout-modal-content-container-triple-row-unit {
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                        .checkout-modal-content-container-triple-row-unit input {
-                            margin-top: 3pt;
-                            border-radius: 5pt;
-                            padding: 5pt;
-                        }
-
-                        #shipping-zip-container {
-                            width: 10%;
-                        }
-
-                        #shipping-country-container {
-                            width: 40%;
-                        }
-
-                        #shipping-city-container {
+                        #contact-phone-container {
                             width: 50%;
                         }
+
+            .checkout-modal-content-container-triple-row {
+                display: flex;
+                flex-direction: row;
+
+                column-gap: 15pt;
+            }
+
+                .checkout-modal-content-container-triple-row-unit {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                    .checkout-modal-content-container-triple-row-unit input {
+                        margin-top: 3pt;
+                        border-radius: 5pt;
+                        padding: 5pt;
+                    }
+
+                    #shipping-zip-container {
+                        width: 10%;
+                    }
+
+                    #shipping-country-container {
+                        width: 40%;
+                    }
+
+                    #shipping-city-container {
+                        width: 50%;
+                    }
