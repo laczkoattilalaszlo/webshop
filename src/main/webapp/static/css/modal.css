@@ -604,6 +604,11 @@
     }
 
         .delivery-content-unit-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
             border-top-left-radius: 5pt;
             border-top-right-radius: 5pt;
             padding: 10pt;
@@ -622,8 +627,6 @@
 
                 background-color: #555555;
                 color: lightgrey;
-
-                float: right;
             }
 
         .delivery-content-unit-content {
