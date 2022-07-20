@@ -257,6 +257,8 @@
 
         padding: 20pt;
 
+        height: 220pt;
+
         background-color: #888888;
     }
 
@@ -344,7 +346,7 @@
             background-color: indianred;
         }
 
-/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG */
+/* COMMON PROPERTIES OF ALL CHECKOUT MODAL DIALOG */
 
     #checkout-modal-header-container {
         display: flex;
@@ -419,6 +421,63 @@
                     width: 22pt;
                     height: 22pt;
                 }
+
+    #checkout-modal-footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
+
+        background-color: #555555;
+    }
+
+        #checkout-modal-close-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+        }
+
+        #checkout-modal-footer-container-left-unit {
+            width: 60%;
+        }
+
+        #checkout-modal-footer-container-right-unit {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10pt;
+
+            width: 40%;
+        }
+
+            #checkout-modal-previous-button {
+                border-radius: 5pt;
+                padding: 5pt;
+
+                text-align: center;
+                background-color: #888888;
+            }
+
+            #checkout-modal-next-button {
+                border-radius: 5pt;
+                padding: 5pt;
+
+                width: 100%;
+
+                text-align: center;
+                background-color: indianred;
+            }
+
+/* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */
 
     #checkout-modal-content-container {
         overflow: auto;
@@ -533,57 +592,137 @@
                     color: crimson;
                 }
 
-    #checkout-modal-footer-container {
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / DELIVERY STEP */
+
+    #checkout-modal-content-container {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        row-gap: 15pt;
 
-        border-bottom-left-radius: 10pt;
-        border-bottom-right-radius: 10pt;
-        padding-top: 10pt;
-        padding-bottom: 10pt;
-        padding-left: 20pt;
-        padding-right: 20pt;
+        overflow: auto;
 
-        background-color: #555555;
+        padding: 20pt;
+
+        height: 350pt;
+
+        background-color: #888888;
     }
 
-        #checkout-modal-close-button {
-            display: inline-block;
-
-            border-radius: 5pt;
-            padding: 5pt;
-
-            text-align: center;
-            background-color: #888888;
-        }
-
-        #checkout-modal-footer-container-left-unit {
-            width: 60%;
-        }
-
-        #checkout-modal-footer-container-right-unit {
+        .delivery-content-unit {
             display: flex;
-            flex-direction: row;
-            column-gap: 10pt;
-
-            width: 40%;
+            flex-direction: column;
         }
 
-            #checkout-modal-previous-button {
-                border-radius: 5pt;
-                padding: 5pt;
+            .delivery-content-unit-title {
+                border-top-left-radius: 5pt;
+                border-top-right-radius: 5pt;
+                padding: 10pt;
 
-                text-align: center;
-                background-color: #888888;
+                background-color: dimgrey;
             }
 
-            #checkout-modal-next-button {
-                border-radius: 5pt;
-                padding: 5pt;
+                .delivery-content-unit-title span {
+                    font-weight: bold;
+                }
 
-                width: 100%;
+                .delivery-content-unit-title button {
+                    border-radius: 7pt;
 
-                text-align: center;
-                background-color: indianred;
+                    width: 120pt;
+
+                    background-color: #555555;
+                    color: lightgrey;
+
+                    float: right;
+                }
+
+            .delivery-content-unit-content {
+                border-bottom-left-radius: 5pt;
+                border-bottom-right-radius: 5pt;
+                display: flex;
+                flex-direction: column;
+                row-gap: 10pt;
+
+                padding: 10pt;
+
+                background-color: grey;
             }
+
+                .checkout-modal-content-container-single-row {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                    .checkout-modal-content-container-single-row input {
+                        margin-top: 3pt;
+                        border-radius: 5pt;
+                        padding: 5pt;
+                    }
+
+                        #billing-zip-container {
+                            width: 10%;
+                        }
+
+                        #billing-country-container {
+                            width: 40%;
+                        }
+
+                        #billing-city-container {
+                            width: 50%;
+                        }
+
+                .checkout-modal-content-container-double-row {
+                    display: flex;
+                    flex-direction: row;
+
+                    column-gap: 15pt;
+                }
+
+                    .checkout-modal-content-container-double-row-unit {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                        .checkout-modal-content-container-double-row-unit input {
+                            margin-top: 3pt;
+                            border-radius: 5pt;
+                            padding: 5pt;
+                        }
+
+                            #contact-email-container {
+                                width: 50%;
+                            }
+
+                            #contact-phone-container {
+                                width: 50%;
+                            }
+
+                .checkout-modal-content-container-triple-row {
+                    display: flex;
+                    flex-direction: row;
+
+                    column-gap: 15pt;
+                }
+
+                    .checkout-modal-content-container-triple-row-unit {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                        .checkout-modal-content-container-triple-row-unit input {
+                            margin-top: 3pt;
+                            border-radius: 5pt;
+                            padding: 5pt;
+                        }
+
+                        #shipping-zip-container {
+                            width: 10%;
+                        }
+
+                        #shipping-country-container {
+                            width: 40%;
+                        }
+
+                        #shipping-city-container {
+                            width: 50%;
+                        }

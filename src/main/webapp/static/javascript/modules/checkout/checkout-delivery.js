@@ -45,5 +45,83 @@ export async function showDeliveryStep() {
     modalContentContainer.innerHTML = "";
 
     // Get delivery data from backend (contact information, shipping address, billing address)
-    console.log("Delivery Step");
+    // Get delivery data from backend (contact information, shipping address, billing address)
+    // Get delivery data from backend (contact information, shipping address, billing address)
+    // Get delivery data from backend (contact information, shipping address, billing address)
+    // Get delivery data from backend (contact information, shipping address, billing address)
+
+    //
+    modalContentContainer.insertAdjacentHTML('afterbegin', `
+        <div class="delivery-content-unit">
+            <div class="delivery-content-unit-title">
+                <span>Customer Contact</span>
+                <button type="button">Load Contact Details</button>
+            </div>
+            <div class="delivery-content-unit-content">
+                <div class="checkout-modal-content-container-single-row">
+                    <label for="contact-name-input">Name:</label><input type="text" id="contact-name-input" required>
+                </div>
+                <div class="checkout-modal-content-container-double-row">
+                    <div class="checkout-modal-content-container-double-row-unit" id="contact-email-container">
+                        <label for="contact-email-input">E-mail:</label><input type="text" id="contact-email-input" required>
+                    </div>
+                    <div class="checkout-modal-content-container-double-row-unit" id="contact-phone-container">
+                        <label for="contact-phone-input">Phone:</label><input type="text" id="contact-phone-input" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="delivery-content-unit">
+            <div class="delivery-content-unit-title">
+                <span>Shipping Details</span>
+                <button type="button">Load Shipping Details</button>
+            </div>
+            <div class="delivery-content-unit-content">
+                <div class="checkout-modal-content-container-single-row">
+                    <label for="shipping-name-input">Name / Company:</label><input type="text" id="shipping-name-input" required>
+                </div>
+                <div class="checkout-modal-content-container-triple-row">
+                    <div class="checkout-modal-content-container-triple-row-unit" id="shipping-zip-container">
+                        <label for="shipping-zip-input">Zip:</label><input type="text" id="shipping-zip-input" required>
+                    </div>
+                    <div class="checkout-modal-content-container-triple-row-unit" id="shipping-country-container">
+                        <label for="shipping-country-input">Country:</label><input type="text" id="shipping-country-input" required>
+                    </div>
+                    <div class="checkout-modal-content-container-triple-row-unit" id="shipping-city-container">
+                        <label for="shipping-city-input">City:</label><input type="text" id="shipping-city-input" required>
+                    </div>
+                </div>
+                <div class="checkout-modal-content-container-single-row">
+                    <label for="shipping-address-input">Address:</label><input type="text" id="shipping-address-input" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="delivery-content-unit">
+            <div class="delivery-content-unit-title">
+                <span>Billing Details</span>
+                <button type="button">Load Billing Details</button>
+            </div>
+            <div class="delivery-content-unit-content">
+                <div class="checkout-modal-content-container-single-row">
+                    <label for="billing-name-input">Name / Company:</label><input type="text" id="billing-name-input" required>
+                </div>
+                <div class="checkout-modal-content-container-triple-row">
+                    <div class="checkout-modal-content-container-triple-row-unit" id="billing-zip-container">
+                        <label for="billing-zip-input">Zip:</label><input type="text" id="billing-zip-input" required>
+                    </div>
+                    <div class="checkout-modal-content-container-triple-row-unit" id="billing-country-container">
+                        <label for="billing-country-input">Country:</label><input type="text" id="billing-country-input" required>
+                    </div>
+                    <div class="checkout-modal-content-container-triple-row-unit" id="billing-city-container">
+                        <label for="billing-city-input">City:</label><input type="text" id="billing-city-input" required>
+                    </div>
+                </div>
+                <div class="checkout-modal-content-container-single-row">
+                    <label for="billing-address-input">Address:</label><input type="text" id="billing-address-input" required>
+                </div>
+            </div>
+        </div>
+    `);
 }
