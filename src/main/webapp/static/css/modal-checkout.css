@@ -1,0 +1,373 @@
+/* COMMON PROPERTIES OF ALL CHECKOUT MODAL DIALOG */
+
+    #checkout-modal-header-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+
+        background-color: #555555;
+    }
+
+        #checkout-modal-title {
+            padding: 15pt 5pt 15pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+        #checkout-modal-steps {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            padding-top: 5pt;
+            padding-bottom: 5pt;
+            padding-left: 20pt;
+            padding-right: 20pt;
+
+            column-gap: 25pt;
+
+            background-color: #777777;
+        }
+
+            .checkout-modal-step-separator {
+                width: 10pt;
+                height: 10pt;
+            }
+
+            .checkout-modal-step {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                column-gap: 3pt;
+
+                filter: contrast(0.5);
+
+                text-align: center;
+            }
+
+                .checkout-modal-step img {
+                    width: 18pt;
+                    height: 18pt;
+                }
+
+            .checkout-modal-step-finished {
+                filter: contrast(1.0);
+
+                font-weight: bold;
+            }
+
+            .checkout-modal-step-selected {
+                filter: drop-shadow(2px 4px 6px black);
+
+                font-size: 14pt;
+                font-weight: bold;
+            }
+
+                .checkout-modal-step-selected img {
+                    width: 22pt;
+                    height: 22pt;
+                }
+
+    #checkout-modal-content-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15pt;
+
+        overflow: auto;
+
+        padding: 20pt;
+
+        height: 350pt;
+
+        background-color: #888888;
+    }
+
+    #checkout-modal-footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
+
+        background-color: #555555;
+    }
+
+        #checkout-modal-close-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+        }
+
+        #checkout-modal-footer-container-left-unit {
+            width: 60%;
+        }
+
+        #checkout-modal-footer-container-right-unit {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10pt;
+
+            width: 40%;
+        }
+
+            #checkout-modal-previous-button {
+                border-radius: 5pt;
+                padding: 5pt;
+
+                text-align: center;
+                background-color: #888888;
+            }
+
+            #checkout-modal-next-button {
+                border-radius: 5pt;
+                padding: 5pt;
+
+                width: 100%;
+
+                text-align: center;
+                background-color: indianred;
+            }
+
+/* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */
+
+    #checkout-modal-cart-table {
+        display: table;
+
+        border-collapse:collapse;
+        border-radius: 5pt;
+        border: transparent solid 10pt;
+
+        width: 100%;
+
+        background-color: grey;
+    }
+
+        /* Column width */
+
+            #checkout-modal-picture-column {
+                width: 8%;
+            }
+
+            #checkout-modal-supplier-and-name-column {
+                width: 33%;
+            }
+
+            #checkout-modal-price-and-currency-column {
+                width: 15%;
+            }
+
+            #checkout-modal-quantity-column {
+                width: 15%;
+            }
+
+            #checkout-modal-sub-total-column {
+                width: 15%;
+            }
+
+            #checkout-modal-buttons-column {
+                width: 14%;
+            }
+
+        /* Column text */
+
+            .checkout-modal-left-aligned-column {
+                text-align: left;
+            }
+
+            .checkout-modal-center-aligned-column {
+                text-align: center;
+            }
+
+            .checkout-modal-right-aligned-column {
+                text-align: right;
+            }
+
+            .checkout-modal-column-with-right-padding {
+                padding-right: 15pt;
+            }
+
+        /* Row padding */
+
+            #checkout-modal-cart-table thead tr th {
+                padding-bottom: 5pt;
+            }
+
+            #checkout-modal-cart-table tbody tr td {
+                padding-bottom: 5pt;
+            }
+
+            #checkout-modal-cart-table tfoot tr td {
+                padding-top: 10pt;
+            }
+
+        /* Other table related settings */
+
+            #checkout-modal-cart-table tfoot {
+                border-top: #555555 solid 1pt;
+            }
+
+            .checkout-modal-product-photo {
+                border-radius: 5pt;
+
+                width: 30pt;
+                height: 30pt;
+            }
+
+            .checkout-modal-add-to-cart-button, .checkout-modal-remove-from-cart-button {
+                border-radius: 7pt;
+                margin-left: 2pt;
+
+                width: 22pt;
+                height: 22pt;
+
+                background-color: #555555;
+                color: lightgrey;
+            }
+
+            #checkout-modal-total-prize-text div {
+                font-weight: bold;
+            }
+
+            #checkout-modal-total-price div {
+                font-weight: bold;
+                color: crimson;
+            }
+
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / DELIVERY STEP */
+
+    .delivery-content-unit {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .delivery-content-unit-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            border-top-left-radius: 5pt;
+            border-top-right-radius: 5pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+            .delivery-content-unit-title span {
+                font-weight: bold;
+            }
+
+            .delivery-content-unit-title button {
+                border-radius: 7pt;
+
+                width: 120pt;
+
+                background-color: #555555;
+                color: lightgrey;
+            }
+
+        .delivery-content-unit-content {
+            border-bottom-left-radius: 5pt;
+            border-bottom-right-radius: 5pt;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10pt;
+
+            padding: 10pt;
+
+            background-color: grey;
+        }
+
+            .checkout-modal-content-container-single-row {
+                display: flex;
+                flex-direction: column;
+            }
+
+                .checkout-modal-content-container-single-row input {
+                    margin-top: 3pt;
+                    border-radius: 5pt;
+                    padding: 5pt;
+                }
+
+                    #billing-zip-container {
+                        width: 10%;
+                    }
+
+                    #billing-country-container {
+                        width: 40%;
+                    }
+
+                    #billing-city-container {
+                        width: 50%;
+                    }
+
+            .checkout-modal-content-container-double-row {
+                display: flex;
+                flex-direction: row;
+
+                column-gap: 15pt;
+            }
+
+                .checkout-modal-content-container-double-row-unit {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                    .checkout-modal-content-container-double-row-unit input {
+                        margin-top: 3pt;
+                        border-radius: 5pt;
+                        padding: 5pt;
+                    }
+
+                        #contact-email-container {
+                            width: 50%;
+                        }
+
+                        #contact-phone-container {
+                            width: 50%;
+                        }
+
+            .checkout-modal-content-container-triple-row {
+                display: flex;
+                flex-direction: row;
+
+                column-gap: 15pt;
+            }
+
+                .checkout-modal-content-container-triple-row-unit {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                    .checkout-modal-content-container-triple-row-unit input {
+                        margin-top: 3pt;
+                        border-radius: 5pt;
+                        padding: 5pt;
+                    }
+
+                    #shipping-zip-container {
+                        width: 10%;
+                    }
+
+                    #shipping-country-container {
+                        width: 40%;
+                    }
+
+                    #shipping-city-container {
+                        width: 50%;
+                    }
