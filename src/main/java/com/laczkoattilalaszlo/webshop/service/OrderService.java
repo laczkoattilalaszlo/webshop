@@ -92,12 +92,20 @@ public class OrderService {
         orderDao.addOrderCart(orderId, orderCart);
     }
 
+    public UserDto getOrderContact(UUID orderId) {
+        return orderDao.getOrderContact(orderId);
+    }
+
     public void updateOrderContact(UUID orderId, UserDto orderContact) {
         // Delete order contact
         orderDao.deleteOrderContact(orderId);
 
         // Add order contact
         orderDao.addOrderContact(orderId, orderContact);
+    }
+
+    public AddressDto getOrderAddress(String tableName, UUID orderId) {
+        return orderDao.getOrderAddress(tableName, orderId);
     }
 
     public void updateOrderAddress(String tableName, UUID orderId, AddressDto orderAddress) {
