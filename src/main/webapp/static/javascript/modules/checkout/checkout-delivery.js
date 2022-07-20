@@ -65,8 +65,8 @@ export async function showDeliveryStep() {
     modalContentContainer.insertAdjacentHTML('afterbegin', `
         <div class="delivery-content-unit">
             <div class="delivery-content-unit-title">
-                <span>Customer Contact</span>
-                <button type="button">Load Contact Details</button>
+                <span>Contact Details</span>
+                <button id="load-contact-details-button" type="button">Load Contact Details</button>
             </div>
             <div class="delivery-content-unit-content">
                 <div class="checkout-modal-content-container-single-row">
@@ -86,7 +86,7 @@ export async function showDeliveryStep() {
         <div class="delivery-content-unit">
             <div class="delivery-content-unit-title">
                 <span>Shipping Details</span>
-                <button type="button">Load Shipping Details</button>
+                <button id="load-shipping-details-button" type="button">Load Shipping Details</button>
             </div>
             <div class="delivery-content-unit-content">
                 <div class="checkout-modal-content-container-single-row">
@@ -112,7 +112,7 @@ export async function showDeliveryStep() {
         <div class="delivery-content-unit">
             <div class="delivery-content-unit-title">
                 <span>Billing Details</span>
-                <button type="button">Load Billing Details</button>
+                <button id="load-billing-details-button" type="button">Load Billing Details</button>
             </div>
             <div class="delivery-content-unit-content">
                 <div class="checkout-modal-content-container-single-row">
@@ -135,4 +135,73 @@ export async function showDeliveryStep() {
             </div>
         </div>
     `);
+
+    // Add event listeners to 'Load Contact Details' buttons
+    const loadContactDetailsButton = document.querySelector("#load-contact-details-button");
+    loadContactDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        const userContact = await fetchData("GET", `/user`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+
+        // Fill contact related fields
+        const contactNameInput = document.querySelector('#contact-name-input');
+        contactNameInput.setAttribute("value", userContact.name);
+
+        const contactEmailInput = document.querySelector('#contact-email-input');
+        contactEmailInput.setAttribute("value", userContact.email);
+
+        const contactPhoneInput = document.querySelector('#contact-phone-input');
+        contactPhoneInput.setAttribute("value", userContact.phone);
+    });
+
+    // Add event listeners to 'Load Shipping Details' buttons
+    const loadShippingDetailsButton = document.querySelector("#load-shipping-details-button");
+    loadShippingDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        let userShippingAddress = await fetchData("GET", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userShippingAddress == null) {
+            userShippingAddress = {name: "", zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill shipping related fields
+        const shippingNameInput = document.querySelector('#shipping-name-input');
+        shippingNameInput.setAttribute("value", userShippingAddress.name);
+
+        const shippingZipInput = document.querySelector('#shipping-zip-input');
+        shippingZipInput.setAttribute("value", userShippingAddress.zip);
+
+        const shippingCountryInput = document.querySelector('#shipping-country-input');
+        shippingCountryInput.setAttribute("value", userShippingAddress.country);
+
+        const shippingCityInput = document.querySelector('#shipping-city-input');
+        shippingCityInput.setAttribute("value", userShippingAddress.city);
+
+        const shippingAddressInput = document.querySelector('#shipping-address-input');
+        shippingAddressInput.setAttribute("value", userShippingAddress.address);
+    });
+
+    // Add event listeners to 'Load Billing Details' buttons
+    const loadBillingDetailsButton = document.querySelector("#load-billing-details-button");
+    loadBillingDetailsButton.addEventListener('click', async () => {
+        // Get existing user data from backend
+        let userBillingAddress = await fetchData("GET", `/address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
+        if (userBillingAddress == null) {
+            userBillingAddress = {name: "", zip: "", country: "", city: "", address: ""};
+        }
+
+        // Fill billing related fields
+        const billingNameInput = document.querySelector('#billing-name-input');
+        billingNameInput.setAttribute("value", userBillingAddress.name);
+
+        const billingZipInput = document.querySelector('#billing-zip-input');
+        billingZipInput.setAttribute("value", userBillingAddress.zip);
+
+        const billingCountryInput = document.querySelector('#billing-country-input');
+        billingCountryInput.setAttribute("value", userBillingAddress.country);
+
+        const billingCityInput = document.querySelector('#billing-city-input');
+        billingCityInput.setAttribute("value", userBillingAddress.city);
+
+        const billingAddressInput = document.querySelector('#billing-address-input');
+        billingAddressInput.setAttribute("value", userBillingAddress.address);
+    });
 }
