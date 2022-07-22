@@ -6,7 +6,7 @@ import {showReviewStep} from "./checkout-review.js";
 // EXPORTED FUNCTION(S) //
 export async function showDeliveryStep() {
     // Mark earlier steps as finished
-    markEarlierStepsAsFinished();
+    markPreviousStepsAsFinished();
 
     // Highlight delivery step
     highlightDeliveryStep();
@@ -126,21 +126,17 @@ export async function showDeliveryStep() {
 }
 
 // INNER FUNCTION(S) //
-function markEarlierStepsAsFinished() {
+function markPreviousStepsAsFinished() {
     const finishedSteps = document.querySelectorAll(".checkout-modal-step-finished");
-    for (let finishedStep of finishedSteps) {
-        finishedStep.classList.remove("checkout-modal-step-finished");
-    }
+    finishedSteps.forEach((finishedStep) => finishedStep.classList.remove("checkout-modal-step-finished"));
 
     const cartStep = document.querySelector("#checkout-modal-cart-step");
     cartStep.classList.add("checkout-modal-step-finished");
 }
 
 function highlightDeliveryStep() {
-    const highlightedSteps = document.querySelectorAll(".checkout-modal-step-selected");
-    for (let highlightedStep of highlightedSteps) {
-        highlightedStep.classList.remove("checkout-modal-step-selected");
-    }
+    const highlightedStep = document.querySelector(".checkout-modal-step-selected");
+    highlightedStep.classList.remove("checkout-modal-step-selected");
 
     const deliveryStep = document.querySelector("#checkout-modal-delivery-step");
     deliveryStep.classList.add("checkout-modal-step-selected");
