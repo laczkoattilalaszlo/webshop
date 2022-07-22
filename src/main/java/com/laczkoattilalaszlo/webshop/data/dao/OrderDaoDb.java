@@ -95,7 +95,7 @@ public class OrderDaoDb implements OrderDao {
             while (resultSet.next()) {
                 ProductInOrderCartDto productInOrderCartDto = new ProductInOrderCartDto();
                 productInOrderCartDto.setProductId(resultSet.getObject("product_id", java.util.UUID.class));
-                productInOrderCartDto.setProductName(resultSet.getString("product_supplier"));
+                productInOrderCartDto.setProductSupplier(resultSet.getString("product_supplier"));
                 productInOrderCartDto.setProductName(resultSet.getString("product_name"));
                 productInOrderCartDto.setUnitPrice(resultSet.getBigDecimal("unit_price"));
                 productInOrderCartDto.setCurrency(resultSet.getString("currency"));
