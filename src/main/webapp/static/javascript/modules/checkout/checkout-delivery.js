@@ -15,33 +15,10 @@ export async function showDeliveryStep() {
     changeCloseButton();
 
     // Change previous button
-    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.remove();
-
-    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
-    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
-
-    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.addEventListener('click', async () => {
-        await updateActiveOrderContact();
-        await updateActiveOrderShippingAddress();
-        await updateActiveOrderBillingAddress();
-        await showCartStep();
-    });
+    changePreviousButton();
 
     // Change next button
-    let modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.remove();
-
-    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
-
-    modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.addEventListener('click', async () => {
-        await updateActiveOrderContact();
-        await updateActiveOrderShippingAddress();
-        await updateActiveOrderBillingAddress();
-        await showReviewStep();
-    });
+    changeNextButton();
 
     // Empty modal dialog content
     const modalContentContainer = document.querySelector("#checkout-modal-content-container");
@@ -182,6 +159,38 @@ function changeCloseButton() {
         await updateActiveOrderShippingAddress();
         await updateActiveOrderBillingAddress();
         closeModalDialog();
+    });
+}
+
+function changePreviousButton() {
+    let modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-previous-button">Previous</div>`);
+
+    modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.addEventListener('click', async () => {
+        await updateActiveOrderContact();
+        await updateActiveOrderShippingAddress();
+        await updateActiveOrderBillingAddress();
+        await showCartStep();
+    });
+}
+
+function changeNextButton() {
+    let modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.remove();
+
+    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
+
+    modalNextButton = document.querySelector("#checkout-modal-next-button");
+    modalNextButton.addEventListener('click', async () => {
+        await updateActiveOrderContact();
+        await updateActiveOrderShippingAddress();
+        await updateActiveOrderBillingAddress();
+        await showReviewStep();
     });
 }
 
