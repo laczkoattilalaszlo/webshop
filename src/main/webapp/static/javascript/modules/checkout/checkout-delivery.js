@@ -142,10 +142,10 @@ export async function showDeliveryStep() {
     addEventListenerToLoadContactDetailsButton();
 
     // Add event listeners to 'Load Shipping Details' buttons
-    addEventListenerToLoadShippingDetailsButton
+    addEventListenerToLoadShippingDetailsButton();
 
     // Add event listeners to 'Load Billing Details' buttons
-    addEventListenerToLoadBillingDetailsButton
+    addEventListenerToLoadBillingDetailsButton();
 }
 
 // INNER FUNCTION(S) //
