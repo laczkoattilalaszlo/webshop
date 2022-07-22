@@ -371,3 +371,122 @@
                     #shipping-city-container {
                         width: 50%;
                     }
+
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / REVIEW STEP */
+
+    .review-content-unit {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+        .review-content-unit-title {
+            border-top-left-radius: 5pt;
+            border-top-right-radius: 5pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+            font-weight: bold;
+        }
+
+        .review-content-unit-content {
+            border-bottom-left-radius: 5pt;
+            border-bottom-right-radius: 5pt;
+            display: flex;
+            flex-direction: column;
+            row-gap: 5pt;
+
+            padding: 10pt;
+
+            background-color: grey;
+        }
+
+            .review-content-unit-content-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+                .review-content-unit-content-row-content {
+                    color: #444444;
+                }
+
+    .review-content-double-unit-container {
+        display: flex;
+        flex-direction: row;
+        column-gap: 15pt;
+    }
+
+        #checkout-modal-review-table {
+            display: table;
+
+            border-collapse:collapse;
+
+            width: 100%;
+        }
+
+        /* Column width */
+
+            #checkout-modal-review-table-supplier-and-name-column {
+                width: 50%;
+            }
+
+            #checkout-modal-review-table-price-and-currency-column {
+                width: 20%;
+            }
+
+            #checkout-modal-review-table-quantity-column {
+                width: 10%;
+            }
+
+            #checkout-modal-review-table-sub-total-column {
+                width: 20%;
+            }
+
+        /* Column text */
+
+            .checkout-modal-review-table-left-aligned-column {
+                text-align: left;
+            }
+
+            .checkout-modal-review-table-center-aligned-column {
+                text-align: center;
+            }
+
+            .checkout-modal-review-table-right-aligned-column {
+                text-align: right;
+            }
+
+            .checkout-modal-review-table-column-with-right-padding {
+                padding-right: 15pt;
+            }
+
+        /* Row padding */
+
+            #checkout-modal-review-table thead tr th {
+                padding-bottom: 10pt;
+            }
+
+            #checkout-modal-review-table tbody tr td {
+                padding-bottom: 10pt;
+            }
+
+            #checkout-modal-review-table tfoot tr td {
+                padding-top: 10pt;
+            }
+
+        /* Other table related settings */
+
+            #checkout-modal-review-table tfoot {
+                border-top: #555555 solid 1pt;
+            }
+
+            #checkout-modal-review-table-total-prize-text div {
+                font-weight: bold;
+            }
+
+            #checkout-modal-review-table-total-price div {
+                font-weight: bold;
+                color: crimson;
+            }

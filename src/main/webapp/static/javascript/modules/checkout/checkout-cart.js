@@ -74,7 +74,7 @@ export async function showCartStep() {
                                 <td class="checkout-modal-right-aligned-column">
                                     <button class="checkout-modal-add-to-cart-button" data-product-id="${product.productId}" type="button">+</button> 
                                     <button class="checkout-modal-remove-from-cart-button" data-product-id="${product.productId}" type="button">-</button>
-                                </td class="checkout-modal-right-aligned-column">
+                                <td class="checkout-modal-right-aligned-column">
                             </tr>
                           </tbody>`;
         }
