@@ -26,9 +26,8 @@ export async function showReviewStep() {
 
     // Get active order
     let activeOrder = await fetchData("GET", `/active-order`, {"session-token": sessionStorage.getItem("session-token")}, null, null, "JSON");
-    console.log(activeOrder);
 
-    // Show order
+    // Show active order
     let activeOrderContent = `
         <div class="review-content-unit">
             <div class="review-content-unit-title">Contact Details</div>
@@ -126,7 +125,7 @@ export async function showReviewStep() {
                             <td class="checkout-modal-review-table-left-aligned-column"></td>
                             <td class="checkout-modal-review-table-left-aligned-column"></td>
                             <td class="checkout-modal-review-table-center-aligned-column" id="checkout-modal-review-table-total-prize-text"><div>Total:</div></td>
-                            <td class="checkout-modal-review-table-right-aligned-column" id="checkout-modal-review-table-total-price"><div>1115 HUF</div></td>
+                            <td class="checkout-modal-review-table-right-aligned-column" id="checkout-modal-review-table-total-price"><div>${totalPrice} ${currency}</div></td>
                         </tr>
                     </tfoot>
                 </table>
