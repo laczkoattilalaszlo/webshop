@@ -1,0 +1,127 @@
+/* OWN PROPERTIES OF LOGIN MODAL DIALOG */
+
+    #information-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #information-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #information-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #information-modal-content-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20pt;
+
+        padding: 20pt;
+
+        width: 500pt;
+        background-color: #888888;
+    }
+
+    .information-modal-content-container-unit {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10pt;
+
+        border-radius: 10pt;
+        padding: 10pt;
+
+        background-color: grey;
+    }
+
+        .information-modal-unit-title {
+            font-weight: bold;
+        }
+
+        .information-modal-unit-text {
+            text-align: justify;
+        }
+
+        .information-modal-unit-links {
+            display: flex;
+            flex-direction: row;
+            column-gap: 5pt;
+            justify-content: right;
+        }
+
+            .information-modal-unit-links div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                padding: 5pt;
+                border-radius: 5pt;
+
+                background: dimgrey;
+                filter: contrast(0.5);
+            }
+
+            .information-modal-unit-links div:hover {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                padding: 5pt;
+                border-radius: 5pt;
+
+                background: dimgrey;
+                filter: contrast(1.0);
+
+                cursor: pointer;
+            }
+
+                .information-modal-unit-links div img {
+                    width: 15pt;
+                    height: 15pt;
+                }
+
+                .information-modal-unit-links div span {
+                    padding-left: 5pt;
+                }
+
+    #information-modal-footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 20pt;
+        padding-right: 20pt;
+
+        background-color: #555555;
+    }
+
+        #information-modal-close-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            /*width: 100%;*/
+
+            text-align: center;
+            background-color: #888888;
+        }

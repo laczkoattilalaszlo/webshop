@@ -1,4 +1,5 @@
 import {loadProductCategoryButtons} from "./modules/product.js";
+import {addEventListenerToInformationButton} from "./modules/informaiton.js";
 import {addEventListenerToRegistrationButton} from "./modules/registration.js";
 import {addEventListenerToLoginButton} from "./modules/login.js";
 import {addEventListenerToLogoutButton} from "./modules/logout.js";
@@ -10,6 +11,7 @@ import {addEventListenerToCartButton} from "./modules/checkout/checkout.js";
 window.addEventListener('load', async () => {
     setVisibilityOfHeaderButtons();         // According to the authentication
     await loadProductCategoryButtons();
+    addEventListenerToInformationButton();
     addEventListenerToRegistrationButton();
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();

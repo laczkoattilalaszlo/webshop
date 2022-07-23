@@ -3,6 +3,11 @@
         display: none;
     }
 
+    a:link { text-decoration: none; color: initial}
+    a:visited { text-decoration: none; color: initial}
+    a:hover { text-decoration: none; color: initial}
+    a:active { text-decoration: none; color: initial}
+
 /* BODY */
 
     body {
@@ -45,7 +50,7 @@
                     padding-right: 5pt;
 
                     width: 40pt;
-                    background-color: #777777;
+                    background-color: indianred;
                 }
 
                     .header-button-left img {
