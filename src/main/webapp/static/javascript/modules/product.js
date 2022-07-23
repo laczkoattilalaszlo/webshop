@@ -9,7 +9,7 @@ export async function loadProductCategoryButtons() {
     // Fetch product categories and create buttons for them
     const productCategories = await fetchData("GET", "/product-categories", null, null, null, "JSON");
     for (let productCategory of productCategories) {
-        categoryContainer.insertAdjacentHTML("beforeend", `<div id="${productCategory.id}" class="category-button">${productCategory.name}</div>`);
+        categoryContainer.insertAdjacentHTML("beforeend", `<div id="${productCategory.id}" class="category-button"><span class="shrink-expand-symbol">▸</span><span>${productCategory.name}</span></div>`);
     }
 
     // Add event listeners to the product category buttons
@@ -27,6 +27,10 @@ export async function loadProductCategoryButtons() {
 
 // INNER FUNCTIONS //
 async function expandProductCategoryButton(categoryButton) {
+    // Change shrinked symbol to expanded symbol
+    categoryButton.firstChild.remove();
+    categoryButton.insertAdjacentHTML("afterbegin", `<span class="shrink-expand-symbol">▾</span>`);
+
     // Add fetched product supplier buttons under clicked product category button
     const productSuppliersOfCategory = await fetchData("GET", `/product-suppliers-by-category?category-id=${categoryButton.id}`, null, null, null, "JSON");
     for (let productSupplier of productSuppliersOfCategory) {
@@ -38,6 +42,7 @@ async function expandProductCategoryButton(categoryButton) {
     for (let supplierButton of supplierButtons) {
         if (supplierButton.dataset.categoryId == categoryButton.id) {
             supplierButton.addEventListener('click', async () => {
+                markSupplierButtonAsSelected(supplierButton, supplierButtons);
                 await listProducts(supplierButton);
             });
         }
@@ -45,8 +50,24 @@ async function expandProductCategoryButton(categoryButton) {
 }
 
 function shrinkProductCategoryButton(categoryButton) {
+    // Change expanded symbol to shrinked symbol
+    categoryButton.firstChild.remove();
+    categoryButton.insertAdjacentHTML("afterbegin", `<span class="shrink-expand-symbol">▸</span>`);
+
+    // Shrink
     const existingProductSupplierButtons = document.querySelectorAll(".supplier-button");
     existingProductSupplierButtons.forEach(productSupplierButton => (productSupplierButton.dataset.categoryId == categoryButton.id) ? productSupplierButton.remove() : "");
+}
+
+function markSupplierButtonAsSelected(supplierButton) {
+    // Remove selection from selected button
+    const supplierButtons = document.querySelectorAll(".supplier-button");
+    for (let supplierButton of supplierButtons) {
+        supplierButton.classList.remove("supplier-button-selected");
+    }
+
+    // Mark as selected
+    supplierButton.classList.add("supplier-button-selected");
 }
 
 async function listProducts(supplierButton) {

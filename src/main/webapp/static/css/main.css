@@ -148,8 +148,13 @@
                     background-color: #777777;
                     color: lightgrey;
                     font-weight: bold;
-                    text-align: center;
+                    text-align: left;
                 }
+
+                    .shrink-expand-symbol {
+                        padding-left: 20pt;
+                        padding-right: 10pt;
+                    }
 
                 .supplier-button {
                     margin-left: 10pt;
@@ -166,6 +171,10 @@
                     color: black;
                     font-weight: bold;
                     text-align: center;
+                }
+
+                .supplier-button-selected {
+                    background-color: steelblue;
                 }
 
             #filter-product-container {
