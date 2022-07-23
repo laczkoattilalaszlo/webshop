@@ -140,7 +140,7 @@
                 width: 100%;
 
                 text-align: center;
-                background-color: indianred;
+                background-color: steelblue;
             }
 
 /* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */
@@ -245,7 +245,6 @@
 
             #checkout-modal-total-price div {
                 font-weight: bold;
-                color: crimson;
             }
 
 /* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / DELIVERY STEP */
@@ -488,5 +487,4 @@
 
             #checkout-modal-review-table-total-price div {
                 font-weight: bold;
-                color: crimson;
             }
