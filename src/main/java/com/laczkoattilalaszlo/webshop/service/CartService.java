@@ -46,4 +46,8 @@ public class CartService {
         }
     }
 
+    public void removeAllProductsFromCart(UUID userId){
+        cartDao.removeAllProductsFromCart(userId);
+    }
+
 }

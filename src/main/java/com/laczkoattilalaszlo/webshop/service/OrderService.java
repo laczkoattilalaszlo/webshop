@@ -101,4 +101,8 @@ public class OrderService {
         orderDao.addOrderAddress(tableName, orderId, orderAddress);
     }
 
+    public void mockSuccessfulPayment(UUID activeOrderId) {
+        orderDao.mockSuccessfulPayment(activeOrderId);
+    }
+
 }

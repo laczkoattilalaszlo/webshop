@@ -272,4 +272,20 @@ public class OrderDaoDb implements OrderDao {
         }
     }
 
+    @Override
+    public void mockSuccessfulPayment(UUID activeOrderId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "INSERT INTO order_payment (payment_id, payment_state, start_timestamp, order_id) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setObject(1, UUID.randomUUID());
+            preparedStatement.setString(2, "Succeeded");
+            preparedStatement.setObject(3, java.time.LocalDateTime.now());
+            preparedStatement.setObject(4, activeOrderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

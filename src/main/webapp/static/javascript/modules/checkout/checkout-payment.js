@@ -1,7 +1,8 @@
 // INNER USED CONSTANT VARIABLE(S) //
 import {showConfirmationStep} from "./checkout-confirmaiton.js";
+import {fetchData} from "../fetch.js";
 
-const remainingSecond = 30;
+const remainingSecond = 0;
 
 // EXPORTED FUNCTION(S) //
 export function showPaymentStep() {
@@ -85,10 +86,10 @@ function changeNextButton(remainingSeconds) {
 function activateRedirectCountDown(remainingSeconds) {
     const modalNextButton = document.querySelector("#checkout-modal-next-button");
 
-    let countdown = setInterval( () => {
+    let countdown = setInterval( async () => {
         if (remainingSeconds <= -1) {
             clearInterval(countdown);
-            showConfirmationStep();
+            await mockPayment();
         } else if (remainingSeconds == 0) {
             modalNextButton.innerHTML = `<span>Redirecting...</span>`;
             remainingSeconds -= 1;
@@ -97,4 +98,9 @@ function activateRedirectCountDown(remainingSeconds) {
             remainingSeconds -= 1;
         }
     }, 1000);
+}
+
+async function mockPayment() {
+    await fetchData("POST", `/mock-payment`, {"session-token": sessionStorage.getItem("session-token")}, null, null, null);
+    showConfirmationStep();
 }

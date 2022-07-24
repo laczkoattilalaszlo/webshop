@@ -18,6 +18,8 @@ public interface CartDao {
 
     void removeProductFromCart(UUID productId, UUID userId);
 
+    void removeAllProductsFromCart(UUID userId);
+
     void updateProductQuantityInCart(Integer quantity, UUID productId, UUID userId);
 
 }
