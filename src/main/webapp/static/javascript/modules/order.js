@@ -1,6 +1,6 @@
-// INNER USED CONSTANT VARIABLE(S) //
 import {fetchData} from "./fetch.js";
 
+// INNER USED CONSTANT VARIABLE(S) //
 const body = document.querySelector('body');
 const orderButton = document.querySelector("#order-button");
 
