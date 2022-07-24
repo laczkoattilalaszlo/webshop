@@ -1,7 +1,7 @@
 // INNER USED CONSTANT VARIABLE(S) //
 import {showConfirmationStep} from "./checkout-confirmaiton.js";
 
-const remainingSecond = 0;
+const remainingSecond = 30;
 
 // EXPORTED FUNCTION(S) //
 export function showPaymentStep() {
