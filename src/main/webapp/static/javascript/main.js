@@ -21,8 +21,6 @@ window.addEventListener('load', async () => {
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
 
-    // document.querySelector("#information-button").click();      // To show Information dialog at page load
-
-    // document.querySelector("#order-button").click();
+    document.querySelector("#information-button").click();      // To show Information dialog at page load
 });
 

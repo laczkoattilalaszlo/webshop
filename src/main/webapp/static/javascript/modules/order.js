@@ -199,14 +199,6 @@ export function addEventListenerToOrderButton() {
     });
 }
 
-// for (let payment of paidOrder.orderPayments) {
-//     paidOrderContent += `
-//                             <div class="review-content-unit-content-row">
-//                                 <div class="review-content-unit-content-row-title">Payment start date & time:</div><div class="review-content-unit-content-row-content">${payment.startTimestamp} ${payment.payment_state}</div>
-//                             </div>
-//                         `;
-// }
-
 function AddEventListenerToCancelButton() {
     const orderModalCloseButton = document.querySelector("#order-modal-close-button");
     orderModalCloseButton.addEventListener('click', ()=> closeModalDialog());
