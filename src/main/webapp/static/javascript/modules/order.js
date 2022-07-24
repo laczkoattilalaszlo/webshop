@@ -65,8 +65,6 @@ export function addEventListenerToOrderButton() {
                     // Get paid order
                     const paidOrder = await fetchData("POST", `/paid-order`, {"session-token": sessionStorage.getItem("session-token")}, `${paidOrderLine.id}`, "plain/text", "JSON");
 
-                    console.log(paidOrder);
-
                     // Expand paid order line
                     let paidOrderContent = `
                         <div class="order-content">

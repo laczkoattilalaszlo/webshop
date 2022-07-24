@@ -135,6 +135,7 @@
             margin-left: 10pt;
             margin-right: 10pt;
 
+            min-height: 400pt;
             background-color: darkgray;
         }
 
@@ -318,8 +319,6 @@
                     gap: 10pt 10pt;
 
                     margin-left: 10pt;
-
-                    height: 100%;
                 }
 
                     .product {
