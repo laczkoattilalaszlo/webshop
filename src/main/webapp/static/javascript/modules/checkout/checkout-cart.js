@@ -21,7 +21,7 @@ export async function showCartStep() {
     // Change previous button
     changePreviousButton();
 
-    // // Hide previous button
+    // Hide previous button
     const modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
     modalPreviousButton.classList.add("invisible");
 
