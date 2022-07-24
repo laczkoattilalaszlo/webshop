@@ -9,6 +9,14 @@
     a:hover { text-decoration: none; color: initial}
     a:active { text-decoration: none; color: initial}
 
+
+   .disabled-button {
+       pointer-events: none;
+       filter: opacity(0.5);
+
+       cursor: default;
+   }
+
 /* BODY */
 
     body {

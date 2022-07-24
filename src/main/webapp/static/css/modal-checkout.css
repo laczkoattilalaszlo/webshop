@@ -492,3 +492,46 @@
             #checkout-modal-review-table-total-price div {
                 font-weight: bold;
             }
+
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / PAYMENT STEP */
+
+    #modal-payment-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+    }
+
+        #modal-payment-content-logo-text-container {
+            width: min-content;
+            text-align: justify;
+        }
+
+            #modal-payment-content-picture {
+                width: 300pt;
+            }
+
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / PAYMENT STEP */
+
+    #modal-confirmation-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+    }
+
+        #modal-confirmation-content-logo-text-container {
+            width: min-content;
+            text-align: center;
+        }
+
+            #modal-confirmation-content-picture {
+                width: 150pt;
+                height: 150pt;
+            }
