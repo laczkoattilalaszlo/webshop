@@ -1,20 +1,17 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
-import com.laczkoattilalaszlo.webshop.data.dto.OrderPaymentDto;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInOrderCartDto;
-import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
+import com.laczkoattilalaszlo.webshop.data.dto.*;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface OrderDao {
 
-    List<UUID> getOrderIdsByUserId(UUID userId);
-
     void createActiveOrder(UUID userId);
 
     UUID getActiveOrderId(UUID userId);
+
+    List<PaidOrderDto> getPaidOrdersByUserId(UUID userId);
 
     List<ProductInOrderCartDto> getOrderCart(UUID orderId);
 

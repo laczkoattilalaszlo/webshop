@@ -1,0 +1,98 @@
+/* OWN PROPERTIES OF ORDER MODAL DIALOG */
+
+    #order-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #order-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #order-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #order-modal-content-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15pt;
+
+        overflow: auto;
+
+        padding: 20pt;
+
+        height: 350pt;
+        min-width: 600pt;
+
+        background-color: #888888;
+    }
+
+        .order-title-closed {
+            border-radius: 5pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+        .order-title-open {
+            border-radius: 5pt 5pt 0pt 0pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+            .order-title-text {
+                font-weight: bold;
+            }
+
+            .shrink-expand-button {
+                float: right;
+            }
+
+        .order-content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10pt;
+
+            border-radius: 0pt 0pt 5pt 5pt;
+            padding: 10pt;
+
+            background-color: darkgrey;
+        }
+
+    #order-modal-footer-container {
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 25pt;
+        padding-right: 25pt;
+
+        background-color: #555555;
+    }
+
+        #order-modal-close-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+            float: right;
+        }

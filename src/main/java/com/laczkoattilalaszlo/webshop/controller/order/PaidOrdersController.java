@@ -1,8 +1,8 @@
 package com.laczkoattilalaszlo.webshop.controller.order;
 
 import com.google.gson.Gson;
-import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
 import com.laczkoattilalaszlo.webshop.data.dto.OrderDto;
+import com.laczkoattilalaszlo.webshop.data.dto.PaidOrderDto;
 import com.laczkoattilalaszlo.webshop.service.OrderService;
 import com.laczkoattilalaszlo.webshop.service.ServiceProvider;
 import com.laczkoattilalaszlo.webshop.service.UserService;
@@ -12,21 +12,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/paid-order"})
-public class PaidOrderController extends HttpServlet {
+@WebServlet(urlPatterns = {"/paid-orders"})
+public class PaidOrdersController extends HttpServlet {
 
     // Field(s)
     OrderService orderService;
     UserService userService;
 
-    @Override   // Get paid order
+    @Override   // Get paid orders
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get session token from header
         String sessionToken = request.getHeader("session-token");
@@ -36,18 +34,12 @@ public class PaidOrderController extends HttpServlet {
         UUID userId = userService.getUserIdBySessionToken(sessionToken);
 
         if (userId != null) {
-            // Get payload (paid order id) from body
-            BufferedReader bufferedReader = request.getReader();
-            String payload = bufferedReader.lines().collect(Collectors.joining());
-
-            // Deserialize payload
-            UUID paidOrderId = UUID.fromString(payload);
-
-            // Get paid order
-            OrderDto paidOrder = orderService.getOrder(paidOrderId);
+            // Get paid orders
+            orderService = ServiceProvider.getInstance().getOrderService();
+            List<PaidOrderDto> paidOrders = orderService.getPaidOrdersByUserId(userId);
 
             // Serialize data
-            String serializedPaidOrder = new Gson().toJson(paidOrder);
+            String serializedPaidOrders = new Gson().toJson(paidOrders);
 
             // Edit response
             response.setContentType("application/json");
@@ -55,8 +47,9 @@ public class PaidOrderController extends HttpServlet {
 
             // Send response
             PrintWriter printWriter = response.getWriter();
-            printWriter.print(serializedPaidOrder);
+            printWriter.print(serializedPaidOrders);
             printWriter.flush();
+
         } else {
             response.setStatus(401);
         }

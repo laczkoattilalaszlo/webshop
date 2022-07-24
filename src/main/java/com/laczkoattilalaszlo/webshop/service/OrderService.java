@@ -18,23 +18,8 @@ public class OrderService {
     }
 
     // Method(s)
-    public List<OrderDto> getPaidOrdersByUserId(UUID userId) {
-        // Get order ids related to user
-        List<UUID> orderIds = orderDao.getOrderIdsByUserId(userId);
-
-        // Get active order id
-        UUID activeOrderId = orderDao.getActiveOrderId(userId);
-
-        // Get paid orders
-        List<OrderDto> orders = new ArrayList<>();
-        for (UUID orderId : orderIds) {
-            if (!orderId.equals(activeOrderId)) {
-                OrderDto order = getOrder(orderId);
-                orders.add(order);
-            }
-        }
-
-        return orders;
+    public List<PaidOrderDto> getPaidOrdersByUserId(UUID userId) {
+        return orderDao.getPaidOrdersByUserId(userId);
     }
 
     public void createActiveOrder(UUID userId) {
