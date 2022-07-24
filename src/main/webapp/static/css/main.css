@@ -34,7 +34,7 @@
             margin:10pt 10pt 0pt 10pt;
             border-radius: 10pt 10pt 0pt 0pt;
 
-            background-color: #333333;
+            background-color: #444444;
             text-align: center;
         }
 
@@ -148,7 +148,7 @@
                 border-radius: 10pt;
 
                 width: 15%;
-                background-color: #333333;
+                background-color: #777777;
             }
 
                 .category-button {
@@ -159,7 +159,7 @@
                     border-radius: 5pt;
                     padding: 5pt;
 
-                    background-color: #777777;
+                    background-color: #555555;
                     color: lightgrey;
                     font-weight: bold;
                     text-align: left;
@@ -208,7 +208,7 @@
                     border-radius: 10pt;
                     padding: 10pt;
 
-                    background-color: #333333;
+                    background-color: #777777;
                 }
 
                     #search {
@@ -332,7 +332,7 @@
                         border-radius: 10pt;
                         padding: 10pt;
 
-                        background-color: #777777;
+                        background-color: #999999;
                     }
 
                         .product-photo {
@@ -374,7 +374,7 @@
             margin:0pt 10pt 10pt 10pt;
             border-radius: 0pt 0pt 10pt 10pt;
 
-            background-color: #333333;
+            background-color: #444444;
             text-align: center;
         }
 
