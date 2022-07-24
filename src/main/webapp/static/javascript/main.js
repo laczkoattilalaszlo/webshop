@@ -9,7 +9,7 @@ import {addEventListenerToCartButton} from "./modules/checkout/checkout.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
-    setVisibilityOfHeaderButtons();         // According to the authentication
+    setVisibilityOfHeaderButtons();     // According to the authentication
     await loadProductCategoryButtons();
     addEventListenerToInformationButton();
     addEventListenerToRegistrationButton();
@@ -17,5 +17,6 @@ window.addEventListener('load', async () => {
     addEventListenerToLogoutButton();
     addEventListenerToUserButton();
     addEventListenerToCartButton();
+    document.querySelector("#information-button").click();      // To show Information dialog at page load
 });
 
