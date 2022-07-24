@@ -15,19 +15,6 @@ export async function showCartStep() {
     // Add highlight to cart step
     cartStep.classList.add("checkout-modal-step-selected");
 
-    // Change close button
-    changeCloseButton();
-
-    // Change previous button
-    changePreviousButton();
-
-    // Hide previous button
-    const modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
-    modalPreviousButton.classList.add("invisible");
-
-    // Change next button
-    changeNextButton();
-
     // Empty modal dialog content
     const modalContentContainer = document.querySelector("#checkout-modal-content-container");
     modalContentContainer.innerHTML = "";
@@ -94,6 +81,19 @@ export async function showCartStep() {
         modalContentContainer.insertAdjacentHTML('afterbegin', cartTable);
     }
 
+    // Change close button
+    changeCloseButton();
+
+    // Change previous button
+    changePreviousButton();
+
+    // Hide previous button
+    const modalPreviousButton = document.querySelector("#checkout-modal-previous-button");
+    modalPreviousButton.classList.add("invisible");
+
+    // Change next button
+    changeNextButton(cart);
+
     // Add event listener to 'Modal add to cart' button
     addEventListenerToModalAddToCartButton();
 
@@ -127,18 +127,20 @@ function changePreviousButton() {
     modalPreviousButton.addEventListener('click', async () => await showCartStep());
 }
 
-function changeNextButton() {
+function changeNextButton(cart) {
     let modalNextButton = document.querySelector("#checkout-modal-next-button");
     modalNextButton.remove();
 
     const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
     checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
 
-    modalNextButton = document.querySelector("#checkout-modal-next-button");
-    modalNextButton.addEventListener('click', async () => {
-        await transferCartContentToActiveOrderCart();
-        await showDeliveryStep();
-    });
+    if (cart.length != 0) {
+        modalNextButton = document.querySelector("#checkout-modal-next-button");
+        modalNextButton.addEventListener('click', async () => {
+            await transferCartContentToActiveOrderCart();
+            await showDeliveryStep();
+        });
+    }
 }
 
 function addEventListenerToModalAddToCartButton() {
