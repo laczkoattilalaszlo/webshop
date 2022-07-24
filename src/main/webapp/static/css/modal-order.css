@@ -43,6 +43,11 @@
     }
 
         .order-title-closed {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
             border-radius: 5pt;
             padding: 10pt;
 
@@ -50,11 +55,21 @@
         }
 
         .order-title-open {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
             border-radius: 5pt 5pt 0pt 0pt;
             padding: 10pt;
 
             background-color: dimgrey;
         }
+
+            .order-title-icon {
+                width: 20pt;
+                height: 20pt;
+            }
 
             .order-title-text {
                 font-weight: bold;

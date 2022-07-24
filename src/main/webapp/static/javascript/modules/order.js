@@ -45,12 +45,22 @@ export function addEventListenerToOrderButton() {
                     // Change order line border
                     orderTitle.classList.replace("order-title-open", "order-title-closed");
 
+                    // Change shrink button to expand
+                    const shrinkButton = orderTitle.children[2];
+                    shrinkButton.remove();
+                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">▾</div>`);
+
                     // Remove order-content
                     const oderContent = paidOrderLine.children[1];
                     oderContent.remove();
                 } else {
                     // Change order line border
                     orderTitle.classList.replace("order-title-closed", "order-title-open");
+
+                    // Change expand button to shrink
+                    const expandButton = orderTitle.children[2];
+                    expandButton.remove();
+                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">▴</div>`);
 
                     // Get paid order
                     const paidOrder = await fetchData("POST", `/paid-order`, {"session-token": sessionStorage.getItem("session-token")}, `${paidOrderLine.id}`, "plain/text", "JSON");
@@ -219,13 +229,14 @@ function showPaidOrderLines(paidOrders) {
         orderModalContentContainer.insertAdjacentHTML("beforeend", `
             <div class="order" id="${paidOrder.id}">
                 <div class="order-title-closed">
-                    <span class="order-title-text">
+                    <img class="order-title-icon" src="/static/images/icons/payed-order.png">
+                    <div class="order-title-text">
                         ${paidOrder.successfulPaymentStartTimestamp.time.hour}:${paidOrder.successfulPaymentStartTimestamp.time.minute} - 
                         ${paidOrder.successfulPaymentStartTimestamp.date.day}.
                         ${paidOrder.successfulPaymentStartTimestamp.date.month}.
                         ${paidOrder.successfulPaymentStartTimestamp.date.year}.
-                    </span>
-                    <span class="shrink-expand-button">▴ ▾</span>
+                    </div>
+                    <div class="shrink-expand-button">▾</div>
                 </div>
             </div>
         `);
