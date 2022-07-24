@@ -209,6 +209,8 @@
 
             #checkout-modal-cart-table tbody tr td {
                 padding-bottom: 5pt;
+
+                color: #222222;
             }
 
             #checkout-modal-cart-table tfoot tr td {
@@ -408,7 +410,7 @@
             }
 
                 .review-content-unit-content-row-content {
-                    color: #444444;
+                    color: #333333;
                 }
 
     .review-content-double-unit-container {
@@ -469,6 +471,8 @@
 
             #checkout-modal-review-table tbody tr td {
                 padding-bottom: 10pt;
+
+                color: #333333;
             }
 
             #checkout-modal-review-table tfoot tr td {

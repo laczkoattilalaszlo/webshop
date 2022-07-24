@@ -1,9 +1,6 @@
 package com.laczkoattilalaszlo.webshop.data.dao;
 
-import com.laczkoattilalaszlo.webshop.data.dto.AddressDto;
-import com.laczkoattilalaszlo.webshop.data.dto.OrderPaymentDto;
-import com.laczkoattilalaszlo.webshop.data.dto.ProductInOrderCartDto;
-import com.laczkoattilalaszlo.webshop.data.dto.UserDto;
+import com.laczkoattilalaszlo.webshop.data.dto.*;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -22,30 +19,6 @@ public class OrderDaoDb implements OrderDao {
     }
 
     // Implemented method(s)
-
-
-    @Override
-    public List<UUID> getOrderIdsByUserId(UUID userId) {
-        try (Connection connection = dataSource.getConnection()) {
-            // Execute SQL query
-            String sql = "SELECT id FROM \"order\" WHERE user_id=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setObject(1, userId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // Extract result: Create UUIDs from results and put them into a List
-            List<UUID> orderIds = new ArrayList<>();
-            while (resultSet.next()) {
-                UUID orderId = resultSet.getObject("id", java.util.UUID.class);
-                orderIds.add(orderId);
-            }
-
-            return orderIds;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void createActiveOrder(UUID userId) {
         try (Connection connection = dataSource.getConnection()) {
@@ -76,6 +49,32 @@ public class OrderDaoDb implements OrderDao {
             // Extract result
             UUID orderId = (resultSet.next()) ? resultSet.getObject("id", java.util.UUID.class) : null;
             return orderId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<PaidOrderDto> getPaidOrdersByUserId(UUID userId) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT id, start_timestamp FROM \"order\" " +
+                         "INNER JOIN \"order_payment\" ON \"order\".id = order_payment.order_id " +
+                         "WHERE user_id=? AND payment_state='Succeeded'" +
+                         "GROUP BY id, start_timestamp ";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Extract result: Create a PaidOrderDto from results and put them into a List
+            List<PaidOrderDto> paidOrders = new ArrayList<>();
+            while (resultSet.next()) {
+                PaidOrderDto paidOrderDto = new PaidOrderDto();
+                paidOrderDto.setId(resultSet.getObject("id", java.util.UUID.class));
+                paidOrderDto.setSuccessfulPaymentStartTimestamp(resultSet.getObject("start_timestamp", java.time.LocalDateTime.class));
+                paidOrders.add(paidOrderDto);
+            }
+            return paidOrders;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

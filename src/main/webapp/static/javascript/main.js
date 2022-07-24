@@ -6,17 +6,23 @@ import {addEventListenerToLogoutButton} from "./modules/logout.js";
 import {setVisibilityOfHeaderButtons} from "./modules/header.js";
 import {addEventListenerToUserButton} from "./modules/user.js";
 import {addEventListenerToCartButton} from "./modules/checkout/checkout.js";
+import {addEventListenerToOrderButton} from "./modules/order.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
-    setVisibilityOfHeaderButtons();     // According to the authentication
     await loadProductCategoryButtons();
+
+    setVisibilityOfHeaderButtons();                                     // According to the authentication
     addEventListenerToInformationButton();
+    addEventListenerToCartButton();
+    addEventListenerToOrderButton();
+    addEventListenerToUserButton();
     addEventListenerToRegistrationButton();
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
-    addEventListenerToUserButton();
-    addEventListenerToCartButton();
-    document.querySelector("#information-button").click();      // To show Information dialog at page load
+
+    // document.querySelector("#information-button").click();      // To show Information dialog at page load
+
+    // document.querySelector("#order-button").click();
 });
 
