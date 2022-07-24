@@ -61,6 +61,7 @@
             }
 
             .shrink-expand-button {
+                font-weight: bold;
                 float: right;
             }
 
