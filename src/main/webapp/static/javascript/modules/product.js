@@ -34,7 +34,11 @@ async function expandProductCategoryButton(categoryButton) {
     // Add fetched product supplier buttons under clicked product category button
     const productSuppliersOfCategory = await fetchData("GET", `/product-suppliers-by-category?category-id=${categoryButton.id}`, null, null, null, "JSON");
     for (let productSupplier of productSuppliersOfCategory) {
-        categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
+        if (categoryContainer.dataset.selectedSupplierButtonCategoryId == categoryButton.id && categoryContainer.dataset.selectedSupplierButtonSupplierId == productSupplier.id) {  // Is supplier button already selected?
+            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button supplier-button-selected">${productSupplier.name}</div>`);
+        } else {
+            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
+        }
     }
 
     // Add event listeners to the product supplier buttons of the product category
@@ -68,6 +72,8 @@ function markSupplierButtonAsSelected(supplierButton) {
 
     // Mark as selected
     supplierButton.classList.add("supplier-button-selected");
+    categoryContainer.setAttribute("data-selected-supplier-button-supplier-id", supplierButton.dataset.supplierId);
+    categoryContainer.setAttribute("data-selected-supplier-button-category-id", supplierButton.dataset.categoryId);
 }
 
 async function listProducts(supplierButton) {
