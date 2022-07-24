@@ -31,4 +31,8 @@ public class ProductService {
         return productDao.getProductsByCategoryAndSupplier(categoryId, supplierId);
     }
 
+    public List<ProductDto> getRandomProducts(int quantity) {
+        return productDao.getRandomProducts(quantity);
+    }
+
 }

@@ -116,4 +116,46 @@ public class ProductDaoDb implements ProductDao {
         }
     }
 
+    @Override
+    public List<ProductDto> getRandomProducts(int quantity) {
+        try (Connection connection = dataSource.getConnection()) {
+            // Execute SQL query
+            String sql = "SELECT product.id AS id, " +
+                         "product.name AS name, " +
+                         "product.description AS description, " +
+                         "product.price AS price, " +
+                         "product.currency AS currency, " +
+                         "product_supplier.name AS supplier_name, " +
+                         "product_category.name AS category_name, " +
+                         "product.picture AS picture " +
+                         "FROM product " +
+                         "INNER JOIN product_category ON product.category_id = product_category.id " +
+                         "INNER JOIN product_supplier ON product.supplier_id = product_supplier.id " +
+                         "ORDER BY RANDOM() " +
+                         "LIMIT ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, quantity);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Create ProductDto objects from results and put them into a List
+            List<ProductDto> products = new ArrayList<>();
+            while (resultSet.next()) {
+                ProductDto productDto = new ProductDto();
+                productDto.setId(resultSet.getObject("id", java.util.UUID.class));
+                productDto.setName(resultSet.getString("name"));
+                productDto.setDescription(resultSet.getString("description"));
+                productDto.setPrice(resultSet.getBigDecimal("price"));
+                productDto.setCurrency(resultSet.getString("currency"));
+                productDto.setSupplierName(resultSet.getString("supplier_name"));
+                productDto.setCategoryName(resultSet.getString("category_name"));
+                productDto.setPicture(resultSet.getString("picture"));
+                products.add(productDto);
+            }
+
+            return products;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

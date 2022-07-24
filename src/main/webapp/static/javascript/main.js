@@ -1,4 +1,4 @@
-import {loadProductCategoryButtons} from "./modules/product.js";
+import {loadProductCategoryButtons, loadRandomProductsAtPageLoad} from "./modules/product.js";
 import {addEventListenerToInformationButton} from "./modules/informaiton.js";
 import {addEventListenerToRegistrationButton} from "./modules/registration.js";
 import {addEventListenerToLoginButton} from "./modules/login.js";
@@ -11,6 +11,8 @@ import {addEventListenerToOrderButton} from "./modules/order.js";
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
     await loadProductCategoryButtons();
+
+    await loadRandomProductsAtPageLoad(12);               // Loads 10 random product
 
     setVisibilityOfHeaderButtons();                                     // According to the authentication
     addEventListenerToInformationButton();

@@ -15,4 +15,6 @@ public interface ProductDao {
 
     List<ProductDto> getProductsByCategoryAndSupplier(UUID categoryId, UUID supplierId);
 
+    List<ProductDto> getRandomProducts(int quantity);
+
 }

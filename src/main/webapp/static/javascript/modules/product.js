@@ -25,6 +25,34 @@ export async function loadProductCategoryButtons() {
     }
 }
 
+export async function loadRandomProductsAtPageLoad(productQuantity) {
+    // Fetch products and show them
+    const randomProducts = await fetchData("GET", `/random-products?product-quantity=${productQuantity}`, null, null, null, "JSON");
+    for (let product of randomProducts) {
+        // Set visibility state of 'Add to cart' button according to the authentication
+        let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
+
+        // Show product cards
+        productContainer.insertAdjacentHTML("beforeend",
+            `
+                <div class="product">
+                    <div class="top-product-unit">
+                        <img class="product-photo" src="static/images/products/product-placeholder.jpeg">
+                        <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
+                        <div class="product-description">${product.description}</div>
+                    </div>
+                    <div class="bottom-product-unit">
+                        <div class="product-price-currency"><span class="product-price">${product.price}</span> <span class="product-currency">${product.currency}</span></div>
+                        <div class="add-to-cart-button" data-product-id="${product.id}" ${VisibilityStateOfAddToCartButton}>Add to cart</div>
+                    </div>
+                </div>
+            `);
+    }
+
+    // Add event listeners to 'add to cart' buttons
+    addEventListenerToAddToCartButtons();
+}
+
 // INNER FUNCTIONS //
 async function expandProductCategoryButton(categoryButton) {
     // Change shrinked symbol to expanded symbol
