@@ -207,6 +207,7 @@ export function addEventListenerToOrderButton() {
     });
 }
 
+// INNER FUNCTION(S) //
 function AddEventListenerToCancelButton() {
     const orderModalCloseButton = document.querySelector("#order-modal-close-button");
     orderModalCloseButton.addEventListener('click', ()=> closeModalDialog());

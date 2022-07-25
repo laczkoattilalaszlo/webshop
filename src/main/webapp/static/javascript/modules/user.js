@@ -7,7 +7,7 @@ const userButton = document.querySelector("#user-button");
 let userModalCloseButton;
 let modalDialog;
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export function addEventListenerToUserButton() {
     userButton.addEventListener('click', () => {
         // Disable scrolling on site
@@ -56,7 +56,7 @@ export function addEventListenerToUserButton() {
     });
 }
 
-// INNER FUNCTIONS //
+// INNER FUNCTION(S) //
 function addEventListenerToCloseButton() {
     userModalCloseButton = document.querySelector("#user-modal-close-button");
     userModalCloseButton.addEventListener('click', ()=> closeModalDialog());

@@ -7,7 +7,7 @@ const registrationButton = document.querySelector("#registration-button");
 const loginButton = document.querySelector("#login-button");
 const logoutButton = document.querySelector("#logout-button");
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export function setVisibilityOfHeaderButtons() {
     if (sessionStorage.getItem("session-token") == null) {      // Logged out
         informationButton.classList.add("header-button-left");

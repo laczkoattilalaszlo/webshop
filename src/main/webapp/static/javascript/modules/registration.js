@@ -7,7 +7,7 @@ const registrationButton = document.querySelector("#registration-button");
 let registrationModalCancelButton;
 let modalDialog;
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export function addEventListenerToRegistrationButton() {
     registrationButton.addEventListener('click', () => {
         // Disable scrolling on site
@@ -48,7 +48,7 @@ export function addEventListenerToRegistrationButton() {
     });
 }
 
-// INNER FUNCTIONS //
+// INNER FUNCTION(S) //
 function addEventListenerToCancelButton() {
     registrationModalCancelButton = document.querySelector("#registration-modal-cancel-button");
     registrationModalCancelButton.addEventListener('click', ()=> closeModalDialog());

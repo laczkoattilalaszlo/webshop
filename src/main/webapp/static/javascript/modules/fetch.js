@@ -1,4 +1,4 @@
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export async function fetchData(methodType, url, headerContent, bodyContent, contentType, expectedType) {
     let request;
     if (headerContent != null || bodyContent != null || contentType!= null || expectedType != null) {

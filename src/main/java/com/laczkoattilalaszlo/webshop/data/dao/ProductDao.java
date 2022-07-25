@@ -17,4 +17,6 @@ public interface ProductDao {
 
     List<ProductDto> getRandomProducts(int quantity);
 
+    List<ProductDto> getSearchedProducts(String searchedText);
+
 }

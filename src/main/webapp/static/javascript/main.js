@@ -7,6 +7,8 @@ import {setVisibilityOfHeaderButtons} from "./modules/header.js";
 import {addEventListenerToUserButton} from "./modules/user.js";
 import {addEventListenerToCartButton} from "./modules/checkout/checkout.js";
 import {addEventListenerToOrderButton} from "./modules/order.js";
+import {addEventListenerToSortByPriceDropdownMenu} from "./modules/sort.js";
+import {addEventListenerToSearchInput} from "./modules/search.js";
 
 // WINDOW ONLOAD //
 window.addEventListener('load', async () => {
@@ -22,6 +24,9 @@ window.addEventListener('load', async () => {
     addEventListenerToRegistrationButton();
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
+
+    addEventListenerToSearchInput();
+    addEventListenerToSortByPriceDropdownMenu();
 
     document.querySelector("#information-button").click();      // To show Information dialog at page load
 });

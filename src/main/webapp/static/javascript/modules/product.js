@@ -4,8 +4,12 @@ import {fetchData} from "./fetch.js";
 const categoryContainer = document.querySelector("#category-container");
 const productContainer = document.querySelector("#product-container");
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export async function loadProductCategoryButtons() {
+    // Delete category and supplier selection (reason: it is necessary not to keep selections, when the user reloads the page)
+    sessionStorage.removeItem("selected-category-id");
+    sessionStorage.removeItem("selected-supplier-id");
+
     // Fetch product categories and create buttons for them
     const productCategories = await fetchData("GET", "/product-categories", null, null, null, "JSON");
     for (let productCategory of productCategories) {
@@ -28,6 +32,12 @@ export async function loadProductCategoryButtons() {
 export async function loadRandomProductsAtPageLoad(productQuantity) {
     // Fetch products and show them
     const randomProducts = await fetchData("GET", `/random-products?product-quantity=${productQuantity}`, null, null, null, "JSON");
+
+    // Add products to show to the session-storage
+    const randomProductJSON = JSON.stringify(randomProducts);
+    sessionStorage.setItem("listed-products", randomProductJSON);
+
+    // Show products
     for (let product of randomProducts) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
@@ -53,7 +63,7 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     addEventListenerToAddToCartButtons();
 }
 
-// INNER FUNCTIONS //
+// INNER FUNCTION(S) //
 async function expandProductCategoryButton(categoryButton) {
     // Change shrinked symbol to expanded symbol
     categoryButton.firstChild.remove();
@@ -75,7 +85,7 @@ async function expandProductCategoryButton(categoryButton) {
         if (supplierButton.dataset.categoryId == categoryButton.id) {
             supplierButton.addEventListener('click', async () => {
                 markSupplierButtonAsSelected(supplierButton, supplierButtons);
-                await listProducts(supplierButton);
+                await loadProducts(supplierButton);
             });
         }
     }
@@ -104,12 +114,18 @@ function markSupplierButtonAsSelected(supplierButton) {
     sessionStorage.setItem("selected-supplier-id", supplierButton.dataset.supplierId);
 }
 
-async function listProducts(supplierButton) {
+async function loadProducts(supplierButton) {
     // Empty product-container
     productContainer.innerHTML = "";
 
     // Fetch products and show them
     const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${supplierButton.dataset.categoryId}&supplier-id=${supplierButton.dataset.supplierId}`, null, null, null, "JSON");
+
+    // Add products to show to the session-storage
+    const productJSON = JSON.stringify(products);
+    sessionStorage.setItem("listed-products", productJSON);
+
+    // Show products
     for (let product of products) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";

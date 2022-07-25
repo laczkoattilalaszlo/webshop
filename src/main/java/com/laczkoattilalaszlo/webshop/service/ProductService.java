@@ -35,4 +35,8 @@ public class ProductService {
         return productDao.getRandomProducts(quantity);
     }
 
+    public List<ProductDto> getSearchedProducts(String searchedText) {
+        return productDao.getSearchedProducts(searchedText);
+    }
+
 }

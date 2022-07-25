@@ -49,15 +49,15 @@
                             <input type="text" id="search-input">
                         </div>
                         <div id="right-search-unit">
-                            <input type="radio" checked>Selected area
-                            <input type="radio">Everywhere
+                            <input type="radio" class="search-range" name="search-range" id="search-range-listed-products" value="listed-products" checked><label for="search-range-listed-products">Listed products</label>
+                            <input type="radio" class="search-range" name="search-range" id="search-range-all-products" value="all-products"><label for="search-range-all-products">All products</label>
                         </div>
                     </div>
                     <div id="sort-by">
                         <img src="/static/images/icons/sortby.png">
                         <select id="sort-by-input">
-                            <option selected>Sort by Price Ascending</option>
-                            <option>Sort by Price Descending</option>
+                            <option value="ascending" selected>Sort selected by Price Ascending</option>
+                            <option value="descending">Sort selected by Price Descending</option>
                         </select>
                     </div>
                 </div>

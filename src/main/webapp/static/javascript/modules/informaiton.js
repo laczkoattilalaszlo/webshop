@@ -72,6 +72,7 @@ export function addEventListenerToInformationButton() {
     });
 }
 
+// INNER FUNCTION(S) //
 function AddEventListenerToCancelButton() {
     const loginModalCancelButton = document.querySelector("#information-modal-close-button");
     loginModalCancelButton.addEventListener('click', ()=> closeModalDialog());

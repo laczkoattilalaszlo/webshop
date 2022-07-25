@@ -6,7 +6,7 @@ const registrationButton = document.querySelector("#registration-button");
 const loginButton = document.querySelector("#login-button");
 const logoutButton = document.querySelector("#logout-button");
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export function addEventListenerToLogoutButton() {
     logoutButton.addEventListener('click', ()=> {
         // Logout
@@ -20,6 +20,7 @@ export function addEventListenerToLogoutButton() {
     });
 }
 
+// INNER FUNCTION(S) //
 function hideAuthenticationRelatedFeatures() {
     // Header menu buttons
     cartButton.classList.replace("header-button-right", "hidden");

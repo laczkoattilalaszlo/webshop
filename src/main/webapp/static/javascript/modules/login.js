@@ -12,7 +12,7 @@ const logoutButton = document.querySelector("#logout-button");
 let loginModalCancelButton;
 let modalDialog;
 
-// EXPORTED FUNCTIONS //
+// EXPORTED FUNCTION(S) //
 export function addEventListenerToLoginButton() {
     loginButton.addEventListener('click', () => {
         // Disable scrolling on site
@@ -52,7 +52,7 @@ export function addEventListenerToLoginButton() {
     });
 }
 
-// INNER FUNCTIONS //
+// INNER FUNCTION(S) //
 function AddEventListenerToCancelButton() {
     loginModalCancelButton = document.querySelector("#login-modal-cancel-button");
     loginModalCancelButton.addEventListener('click', ()=> closeModalDialog());
