@@ -39,30 +39,37 @@
         </div>
 
         <div id="content-container">
-            <div id="category-container"></div>
+            <div id="visual-curtain-for-category-container">
+                <div id="category-container"></div>
+            </div>
 
             <div id="filter-product-container">
-                <div id="filter-container">
-                    <div id="search">
-                        <div id="left-search-unit">
-                            <img src="/static/images/icons/search.png">
-                            <input type="text" id="search-input">
+                <div id="visual-curtain-container-for-filter-container">
+                    <div id="horizontal-visual-curtain-above-filter-container"></div>
+                    <div id="visual-curtain-behind-filter-container"></div>
+                    <div id="filter-container">
+                        <div id="search">
+                            <div id="left-search-unit">
+                                <img src="/static/images/icons/search.png">
+                                <input type="text" id="search-input">
+                            </div>
+                            <div id="right-search-unit">
+                                <input type="radio" class="search-range" name="search-range" id="search-range-listed-products" value="listed-products" checked><label for="search-range-listed-products">Listed products</label>
+                                <input type="radio" class="search-range" name="search-range" id="search-range-all-products" value="all-products"><label for="search-range-all-products">All products</label>
+                            </div>
                         </div>
-                        <div id="right-search-unit">
-                            <input type="radio" class="search-range" name="search-range" id="search-range-listed-products" value="listed-products" checked><label for="search-range-listed-products">Listed products</label>
-                            <input type="radio" class="search-range" name="search-range" id="search-range-all-products" value="all-products"><label for="search-range-all-products">All products</label>
+                        <div id="sort-by">
+                            <img src="/static/images/icons/sortby.png">
+                            <select id="sort-by-input">
+                                <option value="ascending" selected>Sort selected by Price Ascending</option>
+                                <option value="descending">Sort selected by Price Descending</option>
+                            </select>
                         </div>
                     </div>
-                    <div id="sort-by">
-                        <img src="/static/images/icons/sortby.png">
-                        <select id="sort-by-input">
-                            <option value="ascending" selected>Sort selected by Price Ascending</option>
-                            <option value="descending">Sort selected by Price Descending</option>
-                        </select>
-                    </div>
+                    <div id="horizontal-visual-curtain-below-filter-container"></div>
                 </div>
-
                 <div id="product-container"></div>
+                <div id="horizontal-visual-curtain"></div>
             </div>
         </div>
 
