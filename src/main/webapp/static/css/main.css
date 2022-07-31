@@ -234,6 +234,7 @@
                 flex-direction: column;
 
                 width: 85%;
+                height: max-content;
             }
 
                 #visual-curtain-container-for-filter-container {
