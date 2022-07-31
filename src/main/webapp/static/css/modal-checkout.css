@@ -111,6 +111,18 @@
 
             text-align: center;
             background-color: #888888;
+
+            cursor: pointer;
+        }
+
+        #checkout-modal-close-button:hover {
+            background-color: #999999;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #checkout-modal-close-button:active {
+            background-color: #888888;
+            box-shadow: 2px 2px 2px #222222;
         }
 
         #checkout-modal-footer-container-left-unit {
@@ -131,6 +143,18 @@
 
                 text-align: center;
                 background-color: #888888;
+
+                cursor: pointer;
+            }
+
+            #checkout-modal-previous-button:hover {
+                background-color: #999999;
+                box-shadow: 6px 6px 6px #222222;
+            }
+
+            #checkout-modal-previous-button:active {
+                background-color: #888888;
+                box-shadow: 2px 2px 2px #222222;
             }
 
             #checkout-modal-next-button {
@@ -139,8 +163,20 @@
 
                 width: 100%;
 
+                cursor: pointer;
+
                 text-align: center;
                 background-color: steelblue;
+            }
+
+            #checkout-modal-next-button:hover {
+                background-color: #5097ce;
+                box-shadow: 6px 6px 6px #222222;
+            }
+
+            #checkout-modal-next-button:active {
+                background-color: steelblue;
+                box-shadow: 2px 2px 2px #222222;
             }
 
 /* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */

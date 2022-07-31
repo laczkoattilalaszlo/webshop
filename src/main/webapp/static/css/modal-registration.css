@@ -65,6 +65,18 @@
 
             text-align: center;
             background-color: #888888;
+
+            cursor: pointer;
+        }
+
+        #registration-modal-cancel-button:hover {
+            background-color: #999999;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #registration-modal-cancel-button:active {
+            background-color: #888888;
+            box-shadow: 2px 2px 2px #222222;
         }
 
         #registration-modal-registration-button {
@@ -78,4 +90,16 @@
 
             text-align: center;
             background-color: steelblue;
+
+            cursor: pointer;
+        }
+
+        #registration-modal-registration-button:hover {
+            background-color: #5097ce;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #registration-modal-registration-button:active {
+            background-color: steelblue;
+            box-shadow: 2px 2px 2px #222222;
         }

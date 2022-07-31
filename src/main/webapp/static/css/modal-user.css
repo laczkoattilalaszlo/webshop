@@ -133,6 +133,18 @@
 
             text-align: center;
             background-color: #888888;
+
+            cursor: pointer;
+        }
+
+        #user-modal-close-button:hover {
+            background-color: #999999;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #user-modal-close-button:active {
+            background-color: #888888;
+            box-shadow: 2px 2px 2px #222222;
         }
 
         #user-modal-update-button {
@@ -146,4 +158,16 @@
 
             text-align: center;
             background-color: steelblue;
+
+            cursor: pointer;
+        }
+
+        #user-modal-update-button:hover {
+            background-color: #5097ce;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #user-modal-update-button:active {
+            background-color: steelblue;
+            box-shadow: 2px 2px 2px #222222;
         }
