@@ -36,8 +36,11 @@ public class MockPaymentController extends HttpServlet {
         UUID activeOrderId = orderService.getActiveOrderId(userId);
 
         if (userId != null) {
-            // Mock successful payment
-            orderService.mockSuccessfulPayment(activeOrderId);
+            // Mock an unsuccessful payment
+            orderService.mockPayment(activeOrderId, "Failed");
+
+            // Mock a successful payment
+            orderService.mockPayment(activeOrderId, "Succeeded");
 
             // Empty cart
             cartService = ServiceProvider.getInstance().getCartService();

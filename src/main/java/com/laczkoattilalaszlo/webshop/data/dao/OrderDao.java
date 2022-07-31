@@ -33,6 +33,6 @@ public interface OrderDao {
 
     List<OrderPaymentDto> getOrderPayments(UUID orderId);
 
-    void mockSuccessfulPayment(UUID activeOrderId);
+    void mockPayment(UUID activeOrderId, String paymentState);
 
 }
