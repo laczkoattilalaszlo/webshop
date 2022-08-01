@@ -2,7 +2,7 @@
 import {showConfirmationStep} from "./checkout-confirmaiton.js";
 import {fetchData} from "../fetch.js";
 
-const remainingSecond = 30;
+const remainingSecond = 60;
 
 // EXPORTED FUNCTION(S) //
 export function showPaymentStep() {
@@ -29,11 +29,18 @@ export function showPaymentStep() {
     const paymentContent = `
         <div id="modal-payment-content">
             <div id='modal-payment-content-logo-text-container'>
-                <img src="/static/images/icons/barion.png" id="modal-payment-content-picture">
+                <img src="/static/images/barion.png" id="modal-payment-content-picture">
                 <div id="modal-payment-content-text">
                 We will automatically redirect you to the payment site of Barion, where you can settle the order.
                 Barion will automatically redirect you this page after payment.
-                Please <b>DO NOT</b> close any of the tabs of your browser during the payment process!
+                Please <b>DO NOT</b> close any of the tabs of your browser during the payment process!              
+                </div>
+                
+                <img src="/static/images/caution.png" id="modal-payment-caution-picture">
+                <div id="modal-payment-caution-text">
+                The implementation of the payment process is still in progress. Until it is ready I mocked the
+                process. It practically means that one "Failed" and one "Succeeded" payment will be generated 
+                for the order, which you can check under the Orders tab.
                 </div>
             </div>
         </div>

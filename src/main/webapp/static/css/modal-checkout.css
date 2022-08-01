@@ -542,12 +542,22 @@
     }
 
         #modal-payment-content-logo-text-container {
+            display: flex;
+            flex-direction: column;
+
             width: min-content;
             text-align: justify;
         }
 
             #modal-payment-content-picture {
                 width: 300pt;
+            }
+
+            #modal-payment-caution-picture {
+                padding-top: 15pt;
+                padding-bottom: 15pt;
+
+                height: 5pt;
             }
 
 /* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / PAYMENT STEP */
