@@ -30,7 +30,7 @@ export function addEventListenerToSearchInput() {
                 `
                 <div class="product">
                     <div class="top-product-unit">
-                        <img class="product-photo" src="static/images/products/product-placeholder.jpeg">
+                        <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
                         <div class="product-description">${product.description}</div>
                     </div>

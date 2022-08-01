@@ -41,13 +41,13 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     for (let product of randomProducts) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
-
+console.log(product);
         // Show product cards
         productContainer.insertAdjacentHTML("beforeend",
             `
                 <div class="product">
                     <div class="top-product-unit">
-                        <img class="product-photo" src="static/images/products/product-placeholder.jpeg">
+                        <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
                         <div class="product-description">${product.description}</div>
                     </div>
@@ -135,7 +135,7 @@ async function loadProducts(supplierButton) {
             `
                 <div class="product">
                     <div class="top-product-unit">
-                        <img class="product-photo" src="static/images/products/product-placeholder.jpeg">
+                        <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
                         <div class="product-description">${product.description}</div>
                     </div>

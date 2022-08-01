@@ -38,9 +38,10 @@ export function showPaymentStep() {
                 
                 <img src="/static/images/caution.png" id="modal-payment-caution-picture">
                 <div id="modal-payment-caution-text">
-                The implementation of the payment process is still in progress. Until it is ready I mocked the
-                process. It practically means that one "Failed" and one "Succeeded" payment will be generated 
-                for the order, which you can check under the Orders tab.
+                The implementation of the payment process is still in progress. Until it is ready I mocked 
+                it, which practically means that one "Failed" and one "Succeeded" payment will be generated 
+                for the order when the countdown is over. You can check the orders and the relevant payment
+                attempts by clicking on the Orders tab.
                 </div>
             </div>
         </div>
