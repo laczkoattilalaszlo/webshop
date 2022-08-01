@@ -225,7 +225,7 @@
 
                     padding: 10pt;
                     border-radius: 10pt;
-                    background-color: #777777;
+                    background-image: linear-gradient(to bottom right, #777777, #999999);
 
                     height: 100%;
 
@@ -240,7 +240,7 @@
                         border-radius: 5pt;
                         padding: 5pt;
 
-                        background-image: linear-gradient(to bottom, #777777, #444444);
+                        background-image: linear-gradient(to bottom right, #444444, #7c7c7c);
                         color: lightgrey;
                         font-weight: bold;
                         text-align: left;
@@ -249,12 +249,12 @@
                     }
 
                     .category-button:hover {
-                        background-image: linear-gradient(to bottom, #999999, #555555);
+                        background-image: linear-gradient(to bottom right, #444444, #a0a0a0);
                         box-shadow: 0px 5px 5px #222222;
                     }
 
                     .category-button:active {
-                        background-image: linear-gradient(to bottom, #777777, #444444);
+                        background-image: linear-gradient(to bottom right, #444444, #7c7c7c);
                         box-shadow: 0px 2px 2px #222222;
                     }
 
@@ -274,7 +274,7 @@
                         padding-left: 15pt;
                         padding-right: 5pt;
 
-                        background-image: linear-gradient(to bottom, lightgrey, darkgrey);
+                        background-image: linear-gradient(to bottom right, lightgrey, darkgrey);
                         color: black;
                         font-weight: bold;
                         text-align: center;
@@ -283,26 +283,26 @@
                     }
 
                     .supplier-button:hover {
-                        background-image: linear-gradient(to bottom, #ededed, darkgrey);
+                        background-image: linear-gradient(to bottom right, #ededed, darkgrey);
                         box-shadow: 0px 5px 5px #222222;
                     }
 
                     .supplier-button:active {
-                        background-image: linear-gradient(to bottom, lightgrey, lightgrey);
+                        background-image: linear-gradient(to bottom right, lightgrey, darkgrey);
                         box-shadow: 0px 2px 2px #222222;
                     }
 
                     .supplier-button-selected {
-                        background-image: linear-gradient(to bottom, #549fd8, #2d5575);
+                        background-image: linear-gradient(to bottom right, #549fd8, #2d5575);
                     }
 
                     .supplier-button-selected:hover {
-                        background-image: linear-gradient(to bottom, #63beff, #2d5575);
+                        background-image: linear-gradient(to bottom right, #63beff, #2d5575);
                         box-shadow: 0px 5px 5px #222222;
                     }
 
                     .supplier-button-selected:active {
-                        background-image: linear-gradient(to bottom, #549fd8, #2d5575);
+                        background-image: linear-gradient(to bottom right, #549fd8, #2d5575);
                         box-shadow: 0px 2px 2px #222222;
                     }
 
