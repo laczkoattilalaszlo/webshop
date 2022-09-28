@@ -43,7 +43,7 @@ export function addEventListenerToInformationButton() {
                                                                             </div>
                                                     
                                                                             <div class="information-modal-content-container-unit">
-                                                                                <div class="information-modal-unit-title">Who I am?</div>
+                                                                                <div class="information-modal-unit-title">Who am I?</div>
                                                                                 <div class="information-modal-unit-text">
                                                                                     I am Attila László Laczkó, I worked 5 years in Software Development as a Senior QA Engineer. I always wanted to
                                                                                     understand deeper how web applications work, so I started to learn programming. I both enjoy dealing with backend
