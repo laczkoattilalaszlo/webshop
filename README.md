@@ -11,4 +11,4 @@ The application is deployed on Heroku, so you can try it by clicking on this lin
 <br>
 https://webshop-laczkaottilalaszlo.herokuapp.com/
 
-![](https://github.com/laczkoattilalaszlo/webshop/tree/development/src/main/webapp/static/images/application_screenshot.png)
+![](https://github.com/laczkoattilalaszlo/webshop/blob/development/src/main/webapp/static/images/application_screenshot.png)
