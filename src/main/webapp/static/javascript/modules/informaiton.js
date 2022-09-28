@@ -34,9 +34,11 @@ export function addEventListenerToInformationButton() {
                                                                                             <img class="information-link-icon" src="/static/images/icons/github.png"><span>Source and README</span>
                                                                                         </div>
                                                                                     </a>
-                                                                                    <div>
-                                                                                        <img class="information-link-icon" src="/static/images/icons/www.png"><span>My other projects</span>
-                                                                                    </div>
+                                                                                    <a href="https://github.com/laczkoattilalaszlo" target="_blank">
+                                                                                        <div>
+                                                                                            <img class="information-link-icon" src="/static/images/icons/www.png"><span>My other projects</span>
+                                                                                        </div>
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
                                                     
@@ -53,9 +55,11 @@ export function addEventListenerToInformationButton() {
                                                                                             <img class="information-link-icon" src="/static/images/icons/linkedin.png"><span>Contact me</span>
                                                                                         </div>
                                                                                     </a>
-                                                                                    <div>
-                                                                                        <img class="information-link-icon" src="/static/images/icons/cv.png"><span>Curriculum Vitae</span>
-                                                                                    </div>
+                                                                                    <a href="https://drive.google.com/file/d/1YIFWyCtyXz_ZwhO4g5JbdDLMm9E8CmyG/view?usp=sharing" target="_blank">
+                                                                                        <div>
+                                                                                            <img class="information-link-icon" src="/static/images/icons/cv.png"><span>Curriculum Vitae</span>
+                                                                                        </div>
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
