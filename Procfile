@@ -1,1 +1,1 @@
-web: java -war deploy/webshop.jar
+web: java -war deploy/webshop.war
