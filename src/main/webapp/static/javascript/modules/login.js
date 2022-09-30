@@ -29,7 +29,7 @@ export function addEventListenerToLoginButton() {
                                                                         </div>
                                                                         <div id="login-modal-content-container">
                                                                             <input type="text" id="login-modal-email-input" placeholder="E-mail" required>
-                                                                            <input type="text" id="login-modal-password-input" placeholder="Password" required>
+                                                                            <input type="password" id="login-modal-password-input" placeholder="Password" required>
                                                                         </div>
                                                                         <div id="login-modal-footer-container">
                                                                             <div id="login-modal-cancel-button">Cancel</div>

@@ -307,13 +307,13 @@ function addEventListenerToPasswordTab() {
         // Fill dialog content with password related fields
         userModalContentContainer.insertAdjacentHTML('afterbegin', `
             <div class="user-modal-content-container-row">
-                <label for="user-modal-current-password-input">Current Password:</label><input type="text" id="user-modal-current-password-input" required>
+                <label for="user-modal-current-password-input">Current Password:</label><input type="password" id="user-modal-current-password-input" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-new-password-input">New Password:</label><input type="text" id="user-modal-new-password-input" required>
+                <label for="user-modal-new-password-input">New Password:</label><input type="password" id="user-modal-new-password-input" required>
             </div>
             <div class="user-modal-content-container-row">
-                <label for="user-modal-password-confirmation-input">Password Confirmation:</label><input type="text" id="user-modal-password-confirmation-input" required>
+                <label for="user-modal-password-confirmation-input">Password Confirmation:</label><input type="password" id="user-modal-password-confirmation-input" required>
             </div>
             <div class="user-modal-content-container-row" id="user-modal-operation-result"></div>
         `);

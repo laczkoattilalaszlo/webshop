@@ -24,8 +24,8 @@ export function addEventListenerToRegistrationButton() {
                                                                         </div>
                                                                         <div id="registration-modal-content-container">
                                                                             <input type="text" id="registration-modal-email-input" placeholder="E-mail" required>
-                                                                            <input type="text" id="registration-modal-password-input" placeholder="Password" required>
-                                                                            <input type="text" id="registration-modal-password-confirmation-input" placeholder="Confirm Password" required>
+                                                                            <input type="password" id="registration-modal-password-input" placeholder="Password" required>
+                                                                            <input type="password" id="registration-modal-password-confirmation-input" placeholder="Confirm Password" required>
                                                                         </div>
                                                                         <div id="registration-modal-footer-container">
                                                                             <div id="registration-modal-cancel-button">Cancel</div>
