@@ -41,9 +41,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.plugin.maven.war}</version>
-                <configuration>
-                    <outputDirectory>deploy</outputDirectory>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>

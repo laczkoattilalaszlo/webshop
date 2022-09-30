@@ -1,1 +1,1 @@
-web: java -war deploy/webshop.war
+web: java $JAVA_OPTS -cp target/classes:target/dependency/*
