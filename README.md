@@ -9,6 +9,6 @@ This is a classic, webshop themed web application. The name of the webshop is 'V
 ### :arrow_forward: Try It Out!
 The application is deployed on Heroku, so you can try it by clicking on this link:
 <br>
-https://webshop-laczkaottilalaszlo.herokuapp.com/
+https://vanilla-webshop.herokuapp.com/
 
-![](https://github.com/laczkoattilalaszlo/webshop/blob/development/src/main/webapp/static/images/application_screenshot.png)
+![](https://github.com/laczkoattilalaszlo/webshop/blob/main/src/main/webapp/static/images/application_screenshot.png)
