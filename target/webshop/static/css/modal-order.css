@@ -1,0 +1,130 @@
+/* OWN PROPERTIES OF ORDER MODAL DIALOG */
+
+    #order-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #order-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #order-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #order-modal-content-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15pt;
+
+        overflow: auto;
+        scrollbar-gutter: stable both-edges;
+
+        padding-top: 20pt;
+        padding-bottom: 20pt;
+        padding-left: 15pt;
+        padding-right: 15pt;
+
+        height: 350pt;
+        min-width: 600pt;
+
+        background-color: #888888;
+    }
+
+        .order-title-closed {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            border-radius: 5pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+        .order-title-open {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            border-radius: 5pt 5pt 0pt 0pt;
+            padding: 10pt;
+
+            background-color: dimgrey;
+        }
+
+            .order-title-icon {
+                width: 20pt;
+                height: 20pt;
+            }
+
+            .order-title-text {
+                font-weight: bold;
+            }
+
+            .shrink-expand-button {
+                font-weight: bold;
+                float: right;
+            }
+
+        .order-content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10pt;
+
+            border-radius: 0pt 0pt 5pt 5pt;
+            padding: 10pt;
+
+            background-color: darkgrey;
+        }
+
+    #order-modal-footer-container {
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 25pt;
+        padding-right: 25pt;
+
+        background-color: #555555;
+    }
+
+        #order-modal-close-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+            float: right;
+
+            cursor: pointer;
+        }
+
+        #order-modal-close-button:hover {
+            background-color: #999999;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #order-modal-close-button:active {
+            background-color: #888888;
+            box-shadow: 2px 2px 2px #222222;
+        }

@@ -1,0 +1,105 @@
+/* OWN PROPERTIES OF REGISTRATION MODAL DIALOG */
+
+    #registration-modal-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        border-top-left-radius: 10pt;
+        border-top-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+
+        background-color: #555555;
+    }
+
+        #registration-modal-header-container img {
+            width: 25pt;
+            height: 25pt;
+        }
+
+        #registration-modal-title {
+            padding: 5pt 5pt 5pt 5pt;
+
+            font-weight: bold;
+            font-size: 18pt;
+            background-color: transparent;
+        }
+
+    #registration-modal-content-container {
+        display: flex;
+        flex-direction: column;
+
+        padding: 20pt;
+
+        background-color: #888888;
+    }
+
+        #registration-modal-content-container input {
+            margin: 5pt;
+            border-radius: 5pt;
+            padding: 5pt;
+        }
+
+    #registration-modal-footer-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom-left-radius: 10pt;
+        border-bottom-right-radius: 10pt;
+        padding-top: 10pt;
+        padding-bottom: 10pt;
+        padding-left: 25pt;
+        padding-right: 25pt;
+
+        background-color: #555555;
+    }
+
+        #registration-modal-cancel-button {
+            display: inline-block;
+
+            border-radius: 5pt;
+            padding: 5pt;
+
+            text-align: center;
+            background-color: #888888;
+
+            cursor: pointer;
+        }
+
+        #registration-modal-cancel-button:hover {
+            background-color: #999999;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #registration-modal-cancel-button:active {
+            background-color: #888888;
+            box-shadow: 2px 2px 2px #222222;
+        }
+
+        #registration-modal-registration-button {
+            display: inline-block;
+
+            margin-left: 10pt;
+            border-radius: 5pt;
+            padding: 5pt;
+
+            width: 100%;
+
+            text-align: center;
+            background-color: steelblue;
+
+            cursor: pointer;
+        }
+
+        #registration-modal-registration-button:hover {
+            background-color: #5097ce;
+            box-shadow: 6px 6px 6px #222222;
+        }
+
+        #registration-modal-registration-button:active {
+            background-color: steelblue;
+            box-shadow: 2px 2px 2px #222222;
+        }
