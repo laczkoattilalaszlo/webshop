@@ -41,7 +41,7 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     for (let product of randomProducts) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
-console.log(product);
+
         // Show product cards
         productContainer.insertAdjacentHTML("beforeend",
             `

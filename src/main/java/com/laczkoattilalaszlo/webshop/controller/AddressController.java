@@ -78,7 +78,7 @@ public class AddressController extends HttpServlet {
         System.out.println(payload);
         // Deserialize payload
         AddressDto addressDto = new Gson().fromJson(payload, AddressDto.class);
-        System.out.println(addressDto.getName());
+
         // Update ... (shipping / billing) address
         addressService = ServiceProvider.getInstance().getAddressService();
         if (type.equals("shipping")) {
