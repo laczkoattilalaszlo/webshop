@@ -197,7 +197,7 @@ function addEventListenerToShippingAddressTab() {
 
             // Update user data
             console.log(userModalNameInputValue);
-            const response = await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${userModalNameInputValue}", "zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json", null);
+            const response = await fetchData("PUT", `/address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${userModalNameInputValue}", "zip": "${userModalZipInputValue}", "country": "${userModalCountryInputValue}", "city": "${userModalCityInputValue}", "address": "${userModalAddressInputValue}"}`, "application/json; charset=utf-8", null);
 
             // Show result of update operation in modal dialog
             const UserModalOperationResult = document.querySelector("#user-modal-operation-result");
