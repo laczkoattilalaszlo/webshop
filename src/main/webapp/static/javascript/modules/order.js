@@ -228,7 +228,7 @@ function showPaidOrderLines(paidOrders) {
     const orderModalContentContainer = document.querySelector("#order-modal-content-container");
     for (let paidOrder of paidOrders) {
         orderModalContentContainer.insertAdjacentHTML("beforeend", `
-            <div class="order" id="${paidOrder.id}">
+            <div class="order animated" id="${paidOrder.id}">
                 <div class="order-title-closed">
                     <img class="order-title-icon" src="/static/images/icons/payed-order.png">
                     <div class="order-title-text">

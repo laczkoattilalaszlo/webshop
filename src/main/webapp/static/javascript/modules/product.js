@@ -46,7 +46,7 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
         // Add product cards
         productContainer.insertAdjacentHTML("beforeend",
             `
-                <div class="product">
+                <div class="product animated">
                     <div class="top-product-unit">
                         <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
@@ -77,9 +77,9 @@ async function expandProductCategoryButton(categoryButton) {
     const productSuppliersOfCategory = await fetchData("GET", `/product-suppliers-by-category?category-id=${categoryButton.id}`, null, null, null, "JSON");
     for (let productSupplier of productSuppliersOfCategory) {
         if (sessionStorage.getItem("selected-category-id") == categoryButton.id && sessionStorage.getItem("selected-supplier-id") == productSupplier.id) {  // Checks whether supplier button already selected
-            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button supplier-button-selected">${productSupplier.name}</div>`);
+            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button supplier-button-selected animated">${productSupplier.name}</div>`);
         } else {
-            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
+            categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button animated">${productSupplier.name}</div>`);
         }
     }
 
@@ -140,7 +140,7 @@ async function loadProducts(supplierButton) {
         // Show product cards
         productContainer.insertAdjacentHTML("beforeend",
             `
-                <div class="product">
+                <div class="product animated">
                     <div class="top-product-unit">
                         <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
                         <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
