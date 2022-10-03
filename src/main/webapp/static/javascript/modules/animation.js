@@ -7,3 +7,15 @@ export function fadeInElements(classNameOfElementsToFade, duration) {
         }, i * duration);
     }
 }
+
+export function FadeInElementsAfterWaitForLoadAllImagesCompletely(classNameOfElementsToFade, fadeDuration, classNameOfImagesForWait) {
+    let imageLoadWaiter = setInterval(function () {
+        const images = document.querySelectorAll(classNameOfImagesForWait);
+        let hasUnLoadedImage = false;
+        images.forEach(image => image.complete == false ? hasUnLoadedImage = true : false);
+        if (hasUnLoadedImage == false) {
+            fadeInElements(classNameOfElementsToFade, fadeDuration);
+            clearInterval(imageLoadWaiter);
+        }
+    }, 1000);
+}

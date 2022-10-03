@@ -1,5 +1,5 @@
 import {fetchData} from "./fetch.js";
-import {fadeInElements} from "./animation.js";
+import {FadeInElementsAfterWaitForLoadAllImagesCompletely} from "./animation.js";
 
 // INNER USED CONSTANT VARIABLES //
 const categoryContainer = document.querySelector("#category-container");
@@ -61,7 +61,7 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     }
 
     // Fade in product cards
-    fadeInElements("product", 100);
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo");
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
@@ -84,7 +84,7 @@ async function expandProductCategoryButton(categoryButton) {
     }
 
     // Fade in supplier buttons
-    fadeInElements("supplier-button", 100);
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("supplier-button", 100, ".product-photo");
 
     // Add event listeners to the product supplier buttons of the product category
     const supplierButtons = document.querySelectorAll(".supplier-button");
@@ -154,8 +154,8 @@ async function loadProducts(supplierButton) {
             `);
     }
 
-    // Fade product cards
-    fadeInElements("product", 100);
+    // Fade in product cards
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo");
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
