@@ -14,7 +14,7 @@ export function addEventListenerToCartButton() {
         body.insertAdjacentHTML('beforeend', `
             <div id="modal-dialog">
                 <div id="modal-fade">
-                    <div id="modal-dialog-container">
+                    <div id="modal-dialog-container" class="animated animation-fadein">
                         <div id="checkout-modal-header-container">
                             <div id="checkout-modal-header">
                                 <div id="checkout-modal-title">Checkout Process</div>

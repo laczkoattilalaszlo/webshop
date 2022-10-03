@@ -22,7 +22,7 @@ export function addEventListenerToLoginButton() {
         body.insertAdjacentHTML('beforeend',    `
                                                             <div id="modal-dialog">
                                                                 <div id="modal-fade">
-                                                                    <div id="modal-dialog-container">
+                                                                    <div id="modal-dialog-container" class="animated animation-fadein">
                                                                         <div id="login-modal-header-container">
                                                                             <img src="/static/images/icons/login.png">
                                                                             <div id="login-modal-title">Login user</div>

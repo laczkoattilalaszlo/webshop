@@ -12,7 +12,7 @@ export function addEventListenerToInformationButton() {
         body.insertAdjacentHTML('beforeend',    `
                                                             <div id="modal-dialog">
                                                                 <div id="modal-fade">
-                                                                    <div id="modal-dialog-container">
+                                                                    <div id="modal-dialog-container" class="animated animation-fadein">
                                                                         <div id="information-modal-header-container">
                                                                             <img src="/static/images/icons/information.png">
                                                                             <div id="information-modal-title">Information</div>

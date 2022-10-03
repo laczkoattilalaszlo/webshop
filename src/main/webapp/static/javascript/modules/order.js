@@ -14,7 +14,7 @@ export function addEventListenerToOrderButton() {
         // Add order modal dialog
         let orderModalContent = `<div id="modal-dialog">
                                     <div id="modal-fade">
-                                        <div id="modal-dialog-container">
+                                        <div id="modal-dialog-container" class="animated animation-fadein">
                                             <div id="order-modal-header-container">
                                                 <img src="/static/images/icons/order.png">
                                                 <div id="order-modal-title">Orders</div>

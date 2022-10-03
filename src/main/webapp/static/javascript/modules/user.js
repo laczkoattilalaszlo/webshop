@@ -17,7 +17,7 @@ export function addEventListenerToUserButton() {
         body.insertAdjacentHTML('beforeend', `
             <div id="modal-dialog">
                 <div id="modal-fade">
-                    <div id="modal-dialog-container">
+                    <div id="modal-dialog-container" class="animated animation-fadein">
                         <div id="user-modal-header-container">
                             <div id="user-modal-header">
                                 <img src="/static/images/icons/user.png">

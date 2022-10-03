@@ -17,7 +17,7 @@ export function addEventListenerToRegistrationButton() {
         body.insertAdjacentHTML('beforeend',    `
                                                             <div id="modal-dialog">
                                                                 <div id="modal-fade">
-                                                                    <div id="modal-dialog-container">
+                                                                    <div id="modal-dialog-container" class="animated animation-fadein">
                                                                         <div id="registration-modal-header-container">
                                                                             <img src="/static/images/icons/registration.png">
                                                                             <div id="registration-modal-title">Register user</div>
