@@ -2,7 +2,7 @@
 import {showConfirmationStep} from "./checkout-confirmaiton.js";
 import {fetchData} from "../fetch.js";
 
-const remainingSecond = 60;
+const remainingSecond = 30;
 
 // EXPORTED FUNCTION(S) //
 export function showPaymentStep() {
