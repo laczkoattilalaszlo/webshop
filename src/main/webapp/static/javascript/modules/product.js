@@ -1,5 +1,5 @@
 import {fetchData} from "./fetch.js";
-import {FadeInElementsAfterWaitForLoadAllImagesCompletely} from "./animation.js";
+import {fadeInElements, FadeInElementsAfterWaitForLoadAllImagesCompletely} from "./animation.js";
 
 // INNER USED CONSTANT VARIABLES //
 const categoryContainer = document.querySelector("#category-container");
@@ -84,7 +84,7 @@ async function expandProductCategoryButton(categoryButton) {
     }
 
     // Fade in supplier buttons
-    FadeInElementsAfterWaitForLoadAllImagesCompletely("supplier-button", 100, ".product-photo");
+    fadeInElements("supplier-button", 100);
 
     // Add event listeners to the product supplier buttons of the product category
     const supplierButtons = document.querySelectorAll(".supplier-button");

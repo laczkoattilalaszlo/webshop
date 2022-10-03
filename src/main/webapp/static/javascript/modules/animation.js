@@ -17,5 +17,5 @@ export function FadeInElementsAfterWaitForLoadAllImagesCompletely(classNameOfEle
             fadeInElements(classNameOfElementsToFade, fadeDuration);
             clearInterval(imageLoadWaiter);
         }
-    }, 1000);
+    }, 100);
 }
