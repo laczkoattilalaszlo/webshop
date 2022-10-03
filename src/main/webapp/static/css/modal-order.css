@@ -84,6 +84,8 @@
             }
 
             .shrink-expand-button {
+                margin-right: 5pt;
+
                 font-weight: bold;
                 float: right;
             }
