@@ -37,6 +37,9 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     const randomProductJSON = JSON.stringify(randomProducts);
     sessionStorage.setItem("listed-products", randomProductJSON);
 
+    // Hide product-container while loading products
+    productContainer.classList.add("invisible");
+
     // Show products
     for (let product of randomProducts) {
         // Set visibility state of 'Add to cart' button according to the authentication
@@ -58,6 +61,9 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
                 </div>
             `);
     }
+
+    // Show product-container after loading products
+    setTimeout(() => productContainer.classList.remove("invisible"), 100);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
@@ -125,6 +131,9 @@ async function loadProducts(supplierButton) {
     const productJSON = JSON.stringify(products);
     sessionStorage.setItem("listed-products", productJSON);
 
+    // Hide product-container while loading products
+    productContainer.classList.add("invisible");
+
     // Show products
     for (let product of products) {
         // Set visibility state of 'Add to cart' button according to the authentication
@@ -146,6 +155,9 @@ async function loadProducts(supplierButton) {
                 </div>
             `);
     }
+
+    // Show product-container after loading products
+    setTimeout(() => productContainer.classList.remove("invisible"), 100);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
