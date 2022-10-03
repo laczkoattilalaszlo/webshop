@@ -1,4 +1,4 @@
-// INNER USED CONSTANT VARIABLES //
+// INNER USED CONSTANT VARIABLE(S) //
 const cartButton = document.querySelector("#cart-button");
 const orderButton = document.querySelector("#order-button");
 const userButton = document.querySelector("#user-button");
