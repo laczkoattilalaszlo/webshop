@@ -61,7 +61,7 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     }
 
     // Fade in product cards
-    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo");
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo", 100);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
@@ -155,7 +155,7 @@ async function loadProducts(supplierButton) {
     }
 
     // Fade in product cards
-    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo");
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo", 100);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();

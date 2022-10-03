@@ -8,7 +8,7 @@ export function fadeInElements(classNameOfElementsToFade, duration) {
     }
 }
 
-export function FadeInElementsAfterWaitForLoadAllImagesCompletely(classNameOfElementsToFade, fadeDuration, classNameOfImagesForWait) {
+export function FadeInElementsAfterWaitForLoadAllImagesCompletely(classNameOfElementsToFade, fadeDuration, classNameOfImagesForWait, checkInterval) {
     let imageLoadWaiter = setInterval(function () {
         const images = document.querySelectorAll(classNameOfImagesForWait);
         let hasUnLoadedImage = false;
@@ -17,5 +17,5 @@ export function FadeInElementsAfterWaitForLoadAllImagesCompletely(classNameOfEle
             fadeInElements(classNameOfElementsToFade, fadeDuration);
             clearInterval(imageLoadWaiter);
         }
-    }, 100);
+    }, checkInterval);
 }
