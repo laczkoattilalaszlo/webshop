@@ -1,4 +1,5 @@
 import {fetchData} from "./fetch.js";
+import {fadeInElements} from "./animation.js";
 
 // INNER USED CONSTANT VARIABLES //
 const categoryContainer = document.querySelector("#category-container");
@@ -37,12 +38,12 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     const randomProductJSON = JSON.stringify(randomProducts);
     sessionStorage.setItem("listed-products", randomProductJSON);
 
-    // Show products
+    // Add products to product-container
     for (let product of randomProducts) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
 
-        // Show product cards
+        // Add product cards
         productContainer.insertAdjacentHTML("beforeend",
             `
                 <div class="product">
@@ -58,6 +59,9 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
                 </div>
             `);
     }
+
+    // Fade in product cards
+    fadeInElements("product", 50);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
@@ -78,6 +82,9 @@ async function expandProductCategoryButton(categoryButton) {
             categoryButton.insertAdjacentHTML("afterend", `<div data-category-id="${categoryButton.id}" data-supplier-id="${productSupplier.id}" class="supplier-button">${productSupplier.name}</div>`);
         }
     }
+
+    // Fade in supplier buttons
+    fadeInElements("supplier-button", 100);
 
     // Add event listeners to the product supplier buttons of the product category
     const supplierButtons = document.querySelectorAll(".supplier-button");
@@ -125,7 +132,7 @@ async function loadProducts(supplierButton) {
     const productJSON = JSON.stringify(products);
     sessionStorage.setItem("listed-products", productJSON);
 
-    // Show products
+    // Add products to product-container
     for (let product of products) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
@@ -146,6 +153,9 @@ async function loadProducts(supplierButton) {
                 </div>
             `);
     }
+
+    // Fade product cards
+    fadeInElements("product", 50);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();

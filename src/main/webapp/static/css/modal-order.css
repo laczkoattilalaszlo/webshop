@@ -46,6 +46,11 @@
         background-color: #888888;
     }
 
+    .order {
+        transition: 2s all ease-in-out;
+        opacity: 0;
+    }
+
         .order-title-closed {
             display: flex;
             flex-direction: row;

@@ -1,4 +1,5 @@
 import {fetchData} from "./fetch.js";
+import {fadeInElements} from "./animation.js";
 
 // INNER USED CONSTANT VARIABLE(S) //
 const body = document.querySelector('body');
@@ -223,6 +224,7 @@ function closeModalDialog() {
 }
 
 function showPaidOrderLines(paidOrders) {
+    // Add closed order lines to modal content container
     const orderModalContentContainer = document.querySelector("#order-modal-content-container");
     for (let paidOrder of paidOrders) {
         orderModalContentContainer.insertAdjacentHTML("beforeend", `
@@ -240,4 +242,7 @@ function showPaidOrderLines(paidOrders) {
             </div>
         `);
     }
+
+    // Fade in order closed lines
+    fadeInElements("order", 200);
 }

@@ -280,6 +280,9 @@
                         text-align: center;
 
                         cursor: pointer;
+
+                        transition: 2s all ease-in-out;
+                        opacity: 0;
                     }
 
                     .supplier-button:hover {
@@ -495,6 +498,9 @@
                         background-image: linear-gradient(to bottom, #c4c4c4, #999999);
 
                         box-shadow: 5px 5px 5px grey;
+
+                        transition: 2s all ease-in-out;
+                        opacity: 0;
                     }
 
                         .product-photo {
