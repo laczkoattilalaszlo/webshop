@@ -433,6 +433,10 @@
                                     margin-right: 3pt;
                                 }
 
+                                #search label {
+                                    cursor: pointer;
+                                }
+
                         #sort-by {
                             display: flex;
                             flex-direction: row;
@@ -459,6 +463,8 @@
 
                                 background-color: transparent;
                                 font-size: 11pt;
+
+                                cursor: pointer;
                             }
 
                                 #sort-by select option {

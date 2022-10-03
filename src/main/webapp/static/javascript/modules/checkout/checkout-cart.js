@@ -24,7 +24,11 @@ export async function showCartStep() {
 
     // Show cart content in a table
     if (cart.length === 0) {
-        modalContentContainer.insertAdjacentHTML('afterbegin', "<div id='modal-cart-is-empty-text'>Cart is empty, choose product from product categories!</div>");
+        modalContentContainer.insertAdjacentHTML('afterbegin', `
+            <div id='modal-cart-is-empty-text-container'>
+                <div id='modal-cart-is-empty-text'>Cart is empty, choose product from product categories!</div>
+            </div>
+        `);
     } else {
         let cartTable = `<table id="checkout-modal-cart-table">
                             <colgroup>
@@ -131,10 +135,10 @@ function changeNextButton(cart) {
     let modalNextButton = document.querySelector("#checkout-modal-next-button");
     modalNextButton.remove();
 
-    const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
-    checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
-
     if (cart.length != 0) {
+        const checkoutModalFooterContainerRightUnit = document.querySelector("#checkout-modal-footer-container-right-unit");
+        checkoutModalFooterContainerRightUnit.insertAdjacentHTML("beforeend", `<div id="checkout-modal-next-button">Next</div>`);
+
         modalNextButton = document.querySelector("#checkout-modal-next-button");
         modalNextButton.addEventListener('click', async () => {
             await transferCartContentToActiveOrderCart();

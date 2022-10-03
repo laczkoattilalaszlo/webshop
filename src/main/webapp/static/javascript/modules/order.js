@@ -48,7 +48,7 @@ export function addEventListenerToOrderButton() {
                     // Change shrink button to expand
                     const shrinkButton = orderTitle.children[2];
                     shrinkButton.remove();
-                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">▾</div>`);
+                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">◂</div>`);
 
                     // Remove order-content
                     const oderContent = paidOrderLine.children[1];
@@ -60,7 +60,7 @@ export function addEventListenerToOrderButton() {
                     // Change expand button to shrink
                     const expandButton = orderTitle.children[2];
                     expandButton.remove();
-                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">▴</div>`);
+                    orderTitle.insertAdjacentHTML("beforeend", `<div class="shrink-expand-button">▾</div>`);
 
                     // Get paid order
                     const paidOrder = await fetchData("POST", `/paid-order`, {"session-token": sessionStorage.getItem("session-token")}, `${paidOrderLine.id}`, "plain/text", "JSON");
@@ -235,7 +235,7 @@ function showPaidOrderLines(paidOrders) {
                         ${paidOrder.successfulPaymentStartTimestamp.date.month}.
                         ${paidOrder.successfulPaymentStartTimestamp.date.year}.
                     </div>
-                    <div class="shrink-expand-button">▾</div>
+                    <div class="shrink-expand-button">◂</div>
                 </div>
             </div>
         `);

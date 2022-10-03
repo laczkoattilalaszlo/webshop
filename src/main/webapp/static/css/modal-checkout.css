@@ -181,6 +181,14 @@
 
 /* OWN PROPERTIES OF CART STEP OF CHECKOUT MODAL DIALOG */
 
+    #modal-cart-is-empty-text-container {
+        display:flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
     #checkout-modal-cart-table {
         display: table;
 
@@ -275,6 +283,8 @@
 
                 background-color: #555555;
                 color: lightgrey;
+
+                cursor: pointer;
             }
 
             #checkout-modal-total-prize-text div {
@@ -316,6 +326,8 @@
 
                 background-color: #555555;
                 color: lightgrey;
+
+                cursor: pointer;
             }
 
         .delivery-content-unit-content {
@@ -560,7 +572,7 @@
                 height: 5pt;
             }
 
-/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / PAYMENT STEP */
+/* OWN PROPERTIES OF CHECKOUT MODAL DIALOG / REVIEW STEP */
 
     #modal-confirmation-content {
         display: flex;

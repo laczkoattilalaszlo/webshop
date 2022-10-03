@@ -45,6 +45,8 @@
 
                 background-color: #777777;
                 text-align: center;
+
+                cursor: pointer;
             }
 
             .user-modal-tab-selected {
