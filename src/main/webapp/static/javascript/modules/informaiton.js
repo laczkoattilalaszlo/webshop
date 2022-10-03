@@ -10,7 +10,7 @@ export function addEventListenerToInformationButton() {
 
         // Add login modal dialog
         body.insertAdjacentHTML('beforeend',    `
-                                                            <div id="modal-dialog" class="invisible">
+                                                            <div id="modal-dialog">
                                                                 <div id="modal-fade">
                                                                     <div id="modal-dialog-container">
                                                                         <div id="information-modal-header-container">

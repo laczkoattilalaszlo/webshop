@@ -15,7 +15,6 @@ function showUIElements() {
     document.querySelector("#header-container").classList.remove("invisible");
     document.querySelector("#content-container").classList.remove("invisible");
     document.querySelector("#footer-container").classList.remove("invisible");
-    document.querySelector("#modal-dialog").classList.remove("invisible");
 }
 
 // WINDOW ONLOAD //
