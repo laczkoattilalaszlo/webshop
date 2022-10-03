@@ -72,6 +72,9 @@ public class AddressController extends HttpServlet {
         // Get parameter(s)
         String type = request.getParameter("type");     // shipping / billing
 
+        System.out.println(request.getCharacterEncoding());
+        request.setCharacterEncoding("UTF-8");
+        System.out.println(request.getCharacterEncoding());
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
