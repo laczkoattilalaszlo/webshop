@@ -202,7 +202,7 @@ async function updateActiveOrderContact() {
     const contactPhoneInputValue = contactPhoneInput.value;
 
     // Update active order contact
-    await fetchData("PUT", `/active-order-contact`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${contactNameInputValue}", "email": "${contactEmailInputValue}", "phone": "${contactPhoneInputValue}"}`, "application/json", null);
+    await fetchData("PUT", `/active-order-contact`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${contactNameInputValue}", "email": "${contactEmailInputValue}", "phone": "${contactPhoneInputValue}"}`, "application/json; charset=utf-8", null);
 }
 
 async function updateActiveOrderShippingAddress() {
@@ -226,7 +226,7 @@ async function updateActiveOrderShippingAddress() {
     const shippingAddressInputValue = shippingAddressInput.value;
 
     // Update active order shipping address
-    await fetchData("PUT", `/active-order-address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${shippingNameInputValue}", "zip": "${shippingZipInputValue}", "country": "${shippingCountryInputValue}", "city": "${shippingCityInputValue}", "address": "${shippingAddressInputValue}"}`, "application/json", null);
+    await fetchData("PUT", `/active-order-address?type=shipping`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${shippingNameInputValue}", "zip": "${shippingZipInputValue}", "country": "${shippingCountryInputValue}", "city": "${shippingCityInputValue}", "address": "${shippingAddressInputValue}"}`, "application/json; charset=utf-8", null);
 }
 
 async function updateActiveOrderBillingAddress() {
@@ -250,7 +250,7 @@ async function updateActiveOrderBillingAddress() {
     const billingAddressInputValue = billingAddressInput.value;
 
     // Update active order billing address
-    await fetchData("PUT", `/active-order-address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${billingNameInputValue}", "zip": "${billingZipInputValue}", "country": "${billingCountryInputValue}", "city": "${billingCityInputValue}", "address": "${billingAddressInputValue}"}`, "application/json", null);
+    await fetchData("PUT", `/active-order-address?type=billing`, {"session-token": sessionStorage.getItem("session-token")}, `{"name": "${billingNameInputValue}", "zip": "${billingZipInputValue}", "country": "${billingCountryInputValue}", "city": "${billingCityInputValue}", "address": "${billingAddressInputValue}"}`, "application/json; charset=utf-8", null);
 }
 
 function addEventListenerToLoadContactDetailsButton() {

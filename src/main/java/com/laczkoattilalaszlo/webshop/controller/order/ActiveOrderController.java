@@ -61,7 +61,7 @@ public class ActiveOrderController extends HttpServlet {
             String serializedActiveOrder = new Gson().toJson(activeOrder);
 
             // Edit response
-            response.setContentType("application/json");
+            response.setContentType("application/json; charset=utf-8");
             response.setCharacterEncoding("UTF-8");
 
             // Send response

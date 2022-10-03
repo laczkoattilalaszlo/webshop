@@ -78,7 +78,7 @@ public class UserController extends HttpServlet {
         String serializedUserDto = new Gson().toJson(userDto);
 
         // Edit response
-        response.setContentType("application/json");
+        response.setContentType("application/json; charset=utf-8");
         response.setCharacterEncoding("UTF-8");
 
         // Send response

@@ -70,7 +70,7 @@ function addEventListenerToModalRegistrationButton() {
         // Validate input values
         if (registrationModalPasswordInputValue === registrationModalPasswordConfirmationInputValue) {
             // Send values to the backend
-            const response = await fetchData("POST", `/user`, null, `{"email": "${registrationModalEmailInputValue}", "password": "${registrationModalPasswordInputValue}"}`, "application/json", null);
+            const response = await fetchData("POST", `/user`, null, `{"email": "${registrationModalEmailInputValue}", "password": "${registrationModalPasswordInputValue}"}`, "application/json; charset=utf-8", null);
 
             // Close modal dialog
             if (response.ok) {

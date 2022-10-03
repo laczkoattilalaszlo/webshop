@@ -51,7 +51,7 @@ public class AddressController extends HttpServlet {
         String serializedUserDto = new Gson().toJson(addressDto);
 
         // Edit response
-        response.setContentType("application/json");
+        response.setContentType("application/json; charset=utf-8");
         response.setCharacterEncoding("UTF-8");
 
         // Send response
@@ -75,7 +75,6 @@ public class AddressController extends HttpServlet {
         // Get payload
         BufferedReader bufferedReader = request.getReader();
         String payload = bufferedReader.lines().collect(Collectors.joining());
-        System.out.println(payload);
         // Deserialize payload
         AddressDto addressDto = new Gson().fromJson(payload, AddressDto.class);
 

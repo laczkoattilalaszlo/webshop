@@ -44,7 +44,7 @@ public class PaidOrderController extends HttpServlet {
             String serializedPaidOrders = new Gson().toJson(paidOrders);
 
             // Edit response
-            response.setContentType("application/json");
+            response.setContentType("application/json; charset=utf-8");
             response.setCharacterEncoding("UTF-8");
 
             // Send response
@@ -81,7 +81,7 @@ public class PaidOrderController extends HttpServlet {
             String serializedPaidOrder = new Gson().toJson(paidOrder);
 
             // Edit response
-            response.setContentType("application/json");
+            response.setContentType("application/json; charset=utf-8");
             response.setCharacterEncoding("UTF-8");
 
             // Send response
