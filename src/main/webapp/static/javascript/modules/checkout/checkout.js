@@ -48,8 +48,8 @@ export function addEventListenerToCartButton() {
                                 <div id="checkout-modal-close-button">Close</div>
                             </div>
                             <div id="checkout-modal-footer-container-right-unit">
-                                <div id="checkout-modal-previous-button">Previous</div>
-                                <div id="checkout-modal-next-button">Next</div>
+                                <div id="checkout-modal-previous-button" class="invisible">Previous</div>
+                                <div id="checkout-modal-next-button" class="invisible">Next</div>
                             </div>
                         </div>
                     </div>
