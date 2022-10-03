@@ -5,10 +5,10 @@ import org.postgresql.ds.PGSimpleDataSource;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
-public class DataBaseManager {
+public class DatabaseManager {
 
     // Constructor(s)
-    public DataBaseManager() {
+    public DatabaseManager() {
     }
 
     // Method(s)

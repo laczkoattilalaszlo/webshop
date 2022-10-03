@@ -1,6 +1,6 @@
 package com.laczkoattilalaszlo.webshop.service;
 
-import com.laczkoattilalaszlo.webshop.data.DataBaseManager;
+import com.laczkoattilalaszlo.webshop.data.DatabaseManager;
 import com.laczkoattilalaszlo.webshop.data.dao.*;
 
 import javax.sql.DataSource;
@@ -33,7 +33,7 @@ public class ServiceProvider {
     public ProductService getProductService() {
         if (productService == null) {
             try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
+                DatabaseManager dataBaseManager = new DatabaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 ProductDao productDao = new ProductDaoDb(dataSource);
                 productService = new ProductService(productDao);
@@ -47,7 +47,7 @@ public class ServiceProvider {
     public CartService getCartService() {
         if (cartService == null) {
             try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
+                DatabaseManager dataBaseManager = new DatabaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 CartDao cartDao = new CartDaoDb(dataSource);
                 cartService = new CartService(cartDao);
@@ -61,7 +61,7 @@ public class ServiceProvider {
     public UserService getUserService() {
         if (userService == null) {
             try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
+                DatabaseManager dataBaseManager = new DatabaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 UserDao userDao = new UserDaoDb(dataSource);
                 userService = new UserService(userDao);
@@ -75,7 +75,7 @@ public class ServiceProvider {
     public AddressService getAddressService() {
         if (addressService == null) {
             try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
+                DatabaseManager dataBaseManager = new DatabaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 AddressDao addressDao = new AddressDaoDb(dataSource);
                 addressService = new AddressService(addressDao);
@@ -89,7 +89,7 @@ public class ServiceProvider {
     public OrderService getOrderService() {
         if (orderService == null) {
             try {
-                DataBaseManager dataBaseManager = new DataBaseManager();
+                DatabaseManager dataBaseManager = new DatabaseManager();
                 DataSource dataSource = dataBaseManager.connect();
                 OrderDao orderDao = new OrderDaoDb(dataSource);
                 orderService = new OrderService(orderDao);
