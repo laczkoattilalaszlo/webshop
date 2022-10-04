@@ -76,7 +76,7 @@ export function showProducts(products) {
     }
 
     // Fade in product cards
-    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo", 100);
+    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 50, ".product-photo", 100);
 }
 
 // INNER FUNCTION(S) //
