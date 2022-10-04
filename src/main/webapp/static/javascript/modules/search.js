@@ -1,5 +1,6 @@
 // EXPORTED FUNCTION(S) //
 import {fetchData} from "./fetch.js";
+import {showProducts} from "./product.js";
 
 export function addEventListenerToSearchInput() {
     const searchInput = document.querySelector("#search-input");
@@ -17,30 +18,20 @@ export function addEventListenerToSearchInput() {
             matchedProducts = await searchAllProducts(searchInputValue);
         }
 
-        // Show matched products
-        const productContainer = document.querySelector("#product-container");
-        productContainer.innerHTML = "";
-
-        for (let product of matchedProducts) {
-            // Set visibility state of 'Add to cart' button according to the authentication
-            let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
-
-            // Show product cards
-            productContainer.insertAdjacentHTML("beforeend",
-                `
-                <div class="product">
-                    <div class="top-product-unit">
-                        <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
-                        <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
-                        <div class="product-description">${product.description}</div>
-                    </div>
-                    <div class="bottom-product-unit">
-                        <div class="product-price-currency"><span class="product-price">${product.price}</span> <span class="product-currency">${product.currency}</span></div>
-                        <div class="add-to-cart-button" data-product-id="${product.id}" ${VisibilityStateOfAddToCartButton}>Add to cart</div>
-                    </div>
-                </div>
-            `);
+        // Sort matched products in-place
+        if (sessionStorage.getItem("sort-direction") == "ascending") {
+            matchedProducts.sort((productA, productB) => productA.price - productB.price);
+        } else {
+            matchedProducts.sort((productA, productB) => productA.price - productB.price);
+            matchedProducts.reverse();
         }
+
+        // Add matched products to the session-storage
+        const productJSON = JSON.stringify(matchedProducts);
+        sessionStorage.setItem("listed-products", productJSON);
+
+        // Show sorted matched products and fade in product cards
+        showProducts(matchedProducts);
     });
 }
 

@@ -34,12 +34,27 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
     // Fetch products and show them
     const randomProducts = await fetchData("GET", `/random-products?product-quantity=${productQuantity}`, null, null, null, "JSON");
 
+    // Sort products in-place
+    randomProducts.sort((productA, productB) => productA.price - productB.price);
+    sessionStorage.setItem("sort-direction", "ascending");
+
     // Add products to show to the session-storage
     const randomProductJSON = JSON.stringify(randomProducts);
     sessionStorage.setItem("listed-products", randomProductJSON);
 
+    // Add products to product-container and fade in product cards
+    showProducts(randomProducts);
+
+    // Add event listeners to 'add to cart' buttons
+    addEventListenerToAddToCartButtons();
+}
+
+export function showProducts(products) {
+    // Empty product-container
+    productContainer.innerHTML = "";
+
     // Add products to product-container
-    for (let product of randomProducts) {
+    for (let product of products) {
         // Set visibility state of 'Add to cart' button according to the authentication
         let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
 
@@ -62,9 +77,6 @@ export async function loadRandomProductsAtPageLoad(productQuantity) {
 
     // Fade in product cards
     FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo", 100);
-
-    // Add event listeners to 'add to cart' buttons
-    addEventListenerToAddToCartButtons();
 }
 
 // INNER FUNCTION(S) //
@@ -122,40 +134,23 @@ function markSupplierButtonAsSelected(supplierButton) {
 }
 
 async function loadProducts(supplierButton) {
-    // Empty product-container
-    productContainer.innerHTML = "";
-
     // Fetch products and show them
     const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${supplierButton.dataset.categoryId}&supplier-id=${supplierButton.dataset.supplierId}`, null, null, null, "JSON");
+
+    // Sort products in-place
+    if (sessionStorage.getItem("sort-direction") == "ascending") {
+        products.sort((productA, productB) => productA.price - productB.price);
+    } else {
+        products.sort((productA, productB) => productA.price - productB.price);
+        products.reverse();
+    }
 
     // Add products to show to the session-storage
     const productJSON = JSON.stringify(products);
     sessionStorage.setItem("listed-products", productJSON);
 
-    // Add products to product-container
-    for (let product of products) {
-        // Set visibility state of 'Add to cart' button according to the authentication
-        let VisibilityStateOfAddToCartButton = (sessionStorage.getItem("session-token") == null) ? "hidden" : "";
-
-        // Show product cards
-        productContainer.insertAdjacentHTML("beforeend",
-            `
-                <div class="product animated">
-                    <div class="top-product-unit">
-                        <img class="product-photo" src="static/images/products/${(product.picture != null) ? product.picture : "product-placeholder.jpeg"}">
-                        <div class="product-supplier-name"><span class="product-supplier">${product.supplierName}</span> <span class="product-name">${product.name}</span></div>
-                        <div class="product-description">${product.description}</div>
-                    </div>
-                    <div class="bottom-product-unit">
-                        <div class="product-price-currency"><span class="product-price">${product.price}</span> <span class="product-currency">${product.currency}</span></div>
-                        <div class="add-to-cart-button" data-product-id="${product.id}" ${VisibilityStateOfAddToCartButton}>Add to cart</div>
-                    </div>
-                </div>
-            `);
-    }
-
-    // Fade in product cards
-    FadeInElementsAfterWaitForLoadAllImagesCompletely("product", 100, ".product-photo", 100);
+    // Add products to product-container and fade in product cards
+    showProducts(products);
 
     // Add event listeners to 'add to cart' buttons
     addEventListenerToAddToCartButtons();
