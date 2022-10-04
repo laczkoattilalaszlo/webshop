@@ -8,7 +8,7 @@ import {addEventListenerToUserButton} from "./modules/user.js";
 import {addEventListenerToCartButton} from "./modules/checkout/checkout.js";
 import {addEventListenerToOrderButton} from "./modules/order.js";
 import {addEventListenerToSortByPriceDropdownMenu} from "./modules/sort.js";
-import {addEventListenerToSearchInput} from "./modules/search.js";
+import {addEventListenerToSearchInput, addEventListenerToSearchAllProductsRadioButton} from "./modules/search.js";
 
 // INNER FUNCTION(S) //
 function showUIElements() {
@@ -32,7 +32,8 @@ window.addEventListener('load', async () => {
     addEventListenerToLoginButton();
     addEventListenerToLogoutButton();
 
-    addEventListenerToSearchInput();
+    await addEventListenerToSearchInput();
+    await addEventListenerToSearchAllProductsRadioButton();
     addEventListenerToSortByPriceDropdownMenu();
 
     document.querySelector("#information-button").click();      // To show Information dialog at page load

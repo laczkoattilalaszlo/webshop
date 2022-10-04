@@ -134,6 +134,10 @@ function markSupplierButtonAsSelected(supplierButton) {
 }
 
 async function loadProducts(supplierButton) {
+    // Set search unit to initial state
+    document.querySelector("#search-input").value = "";
+    document.getElementById("search-range-listed-products").checked = true;
+
     // Fetch products and show them
     const products = await fetchData("GET", `/products-by-category-and-supplier?category-id=${supplierButton.dataset.categoryId}&supplier-id=${supplierButton.dataset.supplierId}`, null, null, null, "JSON");
 
