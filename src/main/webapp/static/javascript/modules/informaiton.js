@@ -55,7 +55,7 @@ export function addEventListenerToInformationButton() {
                                                                                             <img class="information-link-icon" src="/static/images/icons/linkedin.png"><span>Contact me</span>
                                                                                         </div>
                                                                                     </a>
-                                                                                    <a href="https://drive.google.com/file/d/1YIFWyCtyXz_ZwhO4g5JbdDLMm9E8CmyG/view?usp=sharing" target="_blank">
+                                                                                    <a href="https://drive.google.com/file/d/1zxFDT4n0urd8Gdg6fGs0jrfdNWbVSh-2/view?usp=sharing" target="_blank">
                                                                                         <div>
                                                                                             <img class="information-link-icon" src="/static/images/icons/cv.png"><span>Curriculum Vitae</span>
                                                                                         </div>
