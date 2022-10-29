@@ -16,10 +16,14 @@ public class DatabaseManager {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
 
         if (System.getenv().get("JDBC_DATABASE_URL") == null) {
+            String[] dbHosts = new String[] {"localhost"};
+            int[] dbPorts = new int[] {5432};
             String dbName = System.getenv().get("DB_NAME");
             String dbUserName = System.getenv().get("DB_USER");
             String dbPassword = System.getenv().get("DB_PASSWORD");
 
+            dataSource.setServerNames(dbHosts);
+            dataSource.setPortNumbers(dbPorts);
             dataSource.setDatabaseName(dbName);
             dataSource.setUser(dbUserName);
             dataSource.setPassword(dbPassword);
